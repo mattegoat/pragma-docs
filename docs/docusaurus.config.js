@@ -16,7 +16,7 @@ module.exports = {
 		image: "img/background.jpg",
 		metadata: [{ name: "twitter:card", content: "summary" }],
 		prism: {
-			additionalLanguages: ["solidity"],
+			additionalLanguages: ["solidity", "rust"],
 		},
 		algolia: {
 			apiKey: "10bd5a4750327624845152ae40c0c9c0",

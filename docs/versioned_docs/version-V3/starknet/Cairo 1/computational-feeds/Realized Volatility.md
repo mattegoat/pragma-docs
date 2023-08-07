@@ -14,7 +14,7 @@ For any price feed, Pragma offers a realized volatility feed. The realized volat
 
 If you are just trying to get started with our realized volatility feed, see this self-contained code snippet here. You can find the full Oracle interface specification is available [here](https://github.com/Astraly-Labs/pragma-oracle/blob/main/src/summary_stats/summary_stats.cairo).
 
-```bash
+```rust
 
 use starknet::ContractAddress; 
 use pragma::summary_stats::summary_stats::{
@@ -24,7 +24,7 @@ use pragma::entry::structs::{AggregationMode, DataType};
 
 const SUMMARY_STATS_ADDRESS : ContractAddress  = 0x00000000000000000000; 
 
-fn comupute_volatility(data_type : DataType, aggregation_mode : AggregationMode) -> u128 { 
+fn compute_volatility(data_type : DataType, aggregation_mode : AggregationMode) -> u128 { 
     let start_tick = 1691315416;
     let end_tick = 1691415416;
     let num_samples = 200;
@@ -54,7 +54,7 @@ let volatility = compute_volatility(DataType::Future((pair_id, expiration_timest
 We calculate realized volatility under the Geometric Brownian Motion assumption using the following equation:
 
   <div>
-  <img width="100%" height="100%" src="https://i.ibb.co/yBPHTFk/Screenshot-2023-02-27-at-16-03-04.png" />
+  <a href="https://ibb.co/tcjqN3M"><img width="100%" heigth="100%" src="https://i.ibb.co/sQxKDtv/realised-volatility.jpg" alt="realised-volatility"/></a>
   </div>
 
 Where σ is in units of 1/$\sqrt{T}$. We then multiply σ by $\sqrt{ΔTyear}$ to get the annualized volatility of the underlying asset.
