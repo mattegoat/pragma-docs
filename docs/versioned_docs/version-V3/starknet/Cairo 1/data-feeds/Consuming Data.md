@@ -1,0 +1,229 @@
+---
+id: consuming-data
+title: Consuming Data
+sidebar_position: 1
+---
+
+---
+
+You can find the list of supported assets here.
+The current Pragma proxy addresses are:
+
+| Network                 | Address                                                             | Explorer                                                                                                                                                                                                                                              |
+| ----------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| StarkNet Mainnet        | 0x0346c57f094d641ad94e43468628d8 e9c574dcb2803ec372576ccc60a40be2c4 | [Starkscan](https://starkscan.co/contract/0x0346c57f094d641ad94e43468628d8e9c574dcb2803ec372576ccc60a40be2c4#overview) [Voyager](https://voyager.online/contract/0x0346c57f094d641ad94e43468628d8e9c574dcb2803ec372576ccc60a40be2c4)                  |
+| StarkNet Alpha-Goerli   | 0x446812bac98c08190dee8967180f4e 3cdcd1db9373ca269904acb17f67f7093  | [Starkscan](https://testnet.starkscan.co/contract/0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093) [Voyager](https://goerli.voyager.online/contract/0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093#transactions) |
+| StarkNet Alpha-Goerli 2 | 0xc28f8752abb9ed18f65fed730b8faa 69bdf6128bb730411efd916284701938   | [Starkscan](https://testnet.starkscan.co/contract/0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093) [Voyager](https://goerli.voyager.online/contract/0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093#transactions) |
+
+## Sample Code
+
+If you are just trying to get started with our price feeds, see this self-contained code snippet [here](/docs/starknet/data-feeds/quickstart). If you'd like to use more advanced oracle functions please see the further information below. You can find a full sample data feed consumer contract [here](https://github.com/Astraly-Labs/Pragma/blob/master/contracts/starknet/src/sample_consumer/CheckEthThreshold.cairo) and the full Oracle interface specification is available [here](https://github.com/Astraly-Labs/Pragma/blob/master/contracts/starknet/src/oracle/IEmpiricOracle.cairo).
+
+```bash
+
+use pragma::oracle::oracle::{IOracleABIDispatcher, IOracleABIDispatcherTrait};
+use pragma::entry::structs::{AggregationMode, DataType, PragmaPricesResponse};
+use starknet::ContractAddress;
+use starknet::contract_address::contract_address_const;
+
+
+const KEY = 19514442401534788; // felt252 conversion of "ETH/USD"
+
+fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u256  { 
+    let oracle_dispatcher = IOracleABIDispatcher{contract_address : oracle_address};
+    let output : PragmaPricesResponse= oracle_dispatcher.get_data(asset, AggregationMode::Median(()));
+    return output.price;
+}
+
+//USAGE
+
+let oracle_address : ContractAddress = contract_address_const::<0x000000000000000000000>();
+
+//For a spot entry
+let price = get_asset_price_median(oracle_address, DataType::Spot(KEY));
+
+//For a future entry
+let expiration_timestamp = 1691395615; //in seconds
+let price = get_asset_price_median(oracle_address, DataType::Future((KEY, expiration_timestamp)));
+
+
+```
+
+## Technical Specification
+
+### Function: `get_data_median`
+
+This is the the simplest function that will aggregate all data into a median for a given data type.
+
+#### Inputs
+
+- `data_type`: enum of the data type you are requesting (See DataType structure). By providing the enum data type, you also provide the pair id (for spot entries), or the pair id and the expiration timestamp (for futures).
+
+#### Returns
+
+This function returns a struct, PragmaPricesResponse, which contains the following fields:
+- `price`: aggregation result of all entries for the given key based on the robust median algorithm. Multiplied by `10**decimals`
+- `decimals`: number of places that value has been shifted to allow for greater accuracy
+- `last_updated_timestamp`: timestamp of the most recent entry aggregated
+- `num_sources_aggregated`: number of sources aggregated in the final answer. Use this to check if one of the sources you requested was not available, or if there are enough data reports for you to rely on the answer
+- `expiration_timestamp` : timestamp of when the data will expire. Works only for futures. 
+
+
+### Function : `get_data_median_for_sources`
+
+This is the simplest function that will aggregate all data for given sources into a median for a given data type. 
+
+#### Inputs
+
+- `data_type`: enum of the data type you are requesting (See DataType structure). By providing the enum data type, you also provide the pair id (for spot entries), or the pair id and the expiration timestamp (for futures).
+- `sources`: array of sources to aggregate. Requires a Span of felt252.
+
+#### Returns 
+
+This function returns a struct, PragmaPricesResponse, which contains the following fields:
+- `price`: aggregation result of all entries for the given key based on the robust median algorithm. Multiplied by `10**decimals`
+- `decimals`: number of places that value has been shifted to allow for greater accuracy
+- `last_updated_timestamp`: timestamp of the most recent entry aggregated
+- `num_sources_aggregated`: number of sources aggregated in the final answer. Use this to check if one of the sources you requested was not available, or if there are enough data reports for you to rely on the answer
+- `expiration_timestamp` : timestamp of when the data will expire. Works only for futures. 
+
+
+
+#### Function: `get_data`
+
+Similar to get_data_median except it allows for an additional parameter to specify a custom aggregated logic (median, mean and more).
+
+#### Inputs
+
+- `data_type`: enum of the data type you are requesting (See DataType structure). By providing the enum data type, you also provide the pair id (for spot entries), or the pair id and the expiration timestamp (for futures).
+- `aggregation_mode`: aggregation mode to use for combining the many data sources available in Pragma. Use the structure AggregationMode defined in Pragma. Option must currently be set to `MEDIAN` or `MEAN`, . Additional options `VWAP`, `EXPONENTIAL_DECAY` are coming soon.
+
+#### Returns
+
+- `price`: aggregation result of all entries for the given key based on the robust median algorithm. Multiplied by `10**decimals`
+- `decimals`: number of places that value has been shifted to allow for greater accuracy (fixed point)
+- `last_updated_timestamp`: timestamp of the most recent entry aggregated
+- `num_sources_aggregated`: number of sources aggregated in the final answer. Use this to check if one of the sources you requested was not available, or if there are enough data reports for you to rely on the answer
+- `expiration_timestamp` : timestamp of when the data will expire. Works only for futures. 
+
+
+### Function: `get_data_with_USD_hop`
+
+This function enables you to rebase the price, i.e. use a different base currency. For instance, if you want the price of BTC/ETH, you can combine the BTC/USD and ETH/USD price data to derive that.
+
+#### Inputs
+
+- `base_currency_id`: felt252 for the base currency (e.g. BTC)
+- `quote_currency_id`: felt252 for the base currency (e.g. ETH)
+- `aggregation_mode`: aggregation mode to use for combining the many data sources available in Pragma. Use constants defined in Pragma. Option must currently be set to `MEDIAN`, `MEAN`. Additional options `TWAP`, `EXPONENTIAL_DECAY` are coming soon.
+- `typeof` : SimpleDataType, represents an enum of the data type you are requesting. No pair_id /expiration timestamp required on the enum. 
+- `expiration_timestamp`: expiration timestamp of the data you are requesting. Only required for futures.
+
+#### Returns
+
+- `price`: aggregation result of all entries for the given key (using the algorithm specified by the `aggregation_mode` parameter). Multiplied by `10**decimals`
+- `decimals`: number of places that value has been shifted to allow for greater accuracy (fixed point)
+- `last_updated_timestamp`: timestamp of the most recent entry aggregated
+- `num_sources_aggregated`: number of sources aggregated in the final answer. Use this to check if one of the sources you requested was not available, or if there are enough data reports for you to rely on the answer
+- `expiration_timestamp` : timestamp of when the data will expire. Works only for futures. 
+
+
+### Function: `get_data_for_sources`
+
+This function enables you to get the price of one currency in terms of another, by specifying the path from one the quote to the base currency. For instance, if you want the price of ETH/EUR, you can combine the ETH/USD, BTC/USD and BTC/EUR price data to derive that.
+
+#### Inputs
+
+- `data_type`: enum of the data type you are requesting (See DataType structure). By providing the enum data type, you also provide the pair id (for spot entries), or the pair id and the expiration timestamp (for futures).
+- `aggregation_mode`: aggregation mode to use for combining the many data sources available in Pragma. Use constants defined in Pragma. Option must currently be set to `MEDIAN`. Additional options `TWAP`, `EXPONENTIAL_DECAY` and `MEAN` are coming soon.
+- `sources`: array of sources to aggregate. Requires a Span of felt252.
+
+#### Returns
+
+- `price`: aggregation result of all entries for the given key (using the algorithm specified by the `aggregation_mode` parameter). Multiplied by `10\*\*decimals`
+- `decimals`: number of places that value has been shifted to allow for greater accuracy (fixed point)
+- `last_updated_timestamp`: timestamp of the most recent entry aggregated
+- `num_sources_aggregated`: number of sources aggregated in the final answer. Use this to check if one of the sources you requested was not available, or if there are enough data reports for you to rely on the answer
+- `expiration_timestamp` : timestamp of when the data will expire. Works only for futures.
+
+
+### Function: `get_data_entry`
+
+This function enables you to get the most recent raw data point for a specific spot asset and source.
+
+#### Inputs
+
+- `data_type`: enum of the data type you are requesting (See DataType structure). By providing the enum data type, you also provide the pair id (for spot entries), or the pair id and the expiration timestamp (for futures).
+- `source`: uppercased utf8-encoded data source, e.g. `str_to_felt("GEMINI")=78362974965321`
+
+#### Returns
+
+- `possible_entry`: enum of PossibleEntry ( among SpotEntry, FutureEntry, and later OptionEntry), i.e. a `struct` with members `base_entry`, which in turn has a `timestamp`, `source` and `publisher`, and additional members `data_type`, `price` and `volume`.
+
+### Function: `get_data_entries`
+
+This function enables you to get the multiple raw data points for a specific spot asset and all sources.
+
+#### Inputs
+
+- `data_type`: enum of the data type you are requesting (See DataType structure). By providing the enum data type, you also provide the pair id (for spot entries), or the pair id and the expiration timestamp (for futures).
+
+#### Returns
+
+- an Array of `possible_entry`: enum of PossibleEntry ( among SpotEntry, FutureEntry, and later OptionEntry), i.e. a `struct` with members `base_entry`, which in turn has a `timestamp`, `source` and `publisher`, and additional members `data_type`, `price` and `volume`.
+
+### Function: `get_data_entries_for_sources`
+
+This function enables you to get the most recent raw data point for a specific spot asset and a list of sources.
+
+#### Inputs
+
+- `data_type`: enum of the data type you are requesting (See DataType structure). By providing the enum data type, you also provide the pair id (for spot entries), or the pair id and the expiration timestamp (for futures).
+- `sources`: array of sources to aggregate. Requires a Span of felt252.
+
+#### Returns
+
+- an Array of `possible_entry`: enum of PossibleEntry ( among SpotEntry, FutureEntry, and later OptionEntry), i.e. a `struct` with members `base_entry`, which in turn has a `timestamp`, `source` and `publisher`, and additional members `data_type`, `price` and `volume`.
+- `timestamp` : timestamp of the most recent entry aggregated.
+
+### Function `get_last_checkpoint_before`
+
+This function returns the last checkpoint, i.e. the last snapshot of the oracle price saved onchain, before a given timestamp.
+
+#### Inputs
+
+- `data_type` : enum of the data type you are requesting (See DataType structure). By providing the enum data type, you also provide the pair id (for spot entries), or the pair id and the expiration timestamp (for futures).
+- `timestamp` : The timestamp for which we take the checkpoint prior to it.
+- `aggregation_mode`: aggregation mode to use for combining the many data sources available in Pragma. Use the structure AggregationMode defined in Pragma. Option must currently be set to `MEDIAN` or `MEAN`, . Additional options `VWAP`, `EXPONENTIAL_DECAY` are coming soon.
+
+#### Returns
+
+- `checkpoint` : a structure Checkpoint i.e. a `struct` with members `timestamp`, the timestamp of the checkpoint, `value`, the aggregated price at that checkpoint (according to the `aggregation_mode`), the `aggregation_mode`, the mode to use for combining the data sources available, `num_sources_aggregated`, the number of sources aggregated for that checkpoint. 
+- `idx` : u64, the index of the checkpoint returned. 
+
+### Function `get_latest_checkpoint_index`
+
+This function returns the index of the latest checkpoint, i.e. the last snapshot of the oracle price saved onchain.
+
+#### Inputs
+
+- `data_type` : enum of the data type you are requesting (See DataType structure). By providing the enum data type, you also provide the pair id (for spot entries), or the pair id and the expiration timestamp (for futures).
+- `aggregation_mode`: aggregation mode to use for combining the many data sources available in Pragma. Use the structure AggregationMode defined in Pragma. Option must currently be set to `MEDIAN` or `MEAN`, . Additional options `VWAP`, `EXPONENTIAL_DECAY` are coming soon.
+
+#### Returns
+
+- `idx` : u64, the index of the latest checkpoint.
+- `is_valid` : bool, whether the latest checkpoint is valid or not (in case the idx returns 0, in order to make a distinction between the case where there is no checkpoint and the case where the latest checkpoint is 0 - cf one checkpoint).
+
+### Function `get_latest_checkpoint`
+
+This function returns the latest checkpoint, i.e. the last snapshot of the oracle price saved onchain.
+
+#### Inputs
+
+- `data_type` : enum of the data type you are requesting (See DataType structure). By providing the enum data type, you also provide the pair id (for spot entries), or the pair id and the expiration timestamp (for futures).
+- `aggregation_mode`: aggregation mode to use for combining the many data sources available in Pragma. Use the structure AggregationMode defined in Pragma. Option must currently be set to `MEDIAN` or `MEAN`, . Additional options `VWAP`, `EXPONENTIAL_DECAY` are coming soon.
+
+#### Returns
+
+- `checkpoint` : a structure Checkpoint i.e. a `struct` with members `timestamp`, the timestamp of the checkpoint, `value`, the aggregated price at that checkpoint (according to the `aggregation_mode`), the `aggregation_mode`, the mode to use for combining the data sources available, `num_sources_aggregated`, the number of sources aggregated for that checkpoint. 
