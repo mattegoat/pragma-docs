@@ -19,7 +19,10 @@ The current Pragma proxy addresses are:
 
 If you are just trying to get started with our price feeds, see this self-contained code snippet [here](/docs/starknet/data-feeds/quickstart). If you'd like to use more advanced oracle functions please see the further information below. You can find a full sample data feed consumer contract [here](https://github.com/Astraly-Labs/Pragma/blob/master/contracts/starknet/src/sample_consumer/CheckEthThreshold.cairo) and the full Oracle interface specification is available [here](https://github.com/Astraly-Labs/Pragma/blob/master/contracts/starknet/src/oracle/IEmpiricOracle.cairo).
 
-```bash
+
+#### BTC/USD Spot Median Price
+
+```rust
 
 use pragma::oracle::oracle::{IOracleABIDispatcher, IOracleABIDispatcherTrait};
 use pragma::entry::structs::{AggregationMode, DataType, PragmaPricesResponse};
@@ -27,7 +30,7 @@ use starknet::ContractAddress;
 use starknet::contract_address::contract_address_const;
 
 
-const KEY = 19514442401534788; // felt252 conversion of "ETH/USD"
+const KEY :felt252 = 18669995996566340; // felt252 conversion of "BTC/USD", can also write const KEY : felt252 = 'BTC/USD';
 
 fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u256  { 
     let oracle_dispatcher = IOracleABIDispatcher{contract_address : oracle_address};
@@ -38,13 +41,65 @@ fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> 
 //USAGE
 
 let oracle_address : ContractAddress = contract_address_const::<0x000000000000000000000>();
+let price = get_asset_price_median(oracle_address, DataType::SpotEntry(KEY));
 
-//For a spot entry
-let price = get_asset_price_median(oracle_address, DataType::Spot(KEY));
 
-//For a future entry
+
+```
+
+#### SOL/USD Spot Average Price, filtered by sources
+
+```rust
+
+use pragma::oracle::oracle::{IOracleABIDispatcher, IOracleABIDispatcherTrait};
+use pragma::entry::structs::{AggregationMode, DataType, PragmaPricesResponse};
+use starknet::ContractAddress;
+use starknet::contract_address::contract_address_const;
+use array::ArrayTrait;
+
+const KEY:felt252 = 23449611697214276; // felt252 conversion of "SOL/USD", can also write const KEY : felt252 = 'SOL/USD'
+const OKX :felt252 = 'OKX'; //felt252 conversion of "OKX"
+const BINANCE : felt252 = 'BINANCE'; //felt252 conversion of "BINANCE"
+fn get_asset_price_average(oracle_address: ContractAddress, asset : DataType, sources : Span<felt252>) -> u256  { 
+    let oracle_dispatcher = IOracleABIDispatcher{contract_address : oracle_address};
+    let output : PragmaPricesResponse= oracle_dispatcher.get_data_for_sources(asset, AggregationMode::Mean(()), sources);
+    return output.price;
+}
+
+
+//USAGE
+
+let oracle_address : ContractAddress = contract_address_const::<0x000000000000000000000>();
+let mut sources = ArrayTrait::<felt252>::new();
+sources.append(OKX);
+sources.append(BINANCE);
+let price = get_asset_price_average(oracle_address, DataType::SpotEntry(KEY), sources.span());
+
+
+```
+
+
+#### BTC/USD Future Price 
+
+```rust 
+
+use pragma::oracle::oracle::{IOracleABIDispatcher, IOracleABIDispatcherTrait};
+use pragma::entry::structs::{AggregationMode, DataType, PragmaPricesResponse};
+use starknet::ContractAddress;
+use starknet::contract_address::contract_address_const;
+
+const KEY :felt252 = 18669995996566340; // felt252 conversion of "BTC/USD", can write const KEY : felt252 = 'BTC/USD'
+
+fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u256  { 
+    let oracle_dispatcher = IOracleABIDispatcher{contract_address : oracle_address};
+    let output : PragmaPricesResponse= oracle_dispatcher.get_data(asset, AggregationMode::Median(()));
+    return output.price;
+}
+
+//USAGE
+let oracle_address : ContractAddress = contract_address_const::<0x000000000000000000000>();
 let expiration_timestamp = 1691395615; //in seconds
-let price = get_asset_price_median(oracle_address, DataType::Future((KEY, expiration_timestamp)));
+let price = get_asset_price_median(oracle_address, DataType::FutureEntry((KEY, expiration_timestamp)));
 
 
 ```
