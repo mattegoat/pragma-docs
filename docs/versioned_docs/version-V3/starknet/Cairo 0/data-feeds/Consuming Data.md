@@ -17,7 +17,7 @@ The current Pragma proxy addresses are:
 
 ## Sample Code
 
-If you are just trying to get started with our price feeds, see this self-contained code snippet [here](/docs/starknet/data-feeds/quickstart). If you'd like to use more advanced oracle functions please see the further information below. You can find a full sample data feed consumer contract [here](https://github.com/Astraly-Labs/Pragma/blob/master/contracts/starknet/src/sample_consumer/CheckEthThreshold.cairo) and the full Oracle interface specification is available [here](https://github.com/Astraly-Labs/Pragma/blob/master/contracts/starknet/src/oracle/IEmpiricOracle.cairo).
+If you are just trying to get started with our price feeds, see this self-contained code snippet [here](https://github.com/Astraly-Labs/pragma-hack/tree/master). If you'd like to use more advanced oracle functions please see the further information below. You can find a full sample data feed consumer contract [here](https://github.com/Astraly-Labs/Pragma/blob/master/contracts/starknet/src/sample_consumer/CheckEthThreshold.cairo) and the full Oracle interface specification is available [here](https://github.com/Astraly-Labs/Pragma/blob/master/contracts/starknet/src/oracle/IEmpiricOracle.cairo).
 
 ```bash
 %lang starknet

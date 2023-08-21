@@ -10,7 +10,7 @@ For any price feed, Pragma offers a TWAP feed. The TWAP feed uses checkpoints in
 
 #### Sample Code
 
-If you are just trying to get started with our TWAP feed, see this self-contained code snippet here. You can find the full Oracle interface specification is available [here](https://github.com/Astraly-Labs/pragma-oracle/blob/main/src/summary_stats/summary_stats.cairo).
+If you are just trying to get started with our TWAP feed, see this self-contained code snippet here. You can find the full Oracle interface specification is available [here](https://github.com/Astraly-Labs/pragma-oracle/blob/main/src/compute_engines/summary_stats/summary_stats.cairo).
 
 ```rust
 

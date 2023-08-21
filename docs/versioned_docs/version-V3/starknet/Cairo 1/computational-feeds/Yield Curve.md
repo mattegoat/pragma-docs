@@ -8,11 +8,11 @@ sidebar_position: 2
 
 ## Yield Curve
 
-Pragma offers a feed that calculates the zero-coupon interest-rate curve fully on-chain. The interest rate values are derived from BTC spot and futures price difference, and Aave overnight rate.
+Pragma offers a feed that calculates the zero-coupon interest-rate curve fully on-chain. The interest rate values are derived from BTC spot and futures price difference, and Aave overnight rate. You can find more informations regarding the implementation [here](https://github.com/Astraly-Labs/pragma-oracle/blob/main/src/compute_engines/yield_curve/yield_curve.cairo)
 
 
 
-##Sample Code
+## Sample Code
 
 ```rust
 

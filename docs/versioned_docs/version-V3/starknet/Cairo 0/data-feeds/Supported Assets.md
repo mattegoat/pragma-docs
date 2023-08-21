@@ -42,14 +42,7 @@ The `pair_id` is calculated by utf-8 encoding the uppercased string (e.g. `str_t
 | TUSD/USD | 6076854824523354948 | 8        | ✖️      |
 | BUSD/USD | 4779818131840652100 | 8        | ✖️      |
 
-### Experimental Spots (Testnet only)
 
-These assets are available as feeds on Pragma but due to limited data sources and liquidity, we cannot guarantee their accuracy and advise to only use them for experimental use cases.
-
-| Ticker   | Pair Id             | Decimals |
-| -------- | ------------------- | -------- |
-| ETH/MXN  | 19514442401011790   | 8        |
-| TEMP/USD | 6072344679365825348 | 8        |
 
 ## Currencies & Rebasing
 
