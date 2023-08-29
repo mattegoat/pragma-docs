@@ -53,6 +53,7 @@ logger = logging.getLogger(__name__)
 
 def fetch_entries(assets: List[PragmaAsset], *args, **kwargs) -> List[SpotEntry]:
     entries = []
+    
     for asset in assets:
         entries.append(
             SpotEntry(
@@ -75,7 +76,8 @@ def fetch_entries(assets: List[PragmaAsset], *args, **kwargs) -> List[SpotEntry]
                 volume=0,
             )
         )
-return entries
+
+    return entries
 
 async def publish_all(assets):
     # We get the private key and address of the account deployed in step 2.
