@@ -29,7 +29,7 @@ The initial publishing frequency for the oracle is every 3 minutes on Starknet A
 Install the SDK in your virtual envirronement
 
 ```bash
-pip install pragma
+pip install pragma-sdk
 ```
 
 See a full sample script here, or copy paste the code below to get started. Note that you need to set environment variables `PUBLISHER`, `PUBLISHER_ADDRESS`, and `PUBLISHER_PRIVATE_KEY` before running the code. You can use the sample .env file here to set them (the file does not include `PUBLISHER_PRIVATE_KEY` for obvious reasons).
