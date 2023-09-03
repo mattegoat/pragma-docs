@@ -43,7 +43,6 @@ by the `base` asset given its `price`.
 the Starknet account you have deployed in step 1 and which you manage with `starkli`.
 - You will also need an `RPC_KEY` corresponding to an [Infura](https://www.infura.io/) API Key.
 ⚠️ Soon the SDK will give you access to Pragma's own RPC providers by default and let you the option to add your own RPC url directly.
-- 
 
 ```python
 import asyncio
