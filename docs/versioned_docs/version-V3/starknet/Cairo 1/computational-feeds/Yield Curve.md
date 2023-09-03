@@ -10,12 +10,9 @@ sidebar_position: 2
 
 Pragma offers a feed that calculates the zero-coupon interest-rate curve fully on-chain. The interest rate values are derived from BTC spot and futures price difference, and Aave overnight rate. You can find more informations regarding the implementation [here](https://github.com/Astraly-Labs/pragma-oracle/blob/main/src/compute_engines/yield_curve/yield_curve.cairo)
 
-
-
 ## Sample Code
 
 ```rust
-
 use starknet::ContractAddress;
 use pragma::compute_engines::yield_curve::yield_curve::{
     IYieldCurveABIDispatcher, IYieldCurveABIDispatcherTrait, YieldPoint
@@ -28,9 +25,11 @@ use starknet::contract_address::contract_address_const;
 fn get_yield_curve_points(number_of_decimals : u32) -> Span<YieldPoint> {
     let YIELD_CURVE_ADDRESS: ContractAddress =
         contract_address_const::<0x000000000000000000000>();
+
     let yield_curve_dispatcher = IYieldCurveABIDispatcher { contract_address: YIELD_CURVE_ADDRESS };
     let yield_curve_points = yield_curve_dispatcher
         .get_yield_points(number_of_decimals);
+        
     return yield_curve_points; // will return the yield curve points multiiplied by 10^number_of_decimals
 }
 
@@ -40,6 +39,7 @@ let number_of_decimals = 8;
 let yield_points = get_yield_curve_points(number_of_decimals);
 
 ```
+
 ### How the Yield Curve is Calculated
 
 Aave overnight rates are used to estimate short-term rates. BTC spot and futures prices are pulled at the exact same time to calculate the rates for different maturities. The interest rate for each maturity is calculated according to the following equation:

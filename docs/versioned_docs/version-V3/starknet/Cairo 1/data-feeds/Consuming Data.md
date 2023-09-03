@@ -11,16 +11,15 @@ The current Pragma proxy addresses are:
 
 | Network                 | Address                                                             | Explorer                                                                                                                                                                                                                                              |
 | ----------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| StarkNet Mainnet        | 0x0346c57f094d641ad94e43468628d8 e9c574dcb2803ec372576ccc60a40be2c4 | [Starkscan](https://starkscan.co/contract/0x0346c57f094d641ad94e43468628d8e9c574dcb2803ec372576ccc60a40be2c4#overview) [Voyager](https://voyager.online/contract/0x0346c57f094d641ad94e43468628d8e9c574dcb2803ec372576ccc60a40be2c4)                  |
-| StarkNet Alpha-Goerli   | 0x446812bac98c08190dee8967180f4e 3cdcd1db9373ca269904acb17f67f7093  | [Starkscan](https://testnet.starkscan.co/contract/0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093) [Voyager](https://goerli.voyager.online/contract/0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093#transactions) |
-| StarkNet Alpha-Goerli 2 | 0xc28f8752abb9ed18f65fed730b8faa 69bdf6128bb730411efd916284701938   | [Starkscan](https://testnet.starkscan.co/contract/0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093) [Voyager](https://goerli.voyager.online/contract/0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093#transactions) |
+| StarkNet Mainnet        | ❌ | [Starkscan](https://starkscan.co/contract/x#overview) [Voyager](https://voyager.online/contract/x)                  |
+| StarkNet Alpha-Goerli   | 0x1ab2b1d9d084ed2c9fe185ac32b3bc7fa42f85e129b97459b4fe315f4247978  | [Starkscan](https://testnet.starkscan.co/contract/0x1ab2b1d9d084ed2c9fe185ac32b3bc7fa42f85e129b97459b4fe315f4247978) [Voyager](https://goerli.voyager.online/contract/0x1ab2b1d9d084ed2c9fe185ac32b3bc7fa42f85e129b97459b4fe315f4247978#transactions) |
+
 
 ## Sample Code
 
 If you are just trying to get started with our price feeds, see the self-contained code snippets below. If you'd like to use more advanced oracle functions please see the further information below. You can find a full sample data feed consumer contract [here](https://github.com/Astraly-Labs/pragma-hack/tree/master) and the full Oracle interface specification is available [here](https://github.com/Astraly-Labs/pragma-oracle/blob/main/src/oracle/oracle.cairo).
 
-
-#### BTC/USD Spot Median Price
+### BTC/USD Spot Median Price
 
 ```rust
 
@@ -32,7 +31,7 @@ use starknet::contract_address::contract_address_const;
 
 const KEY :felt252 = 18669995996566340; // felt252 conversion of "BTC/USD", can also write const KEY : felt252 = 'BTC/USD';
 
-fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u256  { 
+fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u128  { 
     let oracle_dispatcher = IOracleABIDispatcher{contract_address : oracle_address};
     let output : PragmaPricesResponse= oracle_dispatcher.get_data(asset, AggregationMode::Median(()));
     return output.price;
@@ -40,12 +39,11 @@ fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> 
 
 //USAGE
 
-let oracle_address : ContractAddress = contract_address_const::<0x000000000000000000000>();
+let oracle_address : ContractAddress = contract_address_const::<0x1ab2b1d9d084ed2c9fe185ac32b3bc7fa42f85e129b97459b4fe315f4247978>();
 let price = get_asset_price_median(oracle_address, DataType::SpotEntry(KEY));
-
-
-
 ```
+
+[Open in Remix](https://remix.ethereum.org/#activate=Starknet-cairo1-compiler&url=https://github.com/Astraly-Labs/pragma-hack/blob/master/src/contracts/contract_cairo1.cairo)
 
 #### SOL/USD Spot Average Price, filtered by sources
 
@@ -57,32 +55,32 @@ use starknet::ContractAddress;
 use starknet::contract_address::contract_address_const;
 use array::ArrayTrait;
 
-const KEY:felt252 = 23449611697214276; // felt252 conversion of "SOL/USD", can also write const KEY : felt252 = 'SOL/USD'
-const OKX :felt252 = 'OKX'; //felt252 conversion of "OKX"
-const BINANCE : felt252 = 'BINANCE'; //felt252 conversion of "BINANCE"
-fn get_asset_price_average(oracle_address: ContractAddress, asset : DataType, sources : Span<felt252>) -> u256  { 
+const KEY: felt252 = 23449611697214276; // felt252 conversion of "SOL/USD", can also write const KEY : felt252 = 'SOL/USD'
+const OKX: felt252 = 'OKX'; // felt252 conversion of "OKX"
+const BINANCE: felt252 = 'BINANCE'; // felt252 conversion of "BINANCE"
+
+fn get_asset_price_average(oracle_address: ContractAddress, asset : DataType, sources : Span<felt252>) -> u128  { 
     let oracle_dispatcher = IOracleABIDispatcher{contract_address : oracle_address};
     let output : PragmaPricesResponse= oracle_dispatcher.get_data_for_sources(asset, AggregationMode::Mean(()), sources);
+
     return output.price;
 }
 
-
 //USAGE
 
-let oracle_address : ContractAddress = contract_address_const::<0x000000000000000000000>();
+let oracle_address : ContractAddress = contract_address_const::<0x1ab2b1d9d084ed2c9fe185ac32b3bc7fa42f85e129b97459b4fe315f4247978>();
+
 let mut sources = ArrayTrait::<felt252>::new();
 sources.append(OKX);
 sources.append(BINANCE);
+
 let price = get_asset_price_average(oracle_address, DataType::SpotEntry(KEY), sources.span());
-
-
 ```
 
 
-#### BTC/USD Future Price 
+#### BTC/USD Future Price
 
-```rust 
-
+```rust
 use pragma::oracle::oracle::{IOracleABIDispatcher, IOracleABIDispatcherTrait};
 use pragma::entry::structs::{AggregationMode, DataType, PragmaPricesResponse};
 use starknet::ContractAddress;
@@ -90,18 +88,17 @@ use starknet::contract_address::contract_address_const;
 
 const KEY :felt252 = 18669995996566340; // felt252 conversion of "BTC/USD", can write const KEY : felt252 = 'BTC/USD'
 
-fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u256  { 
+fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u128  { 
     let oracle_dispatcher = IOracleABIDispatcher{contract_address : oracle_address};
     let output : PragmaPricesResponse= oracle_dispatcher.get_data(asset, AggregationMode::Median(()));
+
     return output.price;
 }
 
 //USAGE
-let oracle_address : ContractAddress = contract_address_const::<0x000000000000000000000>();
+let oracle_address : ContractAddress = contract_address_const::<0x1ab2b1d9d084ed2c9fe185ac32b3bc7fa42f85e129b97459b4fe315f4247978>();
 let expiration_timestamp = 1691395615; //in seconds
 let price = get_asset_price_median(oracle_address, DataType::FutureEntry((KEY, expiration_timestamp)));
-
-
 ```
 
 ## Technical Specification

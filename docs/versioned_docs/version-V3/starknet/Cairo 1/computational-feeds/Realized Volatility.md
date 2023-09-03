@@ -10,17 +10,13 @@ sidebar_position: 3
 
 For any price feed, Pragma offers a realized volatility feed. The realized volatility feed uses checkpoints to calculate the annualized volatility of an asset over a period of time.
 
-#### Sample Code
+### Sample Code
 
 If you are just trying to get started with our realized volatility feed, see this self-contained code snippet here. You can find the full Oracle interface specification is available [here](https://github.com/Astraly-Labs/pragma-oracle/blob/main/src/compute_engines/summary_stats/summary_stats.cairo).
 
-
-
 #### BTC/USD 1 week  Realised volatility
 
-
 ```rust
-
 use starknet::ContractAddress;
 use pragma::summary_stats::summary_stats::{
     ISummaryStatsABIDispatcher, ISummaryStatsABIDispatcherTrait
@@ -32,13 +28,16 @@ use starknet::contract_address::contract_address_const;
 
 fn compute_volatility(data_type: DataType, aggregation_mode: AggregationMode) -> u128 {
     let SUMMARY_STATS_ADDRESS: ContractAddress =
-        contract_address_const::<0x000000000000000000000>();
+        contract_address_const::<0x7692d324980c3c7ad72198ba7a42487fd057dd97b8c89a8d71e48c28e3b8657>();
+
     let start_tick = starknet::get_block_timestamp() - 604800;
     let end_tick = starknet::get_block_timestamp();
+
     let num_samples = 200;
     let summary_dispatcher = ISummaryStatsABIDispatcher { contract_address: SUMMARY_STATS_ADDRESS };
     let (volatility, _) = summary_dispatcher
         .calculate_volatility(data_type, start_tick, end_tick, num_samples, aggregation_mode);
+
     return volatility; // will return the volatility multiplied by 10^decimals
 }
 

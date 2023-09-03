@@ -129,7 +129,7 @@ Again, note the .env file in that same [folder](https://github.com/Astraly-Labs/
 Alternatively, you can find an example of how to use the SDK in a serverless deployment (e.g. AWS Lambda).
 
 ```bash
-FROM Astraly-Labs/empiric-publisher:1.4.16
+FROM astralylabs/empiric-publisher:1.4.16
 
 COPY fetch-and-publish.py ./fetch-and-publish.py
 CMD python fetch-and-publish.py
