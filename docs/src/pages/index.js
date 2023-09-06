@@ -35,7 +35,7 @@ export const actions = [
     title: 'Use Pragma',
     href: '#',
     icon: BookOpenIcon,
-    to: './docs/starknet/Cairo%201/data-feeds/consuming-data',
+    to: './docs/Resources/Cairo%201/data-feeds/consuming-data',
     text: `Get started using Pragma. Integrate Price feeds, VRF and more in your smart-contracts.`,
   },
   {
