@@ -178,7 +178,7 @@ The previous contract is a simple contract, allowing a user to retrieve the pric
 
 
 <div >
-<a href="https://remix.ethereum.org/#activate=Starknet-cairo1-compiler&url=https://gist.github.com/EvolveArt/8a6bffad23983a0ded7a6bebfa0d7974
+<a href="https://remix.ethereum.org/#activate=Starknet-cairo1-compiler&gist=8a6bffad23983a0ded7a6bebfa0d7974
 " target='_blank' class="button">Open in Remix</a>
 </div>
 
