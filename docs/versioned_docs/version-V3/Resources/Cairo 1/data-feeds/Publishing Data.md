@@ -8,6 +8,8 @@ sidebar_position: 3
 
 Pragma makes publishing data easy because there is no off-chain infrastructure, so publishing only requires signing and timestamping data before sending it on-chain. All of this can be done with a simple, stateless node that costs a few dollars a month to run.
 
+*Estimated Time*: A few hours to a day depending on your underlying data infrastructure.
+
 Here is the step-by-step breakdown:
 
 ### 1. Account Setup
