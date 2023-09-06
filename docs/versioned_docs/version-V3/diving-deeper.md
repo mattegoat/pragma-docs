@@ -1,6 +1,6 @@
 ---
-id: ressources
-title: Ressources
+id: diving-deeper
+title: Diving Deeper
 sidebar_position: 5
 ---
 

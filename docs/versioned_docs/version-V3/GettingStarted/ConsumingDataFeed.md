@@ -174,11 +174,11 @@ enum AggregationMode {
 
 We deploying the contract, you will have to specify the oracle contract address and the summary stats contract address. The summary stats is a contract providing computational feeds (TWAP, Yield Curve, Realized Volatility, ...). In the provided example we will not use the summary stats contract. 
 The oracle address can be found [here](../Resources/Cairo%201/data-feeds/Consuming%20Data.md).
-The previous contract is a simple contract, allowing a user to retrieve the price of an asset. You can play with a more complete example and deploy using Remix. It   
+The previous contract is a simple contract, allowing a user to retrieve the price of an asset. You can play with a more complete example and deploy using Remix.
 
 
 <div >
-<a href="https://remix.ethereum.org/#version=soljson-v0.8.18+commit.87f61d96.js&optimize=false&runs=200&gist=
+<a href="https://remix.ethereum.org/#activate=Starknet-cairo1-compiler&url=https://gist.github.com/EvolveArt/8a6bffad23983a0ded7a6bebfa0d7974
 " target='_blank' class="button">Open in Remix</a>
 </div>
 

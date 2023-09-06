@@ -43,8 +43,6 @@ let oracle_address : ContractAddress = contract_address_const::<0x1ab2b1d9d084ed
 let price = get_asset_price_median(oracle_address, DataType::SpotEntry(KEY));
 ```
 
-[Open in Remix](https://remix.ethereum.org/#activate=Starknet-cairo1-compiler&url=https://github.com/Astraly-Labs/pragma-hack/blob/master/src/contracts/contract_cairo1.cairo)
-
 #### SOL/USD Spot Average Price, filtered by sources
 
 ```rust

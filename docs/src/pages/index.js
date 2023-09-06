@@ -54,22 +54,22 @@ export const github = [
     icon: CodeIcon,
   },
   {
-    title: 'pragma-repo-cairo-1', 
+    title: 'pragma-contracts', 
     href: 'https://github.com/Astraly-Labs/pragma-oracle'
   },
   {
-    title: 'starknet-open-oracle',
-    href: 'https://github.com/Astraly-Labs/StarknetOpenOracle',
+    title: 'pragma-sdk',
+    href: 'https://github.com/Astraly-Labs/pragma-sdk',
     icon: CodeIcon,
   },
   {
-    title: 'cairo-ressources',
-    href: 'https://github.com/NewtonDAO/cairo-resources-list',
+    title: 'pragma-hack',
+    href: 'https://github.com/Astraly-Labs/pragma-hack',
     icon: CodeIcon,
   },
   {
-    title: 'starknet-libs',
-    href: 'https://github.com/Astraly-Labs/starknet-libs',
+    title: 'pragma-x',
+    href: 'https://github.com/Astraly-Labs/pragma-x',
   },
 ]
 
