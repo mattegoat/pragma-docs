@@ -34,9 +34,6 @@ Install the SDK in your virtual envirronement
 pip install pragma-sdk
 ```
 
-⚠️ Troubleshoting
-- Make sure you have `cmake` installed if you run into `ERROR: Could not build wheels for crypto-cpp-py, which is required to install pyproject.toml-based projects`
-
 See a full sample script [here](https://github.com/Astraly-Labs/Pragma/blob/master/stagecoach/jobs/publishers/starknet-publisher/app.py), or copy paste the code below to get started. Note that you need to set environment variables `PUBLISHER`, `PUBLISHER_ADDRESS`, and `PUBLISHER_PRIVATE_KEY` before running the code. You can use the sample .env file here to set them (the file does not include `PUBLISHER_PRIVATE_KEY` for obvious reasons).
 To make fetching data simple, implement your own fetching function using whatever libraries you want, as long as it returns a `List[Entry]`.
 
@@ -49,6 +46,10 @@ the Starknet account you have deployed in step 1 and which you manage with `star
 - You will also need an `RPC_KEY` corresponding to an [Infura](https://www.infura.io/) API Key.
 ⚠️ Soon the SDK will give you access to Pragma's own RPC providers by default and let you the option to add your own RPC url directly.
 
+⚠️ Troubleshoting ⚠️
+- Make sure you have `cmake` installed if you run into `ERROR: Could not build wheels for crypto-cpp-py, which is required to install pyproject.toml-based projects`
+- `starknet_py.net.client_errors.ClientError: Client failed with code 401: invalid project id`. This means you probably have not set your `RPC_KEY` env variable correctly.
+
 ```python
 import asyncio
 import logging
@@ -58,7 +59,7 @@ from typing import List
 
 from pragma.core.entry import SpotEntry, FutureEntry
 from pragma.core.utils import currency_pair_to_pair_id, log_entry
-from pragma.publisher.assets import PRAGMA_ALL_ASSETS, PragmaAsset
+from pragma.core.assets import PRAGMA_ALL_ASSETS, PragmaAsset
 from pragma.publisher.client import PragmaPublisherClient
 
 logger = logging.getLogger(__name__)
@@ -69,14 +70,18 @@ def fetch_entries(assets: List[PragmaAsset], *args, **kwargs) -> List[SpotEntry]
     entries = []
     
     for asset in assets:
+        if asset["type"] == 'ONCHAIN':
+          continue
+        
         entries.append(
             SpotEntry(
                 timestamp=int(time.time()),
                 source="MY_SOURCE",
                 publisher="MY_PUBLISHER",
-                pair_id=currency_pair_to_pair_id(*asset.pair),
+                pair_id=currency_pair_to_pair_id(*asset["pair"]),
                 price=10 * 10 ** asset["decimals"], # shifted 10 ** decimals
                 volume=0,
+                autoscale_volume=False
             )
         )
         entries.append(
@@ -84,10 +89,11 @@ def fetch_entries(assets: List[PragmaAsset], *args, **kwargs) -> List[SpotEntry]
                 timestamp=int(time.time()),
                 source="MY_SOURCE",
                 publisher="MY_PUBLISHER",
-                pair_id=currency_pair_to_pair_id(*asset.pair),
+                pair_id=currency_pair_to_pair_id(*asset["pair"]),
                 price=10 * 10 ** asset["decimals"], # shifted 10 ** decimals
-                expiry_timestamp=1693275381 # Set to 0 for perpetual contracts
+                expiry_timestamp=1693275381, # Set to 0 for perpetual contracts
                 volume=0,
+                autoscale_volume=False
             )
         )
 
@@ -114,7 +120,6 @@ async def publish_all(assets):
 
 if __name__ == "__main__":
     asyncio.run(publish_all(PRAGMA_ALL_ASSETS))
-
 ```
 
 #### Docker Image
