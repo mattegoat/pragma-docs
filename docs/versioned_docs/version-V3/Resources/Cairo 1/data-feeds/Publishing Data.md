@@ -34,6 +34,9 @@ Install the SDK in your virtual envirronement
 pip install pragma-sdk
 ```
 
+⚠️ Troubleshoting
+- Make sure you have `cmake` installed if you run into `ERROR: Could not build wheels for crypto-cpp-py, which is required to install pyproject.toml-based projects`
+
 See a full sample script [here](https://github.com/Astraly-Labs/Pragma/blob/master/stagecoach/jobs/publishers/starknet-publisher/app.py), or copy paste the code below to get started. Note that you need to set environment variables `PUBLISHER`, `PUBLISHER_ADDRESS`, and `PUBLISHER_PRIVATE_KEY` before running the code. You can use the sample .env file here to set them (the file does not include `PUBLISHER_PRIVATE_KEY` for obvious reasons).
 To make fetching data simple, implement your own fetching function using whatever libraries you want, as long as it returns a `List[Entry]`.
 
