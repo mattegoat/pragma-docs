@@ -126,7 +126,7 @@ if __name__ == "__main__":
 
 In this setup, a Python script would fetch data (your custom logic) and then use the Pragma SDK to publish that data, similar to the script above. In order to deploy you can use the pragma-publisher Docker base image. The base image is available on [Dockerhub](https://hub.docker.com/r/astralylabs/pragma-client) and comes with the Python and all requirements (including the pragma Python package) installed.
 
-Again, note the .env file in that same [folder](https://github.com/Astraly-Labs/Pragma/tree/master/stagecoach/jobs/publishers/starknet-publisher/) which is passed to Docker at run time via the `--env-file` arg, with `PUBLISHER` and `PUBLISHER_ADDRESS` variables set, as well as a `PUBLISHER_PRIVATE_KEY` variable (which is not in the repository for obvious reasons).
+Again, note the .env file in that same [folder](https://github.com/Astraly-Labs/Pragma/tree/master/stagecoach/jobs/publishers/custom/) which is passed to Docker at run time via the `--env-file` arg, with `PUBLISHER` and `PUBLISHER_ADDRESS` variables set, as well as a `PUBLISHER_PRIVATE_KEY` variable (which is not in the repository for obvious reasons).
 
 Alternatively, you can find an example of how to use the SDK in a serverless deployment (e.g. AWS Lambda).
 
@@ -136,3 +136,6 @@ FROM astralylabs/pragma-client:latest
 COPY fetch-and-publish.py ./fetch-and-publish.py
 CMD python fetch-and-publish.py
 ```
+
+Then you can build the docker image `docker build . -t pragma-publisher`.
+Finally just run it with the provided env file `docker run --env-file .env pragma-publisher`
