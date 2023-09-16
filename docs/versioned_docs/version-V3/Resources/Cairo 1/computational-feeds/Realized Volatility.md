@@ -28,7 +28,7 @@ use starknet::contract_address::contract_address_const;
 
 fn compute_volatility(data_type: DataType, aggregation_mode: AggregationMode) -> u128 {
     let SUMMARY_STATS_ADDRESS: ContractAddress =
-        contract_address_const::<0x7692d324980c3c7ad72198ba7a42487fd057dd97b8c89a8d71e48c28e3b8657>();
+        contract_address_const::<0x6421fdd068d0dc56b7f5edc956833ca0ba66b2d5f9a8fea40932f226668b5c4>();
 
     let start_tick = starknet::get_block_timestamp() - 604800;
     let end_tick = starknet::get_block_timestamp();

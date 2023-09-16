@@ -12,7 +12,7 @@ The current Pragma proxy addresses are:
 | Network                 | Address                                                             | Explorer                                                                                                                                                                                                                                              |
 | ----------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | StarkNet Mainnet        | ❌ | [Starkscan](https://starkscan.co/contract/x#overview) [Voyager](https://voyager.online/contract/x)                  |
-| StarkNet Alpha-Goerli   | 0x1ab2b1d9d084ed2c9fe185ac32b3bc7fa42f85e129b97459b4fe315f4247978  | [Starkscan](https://testnet.starkscan.co/contract/0x1ab2b1d9d084ed2c9fe185ac32b3bc7fa42f85e129b97459b4fe315f4247978) [Voyager](https://goerli.voyager.online/contract/0x1ab2b1d9d084ed2c9fe185ac32b3bc7fa42f85e129b97459b4fe315f4247978#transactions) |
+| StarkNet Alpha-Goerli   | 0x620a609f88f612eb5773a6f4084f7b33be06a6fed7943445aebce80d6a146ba  | [Starkscan](https://testnet.starkscan.co/contract/0x620a609f88f612eb5773a6f4084f7b33be06a6fed7943445aebce80d6a146ba) [Voyager](https://goerli.voyager.online/contract/0x620a609f88f612eb5773a6f4084f7b33be06a6fed7943445aebce80d6a146ba#transactions) |
 
 
 ## Sample Code
@@ -39,7 +39,7 @@ fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> 
 
 //USAGE
 
-let oracle_address : ContractAddress = contract_address_const::<0x1ab2b1d9d084ed2c9fe185ac32b3bc7fa42f85e129b97459b4fe315f4247978>();
+let oracle_address : ContractAddress = contract_address_const::<0x620a609f88f612eb5773a6f4084f7b33be06a6fed7943445aebce80d6a146ba>();
 let price = get_asset_price_median(oracle_address, DataType::SpotEntry(KEY));
 ```
 
@@ -66,7 +66,7 @@ fn get_asset_price_average(oracle_address: ContractAddress, asset : DataType, so
 
 //USAGE
 
-let oracle_address : ContractAddress = contract_address_const::<0x1ab2b1d9d084ed2c9fe185ac32b3bc7fa42f85e129b97459b4fe315f4247978>();
+let oracle_address : ContractAddress = contract_address_const::<0x620a609f88f612eb5773a6f4084f7b33be06a6fed7943445aebce80d6a146ba>();
 
 let mut sources = ArrayTrait::<felt252>::new();
 sources.append(OKX);
@@ -94,7 +94,7 @@ fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> 
 }
 
 //USAGE
-let oracle_address : ContractAddress = contract_address_const::<0x1ab2b1d9d084ed2c9fe185ac32b3bc7fa42f85e129b97459b4fe315f4247978>();
+let oracle_address : ContractAddress = contract_address_const::<0x620a609f88f612eb5773a6f4084f7b33be06a6fed7943445aebce80d6a146ba>();
 let expiration_timestamp = 1691395615; //in seconds
 let price = get_asset_price_median(oracle_address, DataType::FutureEntry((KEY, expiration_timestamp)));
 ```
