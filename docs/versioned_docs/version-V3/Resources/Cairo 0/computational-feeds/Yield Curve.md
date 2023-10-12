@@ -14,8 +14,8 @@ Pragma offers a feed that calculates the zero-coupon interest-rate curve fully o
 
 Aave overnight rates are used to estimate short-term rates. BTC spot and futures prices are pulled at the exact same time to calculate the rates for different maturities. The interest rate for each maturity is calculated according to the following equation:
 
-  <div>
-  <img width="100%" height="100%" src="https://i.ibb.co/wCYD1bk/Screenshot-2023-02-27-at-16-26-47.png" />
+  <div >
+  <a href="https://ibb.co/5MSMY8k"><img height='100%' width='100%'src="https://i.ibb.co/p0M0WzQ/yield-curve-formula.png" alt="yield-curve-formula"/></a>
   </div>
 
 ​We floor the values with 0 to account for case where spot > future (backwardation).
