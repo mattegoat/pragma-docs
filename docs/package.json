@@ -30,6 +30,7 @@
 		"@types/react": "^17.0.11",
 		"algoliasearch": "^4.9.1",
 		"clsx": "^1.1.1",
+		"docusaurus-plugin-openapi": "^0.6.4",
 		"hast-util-is-element": "1.1.0",
 		"intl-locales-supported": "^1.8.12",
 		"react": "^16.8.4",
