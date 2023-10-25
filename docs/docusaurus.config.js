@@ -10,7 +10,7 @@ module.exports = {
   onBrokenMarkdownLinks: "ignore",
   favicon: "img/favicon.png",
   organizationName: "Astraly-Labs", // Usually your GitHub org/user name.
-  projectName: "Pragma", // Usually your repo name.
+  projectName: "pragma-docs", // Usually your repo name.
   trailingSlash: false,
   themeConfig: {
     image: "img/background.jpg",
@@ -19,9 +19,9 @@ module.exports = {
       additionalLanguages: ["solidity", "rust", "python"],
     },
     algolia: {
-      apiKey: "10bd5a4750327624845152ae40c0c9c0",
+      apiKey: "c5f7e297cfcfbfc974aefa31f18b9e94",
       indexName: "pragma-docs",
-      appId: "I2FJIAZ9PU",
+      appId: "6EMSEESU12",
     },
     navbar: {
       title: "Pragma Docs",
