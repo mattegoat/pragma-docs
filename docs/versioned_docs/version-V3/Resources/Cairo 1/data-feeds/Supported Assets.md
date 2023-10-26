@@ -41,7 +41,7 @@ The `pair_id` is calculated by utf-8 encoding the uppercased string (e.g. `str_t
 | Ticker   | Pair Id             | Decimals | Mainnet |
 | -------- | ------------------- | -------- | ------- |
 | USDT/USD | 6148333044652921668 | 6        | ✖️      |
-| DAI/USD  | 19212080998863684   | 6        | ✖️      |
+| DAI/USD  | 19212080998863684   | 18       | ✖️      |
 | USDC/USD | 6148332971638477636 | 6        | ✖️      |
 
 ## Currencies & Rebasing
