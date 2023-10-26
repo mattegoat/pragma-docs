@@ -1,19 +1,19 @@
-import React from 'react'
-import Layout from '@theme/Layout'
-import Link from '@docusaurus/Link'
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
+import React from "react";
+import Layout from "@theme/Layout";
+import Link from "@docusaurus/Link";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-import './styles.module.css'
-import styled from '@emotion/styled'
+import "./styles.module.css";
+import styled from "@emotion/styled";
 
-import Discord from '@site/static/img/discord.svg'
-import Twitter from '@site/static/img/twitter.svg'
-import phone from '@site/static/img/phone.png'
+import Discord from "@site/static/img/discord.svg";
+import Twitter from "@site/static/img/twitter.svg";
+import phone from "@site/static/img/phone.png";
 
-import ThemedImage from '@theme/ThemedImage'
-import useBaseUrl from '@docusaurus/useBaseUrl'
+import ThemedImage from "@theme/ThemedImage";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
-import SearchBar from '@theme-original/SearchBar'
+import SearchBar from "@theme-original/SearchBar";
 
 import {
   InformationCircleIcon,
@@ -21,78 +21,78 @@ import {
   BookOpenIcon,
   ChatIcon,
   CodeIcon,
-} from '@heroicons/react/outline'
+} from "@heroicons/react/outline";
 
 export const actions = [
   {
-    title: 'What is Pragma',
-    href: '#',
+    title: "What is Pragma",
+    href: "#",
     icon: InformationCircleIcon,
-    to: './docs/introduction',
+    to: "./introduction",
     text: `Learn about the Pragma protocol. Core concepts, vision and next developments.`,
   },
   {
-    title: 'Use Pragma',
-    href: '#',
+    title: "Use Pragma",
+    href: "#",
     icon: BookOpenIcon,
-    to: './docs/Resources/Cairo%201/data-feeds/consuming-data',
+    to: "./Resources/Cairo%201/data-feeds/consuming-data",
     text: `Get started using Pragma. Integrate Price feeds, VRF and more in your smart-contracts.`,
   },
   {
-    title: 'Quickstart',
-    href: '#',
+    title: "Quickstart",
+    href: "#",
     icon: QuestionMarkCircleIcon,
-    to: './docs/howItWorks/architecture',
+    to: "./howItWorks/architecture",
     text: `New to Validity Rollups? Get started right now and explore the key concepts using high computation.`,
   },
-]
+];
 
 export const github = [
   {
-    title: 'pragma-monorepo',
-    href: 'https://github.com/Astraly-Labs/Pragma',
+    title: "pragma-monorepo",
+    href: "https://github.com/Astraly-Labs/Pragma",
     icon: CodeIcon,
   },
   {
-    title: 'pragma-contracts', 
-    href: 'https://github.com/Astraly-Labs/pragma-oracle'
+    title: "pragma-contracts",
+    href: "https://github.com/Astraly-Labs/pragma-oracle",
   },
   {
-    title: 'pragma-sdk',
-    href: 'https://github.com/Astraly-Labs/pragma-sdk',
+    title: "pragma-sdk",
+    href: "https://github.com/Astraly-Labs/pragma-sdk",
     icon: CodeIcon,
   },
   {
-    title: 'pragma-hack',
-    href: 'https://github.com/Astraly-Labs/pragma-hack',
+    title: "pragma-hack",
+    href: "https://github.com/Astraly-Labs/pragma-hack",
     icon: CodeIcon,
   },
   {
-    title: 'pragma-x',
-    href: 'https://github.com/Astraly-Labs/pragma-x',
+    title: "pragma-x",
+    href: "https://github.com/Astraly-Labs/pragma-x",
   },
-]
+];
 
-export const Guides = []
+export const Guides = [];
 
 export const quick = [
   {
-    title: 'Smart Contracts',
-    text: 'Take a look at smart conracts',
-    to: './protocol/reference/smart-contracts',
+    title: "Smart Contracts",
+    text: "Take a look at smart conracts",
+    to: "./protocol/reference/smart-contracts",
   },
   {
-    title: 'Whitepaper',
-    text: 'Read the Pragma whitepaper',
-    to: '',
+    title: "Whitepaper",
+    text: "Read the Pragma whitepaper",
+    to: "",
   },
-]
+];
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-`
+`;
 
 const Row = styled.div`
   display: grid;
@@ -112,7 +112,7 @@ const Row = styled.div`
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
   }
-`
+`;
 
 const TwoRow = styled(Row)`
   grid-template-columns: 1fr 1fr;
@@ -124,7 +124,7 @@ const TwoRow = styled(Row)`
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
   }
-`
+`;
 
 const Card = styled.div`
   display: flex;
@@ -147,7 +147,7 @@ const Card = styled.div`
   @media (max-width: 960px) {
     width: 100%;
   }
-`
+`;
 
 const CenterCard = styled(Card)`
   min-width: 250px;
@@ -166,7 +166,7 @@ const CenterCard = styled(Card)`
   p {
     margin-bottom: 0px;
   }
-`
+`;
 
 const Footer = styled(Card)`
   width: 90%;
@@ -191,7 +191,7 @@ const Footer = styled(Card)`
   @media (max-width: 640px) {
     width: 80%;
   }
-`
+`;
 
 const ShadowCard = styled(Card)`
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
@@ -199,7 +199,7 @@ const ShadowCard = styled(Card)`
   backdrop-filter: blur(10px);
   min-height: 200px;
   /* background-color: var(--ifm-color-emphasis-0); */
-`
+`;
 
 const WideCard = styled(ShadowCard)`
   max-height: auto;
@@ -209,7 +209,7 @@ const WideCard = styled(ShadowCard)`
     max-height: fit-content;
     width: fit-content;
   }
-`
+`;
 
 const IconWrapper = styled.div`
   width: 32px;
@@ -218,7 +218,7 @@ const IconWrapper = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-`
+`;
 
 const TopSection = styled.div`
   width: 100%;
@@ -227,7 +227,7 @@ const TopSection = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 1rem;
-`
+`;
 
 const LinkRow = styled.div`
   width: 100%;
@@ -238,7 +238,7 @@ const LinkRow = styled.div`
   a h3 {
     color: black !important;
   }
-`
+`;
 
 const DocsHeader = styled.div`
   display: flex;
@@ -248,18 +248,18 @@ const DocsHeader = styled.div`
   overflow: hidden;
   width: 100%;
   position: relative;
-`
+`;
 
 const StyledImage = styled(ThemedImage)`
   position: relative;
   z-index: -1;
   width: 100%;
   object-fit: cover;
-`
+`;
 
 const StyledIcon = styled(ThemedImage)`
   z-index: -1;
-`
+`;
 
 const StyledTitleImage = styled(StyledImage)`
   width: 100%;
@@ -269,7 +269,7 @@ const StyledTitleImage = styled(StyledImage)`
   position: absolute;
   opacity: 0.7;
   mask-image: linear-gradient(rgba(0, 0, 0, 1), transparent);
-`
+`;
 
 const StyledFooterImage = styled(StyledImage)`
   width: 100%;
@@ -278,73 +278,80 @@ const StyledFooterImage = styled(StyledImage)`
   z-index: -1;
   opacity: 1;
   mask-image: linear-gradient(transparent, rgba(0, 0, 0, 1));
-`
+`;
 
 const StyledGithubIcon = styled.div`
   svg {
     fill: var(--ifm-font-color-base);
   }
-`
+`;
 
 const HideMedium = styled.div`
   @media (max-width: 960px) {
     display: none;
   }
-`
+`;
 
 export default function Home() {
   return (
     <Layout
       title={`Pragma Documentation`}
       description="Technical Documentation For The Pragma Protocol"
-      image={useBaseUrl('/img/background.jpg')}
+      image={useBaseUrl("/img/background.jpg")}
     >
       <Container>
         <DocsHeader>
           <div
             style={{
-              padding: '4rem 0  ',
-              textAlign: 'center',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
+              padding: "4rem 0  ",
+              textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
           >
-            <h1 style={{ fontWeight: '600' }}> Welcome to the Pragma documentation</h1>
+            <h1 style={{ fontWeight: "600" }}>
+              {" "}
+              Welcome to the Pragma documentation
+            </h1>
             <HideMedium>
               <SearchBar />
             </HideMedium>
             <p
               style={{
-                maxWidth: '640px',
-                margin: '1rem ',
+                maxWidth: "640px",
+                margin: "1rem ",
                 fontWeight: 500,
-                fontFamily: 'Space Grotesk',
+                fontFamily: "Space Grotesk",
               }}
             >
-              Get started with the Pragma smart-contracts, the leading oracle on Starknet and zk-Rollups. Use our
-              architecture to unlock access to composable and verifiable data.
+              Get started with the Pragma smart-contracts, the leading oracle on
+              Starknet and zk-Rollups. Use our architecture to unlock access to
+              composable and verifiable data.
             </p>
           </div>
           <StyledTitleImage
             alt="Docusaurus themed image"
             sources={{
-              light: useBaseUrl('/img/background.jpg'),
-              dark: useBaseUrl('/img/background.jpg'),
+              light: useBaseUrl("/img/background.jpg"),
+              dark: useBaseUrl("/img/background.jpg"),
             }}
           />
           <h2>Getting Started</h2>
           <Row>
             {actions.map((action) => (
-              <Link style={{ textDecoration: 'none' }} to={action.to}>
+              <Link style={{ textDecoration: "none" }} to={action.to}>
                 <ShadowCard key={action.title}>
                   <TopSection>
                     <IconWrapper>
-                      <action.icon style={{ width: '24px' }} color={action.color} />
+                      <action.icon
+                        style={{ width: "24px" }}
+                        color={action.color}
+                      />
                     </IconWrapper>
 
                     <svg
-                      style={{ width: '24px', opacity: 0.2 }}
+                      style={{ width: "24px", opacity: 0.2 }}
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
                       viewBox="0 0 24 24"
@@ -352,8 +359,23 @@ export default function Home() {
                       <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
                     </svg>
                   </TopSection>
-                  <h3 style={{ marginBottom: '.75rem', color: action.color, fontWeight: '800' }}>{action.title}</h3>
-                  <p style={{ marginBottom: '0.5rem', fontFamily: 'Space Grotesk' }}>{action.text}</p>
+                  <h3
+                    style={{
+                      marginBottom: ".75rem",
+                      color: action.color,
+                      fontWeight: "800",
+                    }}
+                  >
+                    {action.title}
+                  </h3>
+                  <p
+                    style={{
+                      marginBottom: "0.5rem",
+                      fontFamily: "Space Grotesk",
+                    }}
+                  >
+                    {action.text}
+                  </p>
                 </ShadowCard>
               </Link>
             ))}
@@ -362,20 +384,29 @@ export default function Home() {
 
         <TwoRow
           style={{
-            gap: '56px',
-            marginTop: '4rem',
+            gap: "56px",
+            marginTop: "4rem",
           }}
         >
           <div>
             <h2>Developer Links</h2>
-            <p>Find useful repositories, to integrate Pragma to your Dapp, or to start developing on Starknet.</p>
-            <TwoRow style={{ gridGap: '10px' }}>
+            <p>
+              Find useful repositories, to integrate Pragma to your Dapp, or to
+              start developing on Starknet.
+            </p>
+            <TwoRow style={{ gridGap: "10px" }}>
               {github.map((action) => (
-                <Link style={{ textDecoration: 'none' }} href={action.href}>
-                  <Card key={action.title} style={{ marginBottom: '1rem' }}>
+                <Link style={{ textDecoration: "none" }} href={action.href}>
+                  <Card key={action.title} style={{ marginBottom: "1rem" }}>
                     <LinkRow>
-                      <StyledGithubIcon style={{ display: 'flex', alignItems: 'center' }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120.78 117.79" style={{ width: '24px' }}>
+                      <StyledGithubIcon
+                        style={{ display: "flex", alignItems: "center" }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 120.78 117.79"
+                          style={{ width: "24px" }}
+                        >
                           <defs></defs>
                           <title>testlogo</title>
                           <g id="Layer_2" data-name="Layer 2">
@@ -415,10 +446,14 @@ export default function Home() {
                             </g>
                           </g>
                         </svg>
-                        <h3 style={{ marginBottom: '0rem', marginLeft: '16px' }}>{action.title}</h3>
+                        <h3
+                          style={{ marginBottom: "0rem", marginLeft: "16px" }}
+                        >
+                          {action.title}
+                        </h3>
                       </StyledGithubIcon>
                       <svg
-                        style={{ width: '24px', height: '24px', opacity: 0.2 }}
+                        style={{ width: "24px", height: "24px", opacity: 0.2 }}
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
                         viewBox="0 0 24 24"
@@ -439,15 +474,18 @@ export default function Home() {
           <h2></h2>
           <h2></h2>
 
-          <Link style={{ textDecoration: 'none' }} href={'https://cal.com/0xmatteo/30min'}>
+          <Link
+            style={{ textDecoration: "none" }}
+            href={"https://cal.com/0xmatteo/30min"}
+          >
             <CenterCard>
               <StyledIcon
                 alt="Icon themed image"
                 sources={{
-                  light: useBaseUrl('/img/phone.png'),
-                  dark: useBaseUrl('/img/phone_inverted.png'),
+                  light: useBaseUrl("/img/phone.png"),
+                  dark: useBaseUrl("/img/phone_inverted.png"),
                 }}
-                style={{ width: '48px', height: '48px', opacity: '0.9' }}
+                style={{ width: "48px", height: "48px", opacity: "0.9" }}
               />
               <div>
                 <h3>Schedule a call</h3>
@@ -455,16 +493,19 @@ export default function Home() {
               </div>
             </CenterCard>
           </Link>
-          <Link style={{ textDecoration: 'none' }} href={'https://kprem87muy4.typeform.com/to/ahJVbIeI'}>
+          <Link
+            style={{ textDecoration: "none" }}
+            href={"https://kprem87muy4.typeform.com/to/ahJVbIeI"}
+          >
             <CenterCard>
               {/* <img src={phone} style={{ width: '48px', height: '48px' }} /> */}
               <StyledIcon
                 alt="Icon themed image"
                 sources={{
-                  light: useBaseUrl('/img/feedback.png'),
-                  dark: useBaseUrl('/img/feedback_inverted.png'),
+                  light: useBaseUrl("/img/feedback.png"),
+                  dark: useBaseUrl("/img/feedback_inverted.png"),
                 }}
-                style={{ width: '48px', height: '48px', opacity: '0.9' }}
+                style={{ width: "48px", height: "48px", opacity: "0.9" }}
               />
               <div>
                 <h3>Submit Feedback</h3>
@@ -478,18 +519,24 @@ export default function Home() {
           <h2></h2>
           <h2></h2>
 
-          <Link style={{ textDecoration: 'none' }} href={'https://discord.gg/GFFymAvNQ6'}>
+          <Link
+            style={{ textDecoration: "none" }}
+            href={"https://discord.gg/GFFymAvNQ6"}
+          >
             <CenterCard>
-              <Discord style={{ width: '48px', height: '48px' }} />
+              <Discord style={{ width: "48px", height: "48px" }} />
               <div>
                 <h3>Discord</h3>
                 <p>Hop in to the community on Discord.</p>
               </div>
             </CenterCard>
           </Link>
-          <Link style={{ textDecoration: 'none' }} href={'https://twitter.com/PragmaOracle'}>
+          <Link
+            style={{ textDecoration: "none" }}
+            href={"https://twitter.com/PragmaOracle"}
+          >
             <CenterCard>
-              <Twitter style={{ width: '48px', height: '48px' }} />
+              <Twitter style={{ width: "48px", height: "48px" }} />
               <div>
                 <h3>Twitter</h3>
                 <p>Follow Pragma on Twitter</p>
@@ -497,10 +544,17 @@ export default function Home() {
             </CenterCard>
           </Link>
 
-          <Link style={{ textDecoration: 'none' }} href={'https://github.com/Astraly-Labs'}>
+          <Link
+            style={{ textDecoration: "none" }}
+            href={"https://github.com/Astraly-Labs"}
+          >
             <CenterCard>
               <StyledGithubIcon>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120.78 117.79" style={{ width: '48px' }}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 120.78 117.79"
+                  style={{ width: "48px" }}
+                >
                   <defs></defs>
                   <g id="Layer_2" data-name="Layer 2">
                     <g id="Layer_1-2" data-name="Layer 1">
@@ -538,7 +592,7 @@ export default function Home() {
                       />
                     </g>
                   </g>
-                </svg>{' '}
+                </svg>{" "}
               </StyledGithubIcon>
               <div>
                 <h3>GitHub</h3>
@@ -548,38 +602,38 @@ export default function Home() {
           </Link>
         </Row>
         <Footer>
-          {' '}
+          {" "}
           <StyledFooterImage
             alt="Docusaurus themed image"
             sources={{
-              light: useBaseUrl('/img/background.jpg'),
-              dark: useBaseUrl('/img/background.jpg'),
+              light: useBaseUrl("/img/background.jpg"),
+              dark: useBaseUrl("/img/background.jpg"),
             }}
           />
           <h1
             style={{
-              position: 'absolute',
-              left: '0',
-              right: '0',
-              margin: 'auto',
-              textAlign: 'center',
+              position: "absolute",
+              left: "0",
+              right: "0",
+              margin: "auto",
+              textAlign: "center",
             }}
           >
             Get the latest news of Pragma Network
           </h1>
-          <input style={{ width: '100%', height: '20px' }}></input>
-          <button style={{ width: '30px', height: '30px' }}></button>
+          <input style={{ width: "100%", height: "20px" }}></input>
+          <button style={{ width: "30px", height: "30px" }}></button>
         </Footer>
         <img
           src="/img/prg_dark_logo.png"
           style={{
-            width: '200px',
-            margin: 'auto',
-            padding: '20px',
-            filter: 'invert(1)',
+            width: "200px",
+            margin: "auto",
+            padding: "20px",
+            filter: "invert(1)",
           }}
         ></img>
       </Container>
     </Layout>
-  )
+  );
 }

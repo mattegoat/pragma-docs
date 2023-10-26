@@ -31,7 +31,7 @@ module.exports = {
       },
       items: [
         {
-          to: "/docs/introduction",
+          to: "/introduction",
           label: "Protocol",
           position: "right",
           className: "persistent",
@@ -89,7 +89,7 @@ module.exports = {
           path: "docs",
           remarkPlugins: [math],
           rehypePlugins: [katex],
-          routeBasePath: "/docs",
+          routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
           // editUrl: 'https://github.com/Astraly-Labs/astraly-docs/tree/main/',
           includeCurrentVersion: false,
@@ -107,7 +107,7 @@ module.exports = {
           blogSidebarCount: 0,
         },
         googleAnalytics: {
-          trackingID: "UA-128182339-7",
+          trackingID: "GTM-P83BPCH7",
           anonymizeIP: true,
         },
         theme: {
