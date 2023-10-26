@@ -14,7 +14,7 @@ We are actively working on building out functionality to pull data (e.g. Uniswap
 
 ## Further Audits
 
-Pragma Network has already been audited by leading security research firm [Zellic](https://www.zellic.io/) (also audited Pyth, LayerZero, 1inch and many more), report to be released soon. Further audits are upcoming by partners such as Trail of Bits (who are auditing StarkNet as well).
+Pragma Network has already been audited by leading security research firm [Zellic](https://www.zellic.io/) (also audited Pyth, LayerZero, 1inch and many more), report to be released soon. Further audits are upcoming by partners such as Nethermind.
 
 ## Pragma X
 

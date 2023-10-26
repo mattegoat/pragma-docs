@@ -46,7 +46,7 @@ alloc_locals;
 We calculate realized volatility under the Geometric Brownian Motion assumption using the following equation:
 
   <div>
-  <img width="100%" height="100%" src="https://i.ibb.co/yBPHTFk/Screenshot-2023-02-27-at-16-03-04.png" />
+  <a href="https://ibb.co/tcjqN3M"><img width="100%" heigth="100%" src="https://i.ibb.co/sQxKDtv/realised-volatility.jpg" alt="realised-volatility"/></a>
   </div>
 
 Where σ is in units of 1/$\sqrt{T}$. We then multiply σ by $\sqrt{ΔTyear}$ to get the annualized volatility of the underlying asset.

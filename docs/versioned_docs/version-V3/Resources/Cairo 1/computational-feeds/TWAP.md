@@ -6,7 +6,7 @@ sidebar_position: 4
 
 ## Time weighted average price (TWAP)
 
-For any price feed, Pragma offers a TWAP feed. The TWAP feed uses checkpoints in order to compute the time weighted average prices. The TWAP feed is useful for protocols that need to calculate the average price of an asset over a period of time. TWAP will be available for both Spot and Futures feeds, for now. 
+For any price feed, Pragma offers a TWAP feed. The TWAP feed uses checkpoints in order to compute the time weighted average prices. The TWAP feed is useful for protocols that need to calculate the average price of an asset over a period of time. TWAP will be available for both Spot and Futures feeds, for now.
 
 #### Sample Code
 
@@ -22,7 +22,7 @@ use pragma::entry::structs::{AggregationMode, DataType};
 
 const SUMMARY_STATS_ADDRESS : ContractAddress  = 0x00000000000000000000;
 
-fn comupute_twap(data_type : DataType, aggregation_mode : AggregationMode) -> u128 { 
+fn comupute_twap(data_type : DataType, aggregation_mode : AggregationMode) -> u128 {
     let start_tick = 1691315416;
     let end_tick = 1691415416;
     let num_samples = 200;
@@ -50,9 +50,12 @@ let twap = compute_twap(DataType::Future((pair_id, expiration_timestamp)), Aggre
 
 ## How TWAP is Calculated
 
-We calculate the Time wighted average price using the following formula: 
+We calculate the Time wighted average price using the following formula:
 
-INSERT FORMULA 
+  <div>
+  <a href="https://ibb.co/tcjqN3M"><img width="100%" heigth="100%" src="	https://i.ibb.co/Q69FtYd/TWAP.jpg" alt="realised-volatility"/></a>
+  </div>
+
 
 ## Technical Specification
 
@@ -61,8 +64,7 @@ INSERT FORMULA
 This function allows you to query the TWAP for any price feed calculated over a requested period of time. The function accesses checkpoints within the requested timeframe, and uses the above equation to calculate the TWAP.
 Currently, Pragma sets a checkpoint every 5 minutes. If you need more granular data, you can set more checkpoint via the `set_checkpoint` function.
 
-
-#### Inputs 
+#### Inputs
 
 - `data_type` : enum of the data type you are requesting (See DataType structure). By providing the enum data type, you also provide the pair id (for spot entries), or the pair id and the expiration timestamp (for futures)
 - `aggregation_mode`: aggregation mode to use for combining the many data sources available in Pragma. Use the structure AggregationMode defined in Pragma. Option must currently be set to `MEDIAN` or `MEAN`, . Additional options `VWAP`, `EXPONENTIAL_DECAY` are coming soon.
@@ -72,4 +74,4 @@ Currently, Pragma sets a checkpoint every 5 minutes. If you need more granular d
 #### Returns
 
 - `twap` : The TWAP for the requested data type, aggregation mode, time and start time. The TWAP is multiplied by 10^decimals.
-- `decimals` : number of decimals, i.e. , the number of places that value has been shifted to allow for greater accuracy. 
+- `decimals` : number of decimals, i.e. , the number of places that value has been shifted to allow for greater accuracy.

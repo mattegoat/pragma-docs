@@ -1,5 +1,5 @@
 {
-  "index_name": "v3-docs",
+  "index_name": "pragma-docs",
   "start_urls": ["https://docs.pragmaoracle.com/"],
   "sitemap_urls": ["https://docs.pragmaoracle.com/sitemap.xml"],
   "sitemap_alternate_links": true,
