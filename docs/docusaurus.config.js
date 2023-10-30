@@ -83,8 +83,13 @@ module.exports = {
   },
   presets: [
     [
-      "@docusaurus/preset-classic",
+      "docusaurus-preset-openapi",
+      /** @type {import('docusaurus-preset-openapi').Options} */
       {
+        api: {
+          path: "versioned_docs/version-V3/Resources/PragmApi/openapi.json",
+          routeBasePath: "/Resources/PragmApi/get-started",
+        },
         docs: {
           path: "docs",
           remarkPlugins: [math],
@@ -116,7 +121,7 @@ module.exports = {
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
-          customCss2: require.resolve("./src/css/colors.css"),
+          // customCss2: require.resolve("./src/css/colors.css"),
         },
       },
     ],
