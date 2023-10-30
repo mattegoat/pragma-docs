@@ -1,0 +1,527 @@
+{
+	"openapi": "3.0.3",
+	"info": {
+		"title": "pragma-node",
+		"description": "",
+		"license": {
+			"name": ""
+		},
+		"version": "0.1.0"
+	},
+	"paths": {
+		"/node/v1/data/publish": {
+			"post": {
+				"tags": ["Endpoints"],
+				"operationId": "create_entries",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateEntryRequest"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "Entries published successfuly",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CreateEntryResponse"
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized Publisher",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/EntryError"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/node/v1/data/{quote}/{base}": {
+			"get": {
+				"tags": ["Endpoints"],
+				"operationId": "get_entry",
+				"parameters": [
+					{
+						"name": "quote",
+						"in": "path",
+						"description": "Quote Asset",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "base",
+						"in": "path",
+						"description": "Base Asset",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Get median entry successfuly",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/GetEntryResponse"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/node/v1/data/{quote}/{base}/{amount}": {
+			"get": {
+				"tags": ["Endpoints"],
+				"operationId": "convert_amount",
+				"parameters": [
+					{
+						"name": "quote",
+						"in": "path",
+						"description": "Quote Asset",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "base",
+						"in": "path",
+						"description": "Base Asset",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "amount",
+						"in": "path",
+						"description": "Amount of base asset to convert",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Amount converted successfuly",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/ConvertAmountResponse"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/node/v1/volatility/{quote}/{base}": {
+			"get": {
+				"tags": ["Endpoints"],
+				"operationId": "get_volatility",
+				"parameters": [
+					{
+						"name": "quote",
+						"in": "path",
+						"description": "Quote Asset",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "base",
+						"in": "path",
+						"description": "Base Asset",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "start",
+						"in": "path",
+						"description": "Initial timestamp, combined with final_timestamp, it helps define the period over which the mean is computed",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int64",
+							"minimum": 0
+						}
+					},
+					{
+						"name": "end",
+						"in": "path",
+						"description": "Final timestamp",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int64",
+							"minimum": 0
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Get realized volatility successfuly",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/GetVolatilityResponse"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"BaseEntry": {
+				"type": "object",
+				"required": ["timestamp", "source", "publisher"],
+				"properties": {
+					"publisher": {
+						"type": "string"
+					},
+					"source": {
+						"type": "string"
+					},
+					"timestamp": {
+						"type": "integer",
+						"format": "int64",
+						"minimum": 0
+					}
+				}
+			},
+			"ConvertAmountResponse": {
+				"type": "object",
+				"required": [
+					"num_sources_aggregated",
+					"pair_id",
+					"price",
+					"timestamp",
+					"converted_amount"
+				],
+				"properties": {
+					"converted_amount": {
+						"type": "integer",
+						"minimum": 0
+					},
+					"num_sources_aggregated": {
+						"type": "integer",
+						"minimum": 0
+					},
+					"pair_id": {
+						"type": "string"
+					},
+					"price": {
+						"type": "integer",
+						"minimum": 0
+					},
+					"timestamp": {
+						"type": "integer",
+						"format": "int64",
+						"minimum": 0
+					}
+				}
+			},
+			"CreateEntryRequest": {
+				"type": "object",
+				"required": ["signature", "entries"],
+				"properties": {
+					"entries": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/Entry"
+						}
+					},
+					"signature": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/FieldElement"
+						}
+					}
+				}
+			},
+			"CreateEntryResponse": {
+				"type": "object",
+				"required": ["number_entries_created"],
+				"properties": {
+					"number_entries_created": {
+						"type": "integer",
+						"minimum": 0
+					}
+				}
+			},
+			"Entry": {
+				"type": "object",
+				"required": ["base", "pair_id", "price", "volume"],
+				"properties": {
+					"base": {
+						"$ref": "#/components/schemas/BaseEntry"
+					},
+					"pair_id": {
+						"type": "string"
+					},
+					"price": {
+						"type": "integer",
+						"minimum": 0
+					},
+					"volume": {
+						"type": "integer",
+						"minimum": 0
+					}
+				}
+			},
+			"EntryError": {
+				"oneOf": [
+					{
+						"type": "string",
+						"enum": ["InternalServerError"]
+					},
+					{
+						"type": "object",
+						"required": ["NotFound"],
+						"properties": {
+							"NotFound": {
+								"type": "string"
+							}
+						}
+					},
+					{
+						"type": "object",
+						"required": ["InfraError"],
+						"properties": {
+							"InfraError": {
+								"$ref": "#/components/schemas/InfraError"
+							}
+						}
+					},
+					{
+						"type": "object",
+						"required": ["InvalidSignature"],
+						"properties": {
+							"InvalidSignature": {
+								"$ref": "#/components/schemas/EcdsaVerifyError"
+							}
+						}
+					},
+					{
+						"type": "string",
+						"enum": ["Unauthorized"]
+					},
+					{
+						"type": "object",
+						"required": ["PublisherError"],
+						"properties": {
+							"PublisherError": {
+								"$ref": "#/components/schemas/PublisherError"
+							}
+						}
+					},
+					{
+						"type": "object",
+						"required": ["InvalidAmount"],
+						"properties": {
+							"InvalidAmount": {
+								"type": "string"
+							}
+						}
+					},
+					{
+						"type": "object",
+						"required": ["UnknownPairId"],
+						"properties": {
+							"UnknownPairId": {
+								"type": "string"
+							}
+						}
+					},
+					{
+						"type": "object",
+						"required": ["VolatilityError"],
+						"properties": {
+							"VolatilityError": {
+								"$ref": "#/components/schemas/VolatilityError"
+							}
+						}
+					}
+				]
+			},
+			"EntryModel": {
+				"type": "object",
+				"required": [
+					"id",
+					"pair_id",
+					"publisher",
+					"source",
+					"timestamp",
+					"price"
+				],
+				"properties": {
+					"id": {
+						"$ref": "#/components/schemas/Uuid"
+					},
+					"pair_id": {
+						"type": "string"
+					},
+					"price": {
+						"type": "integer",
+						"minimum": 0
+					},
+					"publisher": {
+						"type": "string"
+					},
+					"source": {
+						"type": "string"
+					},
+					"timestamp": {
+						"type": "integer",
+						"format": "int64",
+						"minimum": 0
+					}
+				}
+			},
+			"GetEntryResponse": {
+				"type": "object",
+				"required": ["num_sources_aggregated", "pair_id", "price", "timestamp"],
+				"properties": {
+					"num_sources_aggregated": {
+						"type": "integer",
+						"minimum": 0
+					},
+					"pair_id": {
+						"type": "string"
+					},
+					"price": {
+						"type": "integer",
+						"minimum": 0
+					},
+					"timestamp": {
+						"type": "integer",
+						"format": "int64",
+						"minimum": 0
+					}
+				}
+			},
+			"GetVolatilityResponse": {
+				"type": "object",
+				"required": ["pair_id", "volatility", "decimals"],
+				"properties": {
+					"decimals": {
+						"type": "integer",
+						"format": "int32",
+						"minimum": 0
+					},
+					"pair_id": {
+						"type": "string"
+					},
+					"volatility": {
+						"type": "number",
+						"format": "double"
+					}
+				}
+			},
+			"InfraError": {
+				"type": "string",
+				"enum": ["InternalServerError", "NotFound"]
+			},
+			"PublisherError": {
+				"oneOf": [
+					{
+						"type": "object",
+						"required": ["InvalidKey"],
+						"properties": {
+							"InvalidKey": {
+								"type": "string"
+							}
+						}
+					},
+					{
+						"type": "object",
+						"required": ["InvalidAddress"],
+						"properties": {
+							"InvalidAddress": {
+								"type": "string"
+							}
+						}
+					},
+					{
+						"type": "object",
+						"required": ["InactivePublisher"],
+						"properties": {
+							"InactivePublisher": {
+								"type": "string"
+							}
+						}
+					}
+				]
+			},
+			"PublisherModel": {
+				"type": "object",
+				"required": [
+					"id",
+					"name",
+					"master_key",
+					"active_key",
+					"account_address",
+					"active"
+				],
+				"properties": {
+					"account_address": {
+						"type": "string"
+					},
+					"active": {
+						"type": "boolean"
+					},
+					"active_key": {
+						"type": "string"
+					},
+					"id": {
+						"$ref": "#/components/schemas/Uuid"
+					},
+					"master_key": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	},
+	"tags": [
+		{
+			"name": "pragma-node",
+			"description": "Pragma Node API"
+		}
+	]
+}
