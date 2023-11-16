@@ -35,7 +35,7 @@ fn compute_volatility(data_type: DataType, aggregation_mode: AggregationMode) ->
 
     let num_samples = 200;
     let summary_dispatcher = ISummaryStatsABIDispatcher { contract_address: SUMMARY_STATS_ADDRESS };
-    let (volatility, _) = summary_dispatcher
+    let (volatility, decimals) = summary_dispatcher
         .calculate_volatility(data_type, start_tick, end_tick, num_samples, aggregation_mode);
 
     return volatility; // will return the volatility multiplied by 10^decimals
