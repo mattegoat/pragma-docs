@@ -199,12 +199,13 @@ This function enables you to get the price of one currency in terms of another, 
 
 ### Function: `get_data_entry`
 
-This function enables you to get the most recent raw data point for a specific spot asset and source.
+This function enables you to get the most recent raw data point for a specific spot asset, source and publisher.
 
 #### Inputs
 
 - `data_type`: enum of the data type you are requesting (See DataType structure). By providing the enum data type, you also provide the pair id (for spot entries), or the pair id and the expiration timestamp (for futures).
 - `source`: uppercased utf8-encoded data source, e.g. `str_to_felt("GEMINI")=78362974965321`
+- `publisher`: the publisher to be considered , e.g. `str_to_felt("PRAGMA")=88314212732225`
 
 #### Returns
 
