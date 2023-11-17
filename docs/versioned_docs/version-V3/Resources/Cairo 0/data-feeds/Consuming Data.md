@@ -139,7 +139,7 @@ This function enables you to get the price of one currency in terms of another, 
 
 #### Returns
 
-- `price`: aggregation result of all entries for the given key (using the algorithm specified by the `aggregation_mode` parameter). Multiplied by `10\*\*decimals`
+- `price`: aggregation result of all entries for the given key (using the algorithm specified by the `aggregation_mode` parameter). Multiplied by `10**decimals`
 - `decimals`: number of places that value has been shifted to allow for greater accuracy (fixed point)
 - `last_updated_timestamp`: timestamp of the most recent entry aggregated
 - `num_sources_aggregated`: number of sources aggregated in the final answer. Use this to check if one of the sources you requested was not available, or if there are enough data reports for you to rely on the answer
@@ -158,7 +158,7 @@ This function enables you to get the price of one currency in terms of another, 
 
 #### Returns
 
-- `price`: aggregation result of all entries for the given key (using the algorithm specified by the `aggregation_mode` parameter). Multiplied by `10\*\*decimals`
+- `price`: aggregation result of all entries for the given key (using the algorithm specified by the `aggregation_mode` parameter). Multiplied by `10**decimals`
 - `decimals`: number of places that value has been shifted to allow for greater accuracy (fixed point)
 - `last_updated_timestamp`: timestamp of the most recent entry aggregated
 - `num_sources_aggregated`: number of sources aggregated in the final answer. Use this to check if one of the sources you requested was not available, or if there are enough data reports for you to rely on the answer
