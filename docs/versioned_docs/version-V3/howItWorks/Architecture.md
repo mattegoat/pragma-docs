@@ -21,22 +21,25 @@ The second is the Oracle implementation and its proxy, which are also designed t
 
 <div><img width="100%" height="100%" src="https://i.ibb.co/pnQpW67/Capture-d-e-cran-2023-11-16-a-18-08-21.png" alt="Capture-d-e-cran-2023-11-16-a-18-08-21" border="0"/></div>
 
-
-
 Our system incorporates multiple publishers, each responsible for providing data from various sources. To determine the price for a given source, we consider the prices submitted by all these publishers. Our approach involves conducting an initial on-chain aggregation based on the median of these prices. This median value then becomes the established price for that particular source.
 
 This aggregation process is triggered when one of the aggregation functions, as outlined in the 'Consuming Data' section, is called. During this process, users have the flexibility to choose their preferred method of aggregation for the sources. This choice allows them to tailor the final price calculation according to their specific needs or criteria. By utilizing this method of aggregation, we enhance the security of the final price determination, making it less vulnerable to manipulation, as it incorporates a broad and balanced range of data from multiple publishers.
 
+## Security
 
+Our contracts have thoroughly been peer-reviewed by multiple actors in the starknet ecosystem.
+They have also undergone a full audit by Nethermind which you can find the report [here](https://github.com/NethermindEth/PublicAuditReports/blob/2b073f2c136cc4e8afe2e135c1be03699b2a7515/NM0147-FINAL_PRAGMA.pdf).
+
+In case you find bugs in our contracts, we have a bug bounty program in place with ImmuneFi, or you can contact us directly at <matthias@pragma.build>
 
 ## Deployed Contracts
 
 On Starknet, the contracts are currently deployed at the following addresses:
 
-| Contract           | Testnet (Cairo 0)                                                                                                           | Testnet (Cairo 1) | Mainnet (Cairo 0)                                                                                                              | Mainnet (Cairo 1) |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
-| Publisher Registry | [Address testnet](https://goerli.voyager.online/contract/0x5cb0afa98435de7da6da7fad3b40c9d17e747a57bca28feb1c41f05e391f54e) | [Address testnet](https://goerli.voyager.online/contract/0x0552e96b3a9078a453ab7012ed76325bedef7b0cc5647a8fafe985e658e31d86)             | [Address mainnet](https://voyager.online/contract/0x04746485fa57b49dc992c35d7f12054b5a7d24b0e187021cd8f40bc2517700bc)          | soon              |
-| Oracle (Proxy)     | [Address testnet](https://goerli.voyager.online/contract/0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093) | [Address testnet](https://goerli.voyager.online/contract/0x06df335982dddce41008e4c03f2546fa27276567b5274c7d0c1262f3c2b5d167)              | [Address mainnet](https://voyager.online/contract/0x0346c57f094d641ad94e43468628d8e9c574dcb2803ec372576ccc60a40be2c4#overview) | soon              |
+| Contract           | Testnet (Cairo 0)                                                                                                   | Testnet (Cairo 1)                                                                                                    | Mainnet (Cairo 0)                                                                                                      | Mainnet (Cairo 1)                                                                                                     |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Publisher Registry | [Testnet](https://goerli.voyager.online/contract/0x5cb0afa98435de7da6da7fad3b40c9d17e747a57bca28feb1c41f05e391f54e) | [Testnet](https://goerli.voyager.online/contract/0x0552e96b3a9078a453ab7012ed76325bedef7b0cc5647a8fafe985e658e31d86) | [Mainnet](https://voyager.online/contract/0x04746485fa57b49dc992c35d7f12054b5a7d24b0e187021cd8f40bc2517700bc)          | [Mainnet](https://voyager.online/contract/0x24a55b928496ef83468fdb9a5430fe031ac386b8f62f5c2eb7dd20ef7237415)          |
+| Oracle             | [Testnet](https://goerli.voyager.online/contract/0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093) | [Testnet](https://goerli.voyager.online/contract/0x06df335982dddce41008e4c03f2546fa27276567b5274c7d0c1262f3c2b5d167) | [Mainnet](https://voyager.online/contract/0x0346c57f094d641ad94e43468628d8e9c574dcb2803ec372576ccc60a40be2c4#overview) | [Mainnet](https://voyager.online/contract/0x2a85bd616f912537c50a49a4076db02c00b29b2cdc8a197ce92ed1837fa875b#overview) |
 
 ## Pragma X
 

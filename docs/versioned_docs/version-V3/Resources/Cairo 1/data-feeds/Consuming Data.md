@@ -9,10 +9,10 @@ sidebar_position: 1
 You can find the list of supported assets here.
 The current Pragma proxy addresses are:
 
-| Network                 | Address                                                             | Explorer                                                                                                                                                                                                                                              |
-| ----------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| StarkNet Mainnet        | ❌ | [Starkscan](https://starkscan.co/contract/x#overview) [Voyager](https://voyager.online/contract/x)                  |
-| StarkNet Alpha-Goerli   | 0x06df335982dddce41008e4c03f2546fa27276567b5274c7d0c1262f3c2b5d167  | [Starkscan](https://testnet.starkscan.co/contract/0x06df335982dddce41008e4c03f2546fa27276567b5274c7d0c1262f3c2b5d167) [Voyager](https://goerli.voyager.online/contract/0x06df335982dddce41008e4c03f2546fa27276567b5274c7d0c1262f3c2b5d167#transactions) |
+| Network               | Address                                                            | Explorer                                                                                                                                                                                                                                                |
+| --------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| StarkNet Mainnet      | 0x2a85bd616f912537c50a49a4076db02c00b29b2cdc8a197ce92ed1837fa875b  | [Starkscan](https://starkscan.co/contract/0x2a85bd616f912537c50a49a4076db02c00b29b2cdc8a197ce92ed1837fa875b) [Voyager](https://voyager.online/contract/0x2a85bd616f912537c50a49a4076db02c00b29b2cdc8a197ce92ed1837fa875b)                               |
+| StarkNet Alpha-Goerli | 0x06df335982dddce41008e4c03f2546fa27276567b5274c7d0c1262f3c2b5d167 | [Starkscan](https://testnet.starkscan.co/contract/0x06df335982dddce41008e4c03f2546fa27276567b5274c7d0c1262f3c2b5d167) [Voyager](https://goerli.voyager.online/contract/0x06df335982dddce41008e4c03f2546fa27276567b5274c7d0c1262f3c2b5d167#transactions) |
 
 
 ## Sample Code

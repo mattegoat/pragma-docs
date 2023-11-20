@@ -10,9 +10,18 @@ Pragma is an oracle fully on-chain. All the data that you consume through Pragma
 
 Pragma has designed compute engines that use the same raw market data underlying our price feeds, but calculate different metrics to produce feeds of processed data. We call these new feeds computational feeds. Since computational feeds operate entirely on-chain, they don't introduce any new security assumptions.
 
-The current Pragma Network proxy addresses are on Testnet:
+You can find contract addresses below:
 
-| Feed                | Address                                                             | Explorer                                                                                                                                                                                                                                                              |
-| ------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+### Mainnet
+
+| Feed                      | Address                                                           | Explorer                                                                                                                                                                                                                                                            |
+| ------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Realized Volatility/ TWAP | 0x49eefafae944d07744d07cc72a5bf14728a6fb463c3eae5bca13552f5d455fd | [Starkscan](https://testnet.starkscan.co/contract/0x49eefafae944d07744d07cc72a5bf14728a6fb463c3eae5bca13552f5d455fd#read-contract) [Voyager](https://goerli.voyager.online/contract/0x49eefafae944d07744d07cc72a5bf14728a6fb463c3eae5bca13552f5d455fd#readContract) |
+| Yield Curve               | ❌                                                                 | [Starkscan](https://testnet.starkscan.co/contract/x#read-contract) [Voyager](https://goerli.voyager.online/contract/x#readContract)                                                                                                                                 |
+
+### Testnet
+
+| Feed                      | Address                                                           | Explorer                                                                                                                                                                                                                                                            |
+| ------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Realized Volatility/ TWAP | 0x6421fdd068d0dc56b7f5edc956833ca0ba66b2d5f9a8fea40932f226668b5c4 | [Starkscan](https://testnet.starkscan.co/contract/0x6421fdd068d0dc56b7f5edc956833ca0ba66b2d5f9a8fea40932f226668b5c4#read-contract) [Voyager](https://goerli.voyager.online/contract/0x6421fdd068d0dc56b7f5edc956833ca0ba66b2d5f9a8fea40932f226668b5c4#readContract) |
-| Yield Curve         | ❌ | [Starkscan](https://testnet.starkscan.co/contract/x#read-contract) [Voyager](https://goerli.voyager.online/contract/x#readContract) |
+| Yield Curve               | ❌                                                                 | [Starkscan](https://testnet.starkscan.co/contract/x#read-contract) [Voyager](https://goerli.voyager.online/contract/x#readContract)                                                                                                                                 |
