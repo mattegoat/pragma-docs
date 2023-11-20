@@ -82,7 +82,7 @@ trait HackTemplateABI<TContractState> {
 }
 ```
 
-Firstly, we defined the interface of our contract. The interface is a set of functions that can be called by other contracts. In this case, we have only one function, `get_asset_price`, which takes as input the asset id of the asset we want to retrieve the price of, and returns the price of the asset. The asset id is a felt252, and can be converted from a string using the `felt252` conversion. The asset id is used to identify the data feed we want to retrieve (for example BTC/USD). 
+Firstly, we defined the interface of our contract. The interface is a set of functions that can be called by other contracts. In this case, we have only one function, `get_asset_price`, which takes as input the asset id of the asset we want to retrieve the price of, and returns the price of the asset. The asset id is a felt252, and can be converted from a string using the `felt252` conversion. The asset id is used to identify the data feed we want to retrieve (for example BTC/USD).
 
 Then comes the contract itself:
 
@@ -172,7 +172,7 @@ enum AggregationMode {
 }
 ```
 
-We deploying the contract, you will have to specify the oracle contract address and the summary stats contract address. The summary stats is a contract providing computational feeds (TWAP, Yield Curve, Realized Volatility, ...). In the provided example we will not use the summary stats contract. 
+We deploying the contract, you will have to specify the oracle contract address and the summary stats contract address. The summary stats is a contract providing computational feeds (TWAP, Yield Curve, Realized Volatility, ...). In the provided example we will not use the summary stats contract.
 The oracle address can be found [here](../Resources/Cairo%201/data-feeds/Consuming%20Data.md).
 The previous contract is a simple contract, allowing a user to retrieve the price of an asset. You can play with a more complete example and deploy using Remix.
 
@@ -183,11 +183,9 @@ The previous contract is a simple contract, allowing a user to retrieve the pric
 </div>
 
 
-## Working with Remix 
+## Working with Remix
 
 Since everything is already done, you will just have to compile the code and deploy the contract. 
-
-
 
 To begin with, you will have to activate the starknet plugin: 
  

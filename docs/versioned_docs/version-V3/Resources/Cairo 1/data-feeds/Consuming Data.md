@@ -6,8 +6,9 @@ sidebar_position: 1
 
 ---
 
-You can find the list of supported assets here.
-The current Pragma proxy addresses are:
+You can find the list of supported assets [here](./Supported%20Assets.md).
+
+The current Pragma addresses are:
 
 | Network               | Address                                                            | Explorer                                                                                                                                                                                                                                                |
 | --------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
