@@ -6,92 +6,99 @@ sidebar_position: 1
 
 ---
 
-Pragma Network offers a verifiable randomness feed that allows protocols to request secure randomness on-chain.
-This feed is being rolled out in two phases: In the first phase (currently live) the randomness proof is posted as calldata, allowing anyone to verify it off-chain. See below for more details on how to verify the randomness. This first phase is limited to testnet, and there is no charge for randomness.
+Pragma offers a verifiable randomness feed that allows protocols to request secure randomness on-chain.
+This feed is being rolled out in two phases: In the first phase (currently live) the randomness proof is posted as calldata, allowing anyone to verify it off-chain. See below for more details on how to verify the randomness.
+
 In the second phase, the proof will be verified directly on-chain (coming soon) and requesters will be required to cover gas costs of their callback function plus a small fee to cover the cost of generating randomness.
 
 ## Sample Code
 
-If you are just trying to get started with using randomness, see the self-contained code snippet. If you'd like to use more advanced oracle functions, read on past the code block for further information. You can find a full sample randomness receiver contract [here](https://github.com/Astraly-Labs/Pragma/blob/master/contracts/starknet/src/randomness/ExampleRandomness.cairo).
+If you are just trying to get started with using randomness, see the self-contained code snippet. If you'd like to use more advanced oracle functions, read on past the code block for further information. You can find a full sample randomness receiver contract [here](https://github.com/astraly-labs/pragma-oracle/blob/main/src/randomness/example_randomness.cairo).
 
-```bash
-%lang starknet
+```rust
+#[starknet::contract]
+mod ExampleRandomness {
+    use super::{ContractAddress, IExampleRandomness};
+    use starknet::info::{get_block_number, get_caller_address, get_contract_address};
+    use pragma::randomness::randomness::{IRandomnessDispatcher, IRandomnessDispatcherTrait};
+    use array::{ArrayTrait, SpanTrait};
+    use traits::{TryInto, Into};
+    #[storage]
+    struct Storage {
+        randomness_contract_address: ContractAddress,
+        min_block_number_storage: u64,
+        last_random_storage: felt252,
+    }
 
-from starkware.starknet.common.syscalls import (
-    get_block_number,get_caller_address, get_contract_address,
-)
-from starkware.cairo.common.math import assert_le
-from starkware.cairo.common.cairo_builtins import HashBuiltin
+    #[constructor]
+    fn constructor(ref self: ContractState, randomness_contract_address: ContractAddress) {
+        self.randomness_contract_address.write(randomness_contract_address);
+    }
 
-const PRAGMA_RANDOM_ORACLE_ADDRESS = 0x681a206bfb74aa7436b3c5c20d7c9242bc41bc6471365ca9404e738ca8f1f3b;
+    #[external(v0)]
+    impl IExampleRandomnessImpl of IExampleRandomness<ContractState> {
+        fn get_last_random(self: @ContractState) -> felt252 {
+            let last_random = self.last_random_storage.read();
+            return last_random;
+        }
 
-@storage_var
-func min_block_number_storage() -> (min_block_number: felt) {
-}
+        fn request_my_randomness(
+            ref self: ContractState,
+            seed: u64,
+            callback_address: ContractAddress,
+            callback_gas_limit: u64,
+            publish_delay: u64,
+            num_words: u64
+        ) {
+            let randomness_contract_address = self.randomness_contract_address.read();
+            let randomness_dispatcher = IRandomnessDispatcher {
+                contract_address: randomness_contract_address
+            };
+            let request_id = randomness_dispatcher
+                .request_random(
+                    seed, callback_address, callback_gas_limit, publish_delay, num_words
+                );
 
-@storage_var
-func last_random_storage() -> (res: felt) {
-}
+            let current_block_number = get_block_number();
+            self.min_block_number_storage.write(current_block_number + publish_delay);
 
-@contract_interface
-namespace IRandomness {
-func request_random(seed, callback_address, callback_gas_limit, publish_delay, num_words) -> (
-request_id: felt
-) {
-}
+            return ();
+        }
 
-@view
-func get_last_random{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}() -> (last_random: felt) {
-    let (last_random) = last_random_storage.read();
-    return (last_random=last_random);
-}
 
-@external
-func request_my_randomness{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
-    seed, callback_address, callback_gas_limit, publish_delay, num_words
-) {
-    let (request_id) = IRandomness.request_random(
-    PRAGMA_RANDOM_ORACLE_ADDRESS,
-    seed,
-    callback_address,
-    callback_gas_limit,
-    publish_delay,
-    num_words,
-    );
+        fn receive_random_words(
+            ref self: ContractState,
+            requestor_address: ContractAddress,
+            request_id: u64,
+            random_words: Span<felt252>
+        ) {
+            // Have to make sure that the caller is the Pragma Randomness Oracle contract
+            let caller_address = get_caller_address();
+            assert(
+                caller_address == self.randomness_contract_address.read(),
+                'caller not randomness contract'
+            );
+            // and that the current block is within publish_delay of the request block
+            let current_block_number = get_block_number();
+            let min_block_number = self.min_block_number_storage.read();
+            assert(min_block_number <= current_block_number, 'block number issue');
 
-    let (current_block_number) = get_block_number();
-    min_block_number_storage.write(current_block_number + publish_delay);
+            // and that the requestor_address is what we expect it to be (can be self
+            // or another contract address), checking for self in this case
+            //let contract_address = get_contract_address();
+            //assert(requestor_address == contract_address, 'requestor is not self');
 
-    return ();
-}
+            // Optionally: Can also make sure that request_id is what you expect it to be,
+            // and that random_words_len==num_words
 
-@external
-func receive_random_words{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(requestor_address, request_id, random_words_len, random_words: felt*) {
-    // Have to make sure that the caller is the Pragma Randomness Oracle contract
-    let (caller_address) = get_caller_address();
-    assert PRAGMA_RANDOM_ORACLE_ADDRESS = caller_address;
+            // Your code using randomness!
+            let random_word = *random_words.at(0);
 
-    // and that the current block is within publish_delay of the request block
-    let (current_block_number) = get_block_number();
-    let (min_block_number) = min_block_number_storage.read();
-    assert_le(min_block_number, current_block_number);
+            self.last_random_storage.write(random_word);
 
-    // and that the requestor_address is what we expect it to be (can be self
-    // or another contract address), checking for self in this case
-    let (contract_address) = get_contract_address();
-    assert requestor_address = contract_address;
-
-    // Optionally: Can also make sure that request_id is what you expect it to be,
-    // and that random_words_len==num_words
-
-    // Your code using randomness!
-    let random_word = random_words[0];
-
-    last_random_storage.write(random_word);
-
-    return ();
-
-}
+            return ();
+        }
+    }
 ```
 
 ## How Randomness is Generated
@@ -112,8 +119,8 @@ As mentioned above, in the first phase of Pragma Network's VRF feed, the randomn
 
 In order to make it easier to verify that a specific piece of randomness was verifiable, we provide an open source implementation of the verifier. Follow these simple steps to verify any randomness provided by Pragma Network:
 
-1. Install the Pragma Python package `pip install empiric-network `
-2. Run `python3 -m empiric.cli random verify-random <TRANSACTION\*HASH>` where `TRANSACTION_HASH` is the hash of the StarkNet testnet transaction in which the randomness was submitted to your smart contract.
+1. Install the Pragma Python package `pip install pragma-sdk`
+2. Run `python3 -m pragma-sdl.cli random verify-random <TRANSACTION\*HASH>` where `TRANSACTION_HASH` is the hash of the StarkNet testnet transaction in which the randomness was submitted to your smart contract.
 
 ## Technical Specification
 
@@ -123,11 +130,11 @@ Allows your smart contract to request randomness. Upon calling the Pragma contra
 
 #### Inputs
 
-- `seed`: random seed that feeds into the verifiable random algorithm, must be different every time. Until it it possible to get the `block_hash` on StarkNet, it is recommended to use `hash(request_address, hash(nonce, block_timestamp))`
+- `seed`: random seed that feeds into the verifiable random algorithm, must be different every time. 
 - `callback_address`: address to call `receive_random_words` on with the randomness
 - `callback_gas_limit`: gas limit on the callback function
 - `publish_delay`: minimum number of blocks to wait from the request to fulfillment
-- `num_words`: number of random words to receive in one call. Each word is a felt, so 251 bits of randomness
+- `num_words`: number of random words to receive in one call. Each word is a felt252.
 
 #### Returns
 
@@ -141,8 +148,7 @@ This is function must be defined on the contract at `callback_address` initially
 
 - `requestor_address`: address that submitted the randomness request
 - `request_id`: id of the randomness request (auto-incrementing for each `requestor_address`)
-- `random_words_len`: number of random words returned
-- `random_words`: pointer to the first random word
+- `random_words`: an span of random words
 
 ### Function: `cancel_random_request`
 
@@ -169,5 +175,6 @@ Get the status of a randomness request.
 
 #### Returns
 
-- `status_`: status of the request, see [here](https://github.com/Astraly-Labs/Pragma/blob/master/contracts/starknet/src/randomness/structs.cairo).
-  0=UNINITIALIZED, 1=RECEIVED, 2=FULFILLED, 3=CANCELLED, 4=EXCESSIVE_GAS_NEEDED, 5=ERRORED.
+- `status_`: status of the request, see [here](https://github.com/astraly-labs/pragma-oracle/blob/main/src/randomness/randomness.cairo).
+There are four defined status: 
+  0=UNINITIALIZED, 1=RECEIVED, 2=FULFILLED, 3=CANCELLED
