@@ -19,7 +19,7 @@ The second is the Oracle implementation and its proxy, which are also designed t
 ## Aggregation
 
 
-<div><img width="100%" height="100%" src="https://i.ibb.co/pnQpW67/Capture-d-e-cran-2023-11-16-a-18-08-21.png" alt="Capture-d-e-cran-2023-11-16-a-18-08-21" border="0"/></div>
+<div><img width="100%" height="100%" src="https://i.ibb.co/ZXmp89H/Screenshot-2023-11-21-at-10-10-30.png" alt="Capture-d-e-cran-2023-11-16-a-18-08-21" border="0"/></div>
 
 Our system incorporates multiple publishers, each responsible for providing data from various sources. To determine the price for a given source, we consider the prices submitted by all these publishers. Our approach involves conducting an initial on-chain aggregation based on the median of these prices. This median value then becomes the established price for that particular source.
 
