@@ -11,6 +11,14 @@ This feed is being rolled out in two phases: In the first phase (currently live)
 
 In the second phase, the proof will be verified directly on-chain (coming soon) and requesters will be required to cover gas costs of their callback function plus a small fee to cover the cost of generating randomness.
 
+## Deployed Contracts
+
+You can find the latest deployed contracts at the following addresses :
+
+[Testnet](https://goerli.voyager.online/contract/0x693d551265f0be7ccb3c869c64b5920929caaf486497788d43cb37dd17d6be6) : 0x693d551265f0be7ccb3c869c64b5920929caaf486497788d43cb37dd17d6be6
+
+[Mainnet](https://voyager.online/contract/0x) : 🔜
+
 ## Sample Code
 
 If you are just trying to get started with using randomness, see the self-contained code snippet. If you'd like to use more advanced oracle functions, read on past the code block for further information. You can find a full sample randomness receiver contract [here](https://github.com/astraly-labs/pragma-oracle/blob/main/src/randomness/example_randomness.cairo).
@@ -46,20 +54,22 @@ mod ExampleRandomness {
             ref self: ContractState,
             seed: u64,
             callback_address: ContractAddress,
-            callback_gas_limit: u64,
+            callback_fee_limit: u64,
             publish_delay: u64,
             num_words: u64
         ) {
             let randomness_contract_address = self.randomness_contract_address.read();
+
             let randomness_dispatcher = IRandomnessDispatcher {
                 contract_address: randomness_contract_address
             };
             let request_id = randomness_dispatcher
                 .request_random(
-                    seed, callback_address, callback_gas_limit, publish_delay, num_words
+                    seed, callback_address, callback_fee_limit, publish_delay, num_words
                 );
 
             let current_block_number = get_block_number();
+            
             self.min_block_number_storage.write(current_block_number + publish_delay);
 
             return ();
@@ -120,7 +130,28 @@ As mentioned above, in the first phase of Pragma Network's VRF feed, the randomn
 In order to make it easier to verify that a specific piece of randomness was verifiable, we provide an open source implementation of the verifier. Follow these simple steps to verify any randomness provided by Pragma Network:
 
 1. Install the Pragma Python package `pip install pragma-sdk`
-2. Run `python3 -m pragma-sdl.cli random verify-random <TRANSACTION\*HASH>` where `TRANSACTION_HASH` is the hash of the StarkNet testnet transaction in which the randomness was submitted to your smart contract.
+2. Run `python3 -m pragma-sdk.cli random verify-random <TRANSACTION_HASH>` where `TRANSACTION_HASH` is the hash of the StarkNet testnet transaction in which the randomness was submitted to your smart contract.
+
+## Pricing
+
+To use Pragma VRF, you must have a sufficient amount of the payment token in your consuming contract.
+
+| Fee Token | Testnet | Mainnet |
+| -------- | ------- | ------- |
+| ETH | ✅ | ✅ |
+| STRK | ❌ | ❌ |
+
+Pricing is divied in two parts :
+1. **Callback gas usage** : when requesting randomness you input a `callback_fee_limit` parameter that will be paid in the transaction's fee token. When randomness is submitted to the consumer contract, the fee excess is refunded.
+2. **Premium** : decreasing premium fee that goes to whoever is fulfilling the randomness request. You can find the exact pricing table below. The premium is paid in the fee token for now and will be replaced by a custom payment token along the road.
+
+| Total Number of Requests | Price (USD) |
+| -------- | ------- |
+| < 10 | 1$ |
+| < 30 | 0.5$ |
+| < 100 | 0.25$ |
+| > 100 | 0.1$ |
+
 
 ## Technical Specification
 
@@ -132,7 +163,7 @@ Allows your smart contract to request randomness. Upon calling the Pragma contra
 
 - `seed`: random seed that feeds into the verifiable random algorithm, must be different every time. 
 - `callback_address`: address to call `receive_random_words` on with the randomness
-- `callback_gas_limit`: gas limit on the callback function
+- `callback_fee_limit`: overall fee limit on the callback function
 - `publish_delay`: minimum number of blocks to wait from the request to fulfillment
 - `num_words`: number of random words to receive in one call. Each word is a felt252.
 
@@ -161,7 +192,7 @@ Allows the requestor of randomness to cancel the request.
 - `requestor_address`: address of the contract that originally requested the randomness. Currently must be the same as the contract calling the cancel function
 - `minimum_block_number`: the block number in which the randomness could first have been published, equal to `publish_delay` + `block_number` of the request
 - `callback_address`: argument provided in the randomness request
-- `callback_gas_limit`: argument provided in the randomness request
+- `callback_fee_limit`: argument provided in the randomness request
 - `num_words`: argument provided in the randomness request
 
 ### Function: `get_request_status`
@@ -177,4 +208,4 @@ Get the status of a randomness request.
 
 - `status_`: status of the request, see [here](https://github.com/astraly-labs/pragma-oracle/blob/main/src/randomness/randomness.cairo).
 There are four defined status: 
-  0=UNINITIALIZED, 1=RECEIVED, 2=FULFILLED, 3=CANCELLED
+  0=UNINITIALIZED, 1=RECEIVED, 2=FULFILLED, 3=CANCELLED, 4=OUT_OF_GAS
