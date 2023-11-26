@@ -24,13 +24,36 @@ You can find the latest deployed contracts at the following addresses :
 If you are just trying to get started with using randomness, see the self-contained code snippet. If you'd like to use more advanced oracle functions, read on past the code block for further information. You can find a full sample randomness receiver contract [here](https://github.com/astraly-labs/pragma-oracle/blob/main/src/randomness/example_randomness.cairo).
 
 ```rust
+use starknet::ContractAddress;
+
+#[starknet::interface]
+trait IExampleRandomness<TContractState> {
+    fn get_last_random(self: @TContractState) -> felt252;
+    fn request_my_randomness(
+        ref self: TContractState,
+        seed: u64,
+        callback_address: ContractAddress,
+        callback_fee_limit: u128,
+        publish_delay: u64,
+        num_words: u64
+    );
+    fn receive_random_words(
+        ref self: TContractState,
+        requestor_address: ContractAddress,
+        request_id: u64,
+        random_words: Span<felt252>
+    );
+}
+
 #[starknet::contract]
 mod ExampleRandomness {
     use super::{ContractAddress, IExampleRandomness};
     use starknet::info::{get_block_number, get_caller_address, get_contract_address};
     use pragma::randomness::randomness::{IRandomnessDispatcher, IRandomnessDispatcherTrait};
     use array::{ArrayTrait, SpanTrait};
+    use openzeppelin::token::erc20::{ERC20, interface::{IERC20Dispatcher, IERC20DispatcherTrait}};
     use traits::{TryInto, Into};
+
     #[storage]
     struct Storage {
         randomness_contract_address: ContractAddress,
@@ -54,12 +77,22 @@ mod ExampleRandomness {
             ref self: ContractState,
             seed: u64,
             callback_address: ContractAddress,
-            callback_fee_limit: u64,
+            callback_fee_limit: u128,
             publish_delay: u64,
             num_words: u64
         ) {
             let randomness_contract_address = self.randomness_contract_address.read();
 
+            // Approve the randomness contract to transfer the callback fee
+            // You would need to send some ETH to this contract first to cover the fees
+            let eth_dispatcher = IERC20Dispatcher {
+                contract_address: 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7 // ETH Contract Address
+                    .try_into()
+                    .unwrap()
+            };
+            eth_dispatcher.approve(randomness_contract_address, callback_fee_limit.into());
+
+            // Request the randomness
             let randomness_dispatcher = IRandomnessDispatcher {
                 contract_address: randomness_contract_address
             };
@@ -69,7 +102,6 @@ mod ExampleRandomness {
                 );
 
             let current_block_number = get_block_number();
-            
             self.min_block_number_storage.write(current_block_number + publish_delay);
 
             return ();
@@ -109,6 +141,8 @@ mod ExampleRandomness {
             return ();
         }
     }
+}
+
 ```
 
 ## How Randomness is Generated
