@@ -34,8 +34,8 @@ The `pair_id` is calculated by utf-8 encoding the uppercased string (e.g. `str_t
 | -------- | ------------------- | -------- | ------- |
 | BTC/USD  | 18669995996566340   | 8        | ✅       |
 | ETH/USD  | 19514442401534788   | 8        | ✅       |
-| BTC/USDT | 4779518975120983124 | 8        | ✅       |
-| ETH/USDT | 4995697254792905812 | 8        | ✅       |
+| BTC/USDT | 4779518975120983124 | 6        | ✅       |
+| ETH/USDT | 4995697254792905812 | 6        | ✅       |
 
 ### Stablecoins
 
