@@ -151,7 +151,7 @@ Pragma's randomness is based off of the [Internet Engineering Task Force's (IETF
 
 When smart contracts request randomness, they specify a random seed. This seed uniquely determines the randomness, so the Pragma as the VRF provider is not able to manipulate the randomness. However calculating the randomness requires having access to a private key that is not known, so the smart contract (and any other party observing the randomness request) is not able to predict the randomness. Off-chain, the randomness is calculated using the private key and the seed. That randomness and the proof are then sent on-chain, where the unbiased randomness is then available to the smart contract that requested it.
 
-Pragma Network's verifiable random function (VRF) over a specific elliptic curve, named Curve25519. Most known blockchain implementations of a VRF are using the so-called "Bitcoin curve", or secpk256k1. We chose this algorithm because it is more secure than other commonly used ones (that possibly have backdoors - see [here](https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/#thedownside) and [here](https://blog.cryptographyengineering.com/2013/09/18/the-many-flaws-of-dualecdrbg/)). We chose this curve in particular for two reasons:
+Pragma Oracle's verifiable random function (VRF) over a specific elliptic curve, named Curve25519. Most known blockchain implementations of a VRF are using the so-called "Bitcoin curve", or secpk256k1. We chose this algorithm because it is more secure than other commonly used ones (that possibly have backdoors - see [here](https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/#thedownside) and [here](https://blog.cryptographyengineering.com/2013/09/18/the-many-flaws-of-dualecdrbg/)). We chose this curve in particular for two reasons:
 
 - Building the tools to perform arithmetic operations on Curve25519 is a premiere for programmable blockchains and theoretically enables compatibility with [all the protocols](https://en.wikipedia.org/wiki/Curve25519#Protocols) that use Curve25519 for digital signatures, such as IPFS, Ripple, Monero, Signal, Protonmail, and many others. This is a great step towards interoperability with StarkNet and it is only possible by leveraging its computational capabilities.
 
@@ -159,9 +159,9 @@ Pragma Network's verifiable random function (VRF) over a specific elliptic curve
 
 ## Verifying The Randomness
 
-As mentioned above, in the first phase of Pragma Network's VRF feed, the randomness proof is posted as calldata, allowing anyone to verify it off-chain.
+As mentioned above, in the first phase of Pragma Oracle's VRF feed, the randomness proof is posted as calldata, allowing anyone to verify it off-chain.
 
-In order to make it easier to verify that a specific piece of randomness was verifiable, we provide an open source implementation of the verifier. Follow these simple steps to verify any randomness provided by Pragma Network:
+In order to make it easier to verify that a specific piece of randomness was verifiable, we provide an open source implementation of the verifier. Follow these simple steps to verify any randomness provided by Pragma Oracle:
 
 1. Install the Pragma Python package `pip install pragma-sdk`
 2. Run `python3 -m pragma-sdk.cli random verify-random <TRANSACTION_HASH>` where `TRANSACTION_HASH` is the hash of the StarkNet testnet transaction in which the randomness was submitted to your smart contract.
