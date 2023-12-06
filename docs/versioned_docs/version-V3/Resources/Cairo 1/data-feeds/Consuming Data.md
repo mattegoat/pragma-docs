@@ -20,6 +20,12 @@ The current Pragma addresses are:
 
 If you are just trying to get started with our price feeds, see the self-contained code snippets below. If you'd like to use more advanced oracle functions please see the further information below. You can find a full sample data feed consumer contract [here](https://github.com/Astraly-Labs/pragma-hack/tree/master) and the full Oracle interface specification is available [here](https://github.com/Astraly-Labs/pragma-oracle/blob/main/src/oracle/oracle.cairo).
 
+## (Optional) Add Pragma as a dependency to your scarb/snforge project
+
+```shell
+scarb add pragma_lib --git https://github.com/astraly-labs/pragma-lib
+```
+
 ### BTC/USD Spot Median Price
 
 ```rust

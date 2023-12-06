@@ -9,6 +9,12 @@ sidebar_position: 1
 You can get started with Pragma in just a few minutes. This guide will walk you through the process of consuming data from Pragma's oracle network. 
 Here is a simple contract allowing a user to retrieve the price of an asset, using the Pragma Oracle.
 
+## (Optional) Add Pragma as a dependency to your scarb/snforge project
+
+```shell
+scarb add pragma_lib --git https://github.com/astraly-labs/pragma-lib
+```
+
 
 ## Overview of the contract 
 
