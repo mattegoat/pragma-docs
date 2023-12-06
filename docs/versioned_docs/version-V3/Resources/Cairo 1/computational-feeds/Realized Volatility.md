@@ -18,10 +18,10 @@ If you are just trying to get started with our realized volatility feed, see thi
 
 ```rust
 use starknet::ContractAddress;
-use pragma::summary_stats::summary_stats::{
+use pragma_lib::abi::{
     ISummaryStatsABIDispatcher, ISummaryStatsABIDispatcherTrait
 };
-use pragma::entry::structs::{AggregationMode, DataType};
+use pragma_lib::types::{AggregationMode, DataType};
 use starknet::get_block_timestamp;
 use starknet::contract_address::contract_address_const;
 

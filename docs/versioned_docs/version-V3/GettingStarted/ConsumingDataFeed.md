@@ -27,10 +27,10 @@ mod HackTemplate {
     use super::{ContractAddress, HackTemplateABI};
     use array::{ArrayTrait, SpanTrait};
     use traits::{Into, TryInto};
-    use pragma_oracle::IOracle::{
+    use pragma_lib::abi::{
             IPragmaABIDispatcher, IPragmaABIDispatcherTrait, ISummaryStatsABIDispatcher,
-            ISummaryStatsABIDispatcherTrait, DataType, AggregationMode, PragmaPricesResponse
-    };
+            ISummaryStatsABIDispatcherTrait};
+    use pragma_lib::types::{DataType, AggregationMode, PragmaPricesResponse};
     use alexandria_math::math::fpow;
     use starknet::get_block_timestamp;
     use option::OptionTrait;
@@ -92,10 +92,10 @@ mod HackTemplate {
     use super::{ContractAddress, HackTemplateABI};
     use array::{ArrayTrait, SpanTrait};
     use traits::{Into, TryInto};
-    use pragma_oracle::IOracle::{
+    use pragma_lib::abi::{
             IPragmaABIDispatcher, IPragmaABIDispatcherTrait, ISummaryStatsABIDispatcher,
-            ISummaryStatsABIDispatcherTrait, DataType, AggregationMode, PragmaPricesResponse
-    };
+            ISummaryStatsABIDispatcherTrait};
+    use pragma_lib::types::{DataType, AggregationMode, PragmaPricesResponse};
     use alexandria_math::math::fpow;
     use starknet::get_block_timestamp;
     use option::OptionTrait;
@@ -140,10 +140,11 @@ This is the general form of a starknet contract, you can learn more about the wa
 The notable point here is among the imports: 
 
 ```rust 
-use pragma_oracle::IOracle::{
-            IPragmaABIDispatcher, IPragmaABIDispatcherTrait, ISummaryStatsABIDispatcher,
-            ISummaryStatsABIDispatcherTrait, DataType, AggregationMode, PragmaPricesResponse
-    };
+use pragma_lib::abi::{
+            IPragmaABIDispatcher, IPragmaABIDispatcherTrait, 
+            ISummaryStatsABIDispatcher, ISummaryStatsABIDispatcherTrait
+        };
+use pragma_lib::types::{DataType, AggregationMode, PragmaPricesResponse};
 ```
 
 This line imports the dispatcher corresponding to the oracle contract interface and its associated trait. The dispatcher enables the invocation of interface-defined functions. For deeper insights into the dispatcher and its trait, consult the [cairo book](https://book.cairo-lang.org/ch99-02-02-contract-dispatcher-library-dispatcher-and-system-calls.html).

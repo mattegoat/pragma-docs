@@ -15,10 +15,10 @@ If you are just trying to get started with our TWAP feed, see this self-containe
 ```rust
 
 use starknet::ContractAddress;
-use pragma::summary_stats::summary_stats::{
+use pragma_lib::abi::{
     ISummaryStatsABIDispatcher, ISummaryStatsABIDispatcherTrait
 };
-use pragma::entry::structs::{AggregationMode, DataType};
+use pragma_lib::types::{AggregationMode, DataType};
 
 const SUMMARY_STATS_ADDRESS : ContractAddress  = 0x00000000000000000000;
 

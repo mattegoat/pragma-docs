@@ -24,8 +24,8 @@ If you are just trying to get started with our price feeds, see the self-contain
 
 ```rust
 
-use pragma::oracle::oracle::{IOracleABIDispatcher, IOracleABIDispatcherTrait};
-use pragma::entry::structs::{AggregationMode, DataType, PragmaPricesResponse};
+use pragma_lib::abi::{IOracleABIDispatcher, IOracleABIDispatcherTrait};
+use pragma_lib::types::{AggregationMode, DataType, PragmaPricesResponse};
 use starknet::ContractAddress;
 use starknet::contract_address::contract_address_const;
 
@@ -48,8 +48,8 @@ let price = get_asset_price_median(oracle_address, DataType::SpotEntry(KEY));
 
 ```rust
 
-use pragma::oracle::oracle::{IOracleABIDispatcher, IOracleABIDispatcherTrait};
-use pragma::entry::structs::{AggregationMode, DataType, PragmaPricesResponse};
+use pragma_lib::abi::{IOracleABIDispatcher, IOracleABIDispatcherTrait};
+use pragma_lib::types::{AggregationMode, DataType, PragmaPricesResponse};
 use starknet::ContractAddress;
 use starknet::contract_address::contract_address_const;
 use array::ArrayTrait;
@@ -80,8 +80,8 @@ let price = get_asset_price_average(oracle_address, DataType::SpotEntry(KEY), so
 #### BTC/USD Future Price
 
 ```rust
-use pragma::oracle::oracle::{IOracleABIDispatcher, IOracleABIDispatcherTrait};
-use pragma::entry::structs::{AggregationMode, DataType, PragmaPricesResponse};
+use pragma_lib::abi::{IOracleABIDispatcher, IOracleABIDispatcherTrait};
+use pragma_lib::types::{AggregationMode, DataType, PragmaPricesResponse};
 use starknet::ContractAddress;
 use starknet::contract_address::contract_address_const;
 

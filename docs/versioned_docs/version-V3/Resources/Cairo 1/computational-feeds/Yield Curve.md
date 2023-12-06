@@ -14,10 +14,8 @@ Pragma offers a feed that calculates the zero-coupon interest-rate curve fully o
 
 ```rust
 use starknet::ContractAddress;
-use pragma::compute_engines::yield_curve::yield_curve::{
-    IYieldCurveABIDispatcher, IYieldCurveABIDispatcherTrait, YieldPoint
-};
-use pragma::entry::structs::{AggregationMode, DataType};
+use pragma_lib::abi::{IYieldCurveABIDispatcher, IYieldCurveABIDispatcherTrait};
+use pragma_lib::types::{AggregationMode, DataType, YieldPoint};
 use starknet::get_block_timestamp;
 use starknet::contract_address::contract_address_const;
 
