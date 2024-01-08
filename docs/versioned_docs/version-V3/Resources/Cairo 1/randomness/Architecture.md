@@ -15,7 +15,7 @@ In the second phase, the proof will be verified directly on-chain (coming soon) 
 
 You can find the latest deployed contracts at the following addresses :
 
-[Testnet](https://goerli.voyager.online/contract/0x693d551265f0be7ccb3c869c64b5920929caaf486497788d43cb37dd17d6be6) : 0x693d551265f0be7ccb3c869c64b5920929caaf486497788d43cb37dd17d6be6
+[Sepolia](https://sepolia.voyager.online/contract/0x60c69136b39319547a4df303b6b3a26fab8b2d78de90b6bd215ce82e9cb515c) : 0x60c69136b39319547a4df303b6b3a26fab8b2d78de90b6bd215ce82e9cb515c
 
 [Mainnet](https://voyager.online/contract/0x) : 🔜
 

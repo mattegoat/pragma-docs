@@ -24,7 +24,7 @@ Let's start by setting up some envirronement variables.
 
 ```sh
 # Use Starknet testnet
-export STARKNET_NETWORK=alpha-goerli
+export STARKNET_NETWORK=sepolia
 # Set the default wallet implementation to be used by the CLI
 export STARKNET_WALLET=starkware.starknet.wallets.open_zeppelin.OpenZeppelinAccount
 ```
@@ -60,7 +60,7 @@ Currently, publisher registration is permissioned while we create a robust ecosy
 ### 6. Set up the data fetching logic
 
 To simplify the process of setting up a publisher, we provide an optional Docker base image and a Python SDK which can make it easier to get started. The process to integrate usually takes an hour to half a day.
-The initial publishing frequency for the oracle is every 3 minutes on Starknet Alpha-Goerli testnet, we expect to move to single-digit seconds as the network matures and value secured grows.
+The initial publishing frequency for the oracle is every 3 minutes on Starknet Sepolia testnet, we expect to move to single-digit seconds as the network matures and value secured grows.
 
 #### Using the Pragma Python SDK
 
