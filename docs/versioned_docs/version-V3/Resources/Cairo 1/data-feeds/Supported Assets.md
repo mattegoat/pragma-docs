@@ -25,7 +25,6 @@ The `pair_id` is calculated by utf-8 encoding the uppercased string (e.g. `str_t
 | BTC/EUR    | 18669995995518290        | 8        | ✅       |
 | WSTETH/USD | 412383036120118613857092 | 8        | ✅       |
 | LORDS/USD  | 1407668255603079598916   | 8        | ✅       |
-| LUSD/USD   | 5500394072219931460      | 8        | ✅       |
 | UNI/USD    | 24011449254105924        | 8        | ✅       |
 
 ### Future
@@ -44,6 +43,7 @@ The `pair_id` is calculated by utf-8 encoding the uppercased string (e.g. `str_t
 | USDT/USD | 6148333044652921668 | 6        | ✅       |
 | DAI/USD  | 19212080998863684   | 8        | ✅       |
 | USDC/USD | 6148332971638477636 | 6        | ✅       |
+| LUSD/USD   | 5500394072219931460      | 8        | ✅       |
 
 ## Currencies & Rebasing
 
