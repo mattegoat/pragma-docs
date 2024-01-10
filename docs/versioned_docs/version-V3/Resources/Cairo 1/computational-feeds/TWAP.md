@@ -27,7 +27,7 @@ fn comupute_twap(data_type : DataType, aggregation_mode : AggregationMode) -> u1
     let end_tick = 1691415416;
     let num_samples = 200;
     let summary_dispatcher = ISummaryStatsABIDispatcher { contract_address: SUMMARY_STATS_ADDRESS}
-    let (twap, decimals) = summary_dispatcher.compute_twap(
+    let (twap, decimals) = summary_dispatcher.calculate_twap(
         data_type,
         aggregation_mode,
         time,
