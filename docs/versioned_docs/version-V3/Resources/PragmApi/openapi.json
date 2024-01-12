@@ -9,9 +9,78 @@
 		"version": "0.1.0"
 	},
 	"paths": {
+		"/node/v1/aggregation/candlestick/{base}/{quote}": {
+			"get": {
+				"tags": [
+					"handlers::entries::get_ohlc"
+				],
+				"operationId": "get_ohlc",
+				"parameters": [
+					{
+						"name": "quote",
+						"in": "path",
+						"description": "Quote Asset",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "base",
+						"in": "path",
+						"description": "Base Asset",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "timestamp",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int64",
+							"nullable": true,
+							"minimum": 0
+						}
+					},
+					{
+						"name": "interval",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"allOf": [
+								{
+									"$ref": "#/components/schemas/Interval"
+								}
+							],
+							"nullable": true
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Get OHLC data successfuly",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/GetOHLCResponse"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
 		"/node/v1/data/publish": {
 			"post": {
-				"tags": ["Endpoints"],
+				"tags": [
+					"handlers::entries::create_entry"
+				],
 				"operationId": "create_entries",
 				"requestBody": {
 					"content": {
@@ -47,9 +116,11 @@
 				}
 			}
 		},
-		"/node/v1/data/{quote}/{base}": {
+		"/node/v1/data/{base}/{quote}": {
 			"get": {
-				"tags": ["Endpoints"],
+				"tags": [
+					"handlers::entries::get_entry"
+				],
 				"operationId": "get_entry",
 				"parameters": [
 					{
@@ -68,6 +139,30 @@
 						"required": true,
 						"schema": {
 							"type": "string"
+						}
+					},
+					{
+						"name": "timestamp",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int64",
+							"nullable": true,
+							"minimum": 0
+						}
+					},
+					{
+						"name": "interval",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"allOf": [
+								{
+									"$ref": "#/components/schemas/Interval"
+								}
+							],
+							"nullable": true
 						}
 					}
 				],
@@ -88,59 +183,11 @@
 				}
 			}
 		},
-		"/node/v1/data/{quote}/{base}/{amount}": {
-			"get": {
-				"tags": ["Endpoints"],
-				"operationId": "convert_amount",
-				"parameters": [
-					{
-						"name": "quote",
-						"in": "path",
-						"description": "Quote Asset",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"name": "base",
-						"in": "path",
-						"description": "Base Asset",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"name": "amount",
-						"in": "path",
-						"description": "Amount of base asset to convert",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Amount converted successfuly",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "array",
-									"items": {
-										"$ref": "#/components/schemas/ConvertAmountResponse"
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		},
 		"/node/v1/volatility/{quote}/{base}": {
 			"get": {
-				"tags": ["Endpoints"],
+				"tags": [
+					"handlers::entries::get_volatility"
+				],
 				"operationId": "get_volatility",
 				"parameters": [
 					{
@@ -206,7 +253,11 @@
 		"schemas": {
 			"BaseEntry": {
 				"type": "object",
-				"required": ["timestamp", "source", "publisher"],
+				"required": [
+					"timestamp",
+					"source",
+					"publisher"
+				],
 				"properties": {
 					"publisher": {
 						"type": "string"
@@ -221,41 +272,12 @@
 					}
 				}
 			},
-			"ConvertAmountResponse": {
-				"type": "object",
-				"required": [
-					"num_sources_aggregated",
-					"pair_id",
-					"price",
-					"timestamp",
-					"converted_amount"
-				],
-				"properties": {
-					"converted_amount": {
-						"type": "integer",
-						"minimum": 0
-					},
-					"num_sources_aggregated": {
-						"type": "integer",
-						"minimum": 0
-					},
-					"pair_id": {
-						"type": "string"
-					},
-					"price": {
-						"type": "integer",
-						"minimum": 0
-					},
-					"timestamp": {
-						"type": "integer",
-						"format": "int64",
-						"minimum": 0
-					}
-				}
-			},
 			"CreateEntryRequest": {
 				"type": "object",
-				"required": ["signature", "entries"],
+				"required": [
+					"signature",
+					"entries"
+				],
 				"properties": {
 					"entries": {
 						"type": "array",
@@ -273,7 +295,9 @@
 			},
 			"CreateEntryResponse": {
 				"type": "object",
-				"required": ["number_entries_created"],
+				"required": [
+					"number_entries_created"
+				],
 				"properties": {
 					"number_entries_created": {
 						"type": "integer",
@@ -283,7 +307,12 @@
 			},
 			"Entry": {
 				"type": "object",
-				"required": ["base", "pair_id", "price", "volume"],
+				"required": [
+					"base",
+					"pair_id",
+					"price",
+					"volume"
+				],
 				"properties": {
 					"base": {
 						"$ref": "#/components/schemas/BaseEntry"
@@ -305,11 +334,15 @@
 				"oneOf": [
 					{
 						"type": "string",
-						"enum": ["InternalServerError"]
+						"enum": [
+							"InternalServerError"
+						]
 					},
 					{
 						"type": "object",
-						"required": ["NotFound"],
+						"required": [
+							"NotFound"
+						],
 						"properties": {
 							"NotFound": {
 								"type": "string"
@@ -318,7 +351,9 @@
 					},
 					{
 						"type": "object",
-						"required": ["InfraError"],
+						"required": [
+							"InfraError"
+						],
 						"properties": {
 							"InfraError": {
 								"$ref": "#/components/schemas/InfraError"
@@ -327,7 +362,9 @@
 					},
 					{
 						"type": "object",
-						"required": ["InvalidSignature"],
+						"required": [
+							"InvalidSignature"
+						],
 						"properties": {
 							"InvalidSignature": {
 								"$ref": "#/components/schemas/EcdsaVerifyError"
@@ -336,11 +373,21 @@
 					},
 					{
 						"type": "string",
-						"enum": ["Unauthorized"]
+						"enum": [
+							"Unauthorized"
+						]
+					},
+					{
+						"type": "string",
+						"enum": [
+							"InvalidTimestamp"
+						]
 					},
 					{
 						"type": "object",
-						"required": ["PublisherError"],
+						"required": [
+							"PublisherError"
+						],
 						"properties": {
 							"PublisherError": {
 								"$ref": "#/components/schemas/PublisherError"
@@ -349,16 +396,9 @@
 					},
 					{
 						"type": "object",
-						"required": ["InvalidAmount"],
-						"properties": {
-							"InvalidAmount": {
-								"type": "string"
-							}
-						}
-					},
-					{
-						"type": "object",
-						"required": ["UnknownPairId"],
+						"required": [
+							"UnknownPairId"
+						],
 						"properties": {
 							"UnknownPairId": {
 								"type": "string"
@@ -367,53 +407,73 @@
 					},
 					{
 						"type": "object",
-						"required": ["VolatilityError"],
+						"required": [
+							"VolatilityError"
+						],
 						"properties": {
 							"VolatilityError": {
 								"$ref": "#/components/schemas/VolatilityError"
 							}
 						}
+					},
+					{
+						"type": "object",
+						"required": [
+							"PublishData"
+						],
+						"properties": {
+							"PublishData": {
+								"type": "string"
+							}
+						}
+					},
+					{
+						"type": "object",
+						"required": [
+							"BuildPublish"
+						],
+						"properties": {
+							"BuildPublish": {
+								"type": "string"
+							}
+						}
 					}
 				]
 			},
-			"EntryModel": {
+			"GetEntryParams": {
 				"type": "object",
-				"required": [
-					"id",
-					"pair_id",
-					"publisher",
-					"source",
-					"timestamp",
-					"price"
-				],
 				"properties": {
-					"id": {
-						"$ref": "#/components/schemas/Uuid"
-					},
-					"pair_id": {
-						"type": "string"
-					},
-					"price": {
-						"type": "integer",
-						"minimum": 0
-					},
-					"publisher": {
-						"type": "string"
-					},
-					"source": {
-						"type": "string"
+					"interval": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/Interval"
+							}
+						],
+						"nullable": true
 					},
 					"timestamp": {
 						"type": "integer",
 						"format": "int64",
+						"nullable": true,
 						"minimum": 0
 					}
 				}
 			},
 			"GetEntryResponse": {
 				"type": "object",
-				"required": ["num_sources_aggregated", "pair_id", "price", "timestamp"],
+				"required": [
+					"num_sources_aggregated",
+					"pair_id",
+					"price",
+					"timestamp",
+					"decimals"
+				],
 				"properties": {
+					"decimals": {
+						"type": "integer",
+						"format": "int32",
+						"minimum": 0
+					},
 					"num_sources_aggregated": {
 						"type": "integer",
 						"minimum": 0
@@ -422,8 +482,7 @@
 						"type": "string"
 					},
 					"price": {
-						"type": "integer",
-						"minimum": 0
+						"type": "string"
 					},
 					"timestamp": {
 						"type": "integer",
@@ -432,9 +491,31 @@
 					}
 				}
 			},
+			"GetOHLCResponse": {
+				"type": "object",
+				"required": [
+					"pair_id",
+					"data"
+				],
+				"properties": {
+					"data": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/OHLCEntry"
+						}
+					},
+					"pair_id": {
+						"type": "string"
+					}
+				}
+			},
 			"GetVolatilityResponse": {
 				"type": "object",
-				"required": ["pair_id", "volatility", "decimals"],
+				"required": [
+					"pair_id",
+					"volatility",
+					"decimals"
+				],
 				"properties": {
 					"decimals": {
 						"type": "integer",
@@ -452,40 +533,22 @@
 			},
 			"InfraError": {
 				"type": "string",
-				"enum": ["InternalServerError", "NotFound"]
-			},
-			"PublisherError": {
-				"oneOf": [
-					{
-						"type": "object",
-						"required": ["InvalidKey"],
-						"properties": {
-							"InvalidKey": {
-								"type": "string"
-							}
-						}
-					},
-					{
-						"type": "object",
-						"required": ["InvalidAddress"],
-						"properties": {
-							"InvalidAddress": {
-								"type": "string"
-							}
-						}
-					},
-					{
-						"type": "object",
-						"required": ["InactivePublisher"],
-						"properties": {
-							"InactivePublisher": {
-								"type": "string"
-							}
-						}
-					}
+				"enum": [
+					"InternalServerError",
+					"NotFound",
+					"InvalidTimeStamp"
 				]
 			},
-			"PublisherModel": {
+			"Interval": {
+				"type": "string",
+				"description": "Query parameters structs",
+				"enum": [
+					"1min",
+					"15min",
+					"1h"
+				]
+			},
+			"Publisher": {
 				"type": "object",
 				"required": [
 					"id",
@@ -515,6 +578,50 @@
 						"type": "string"
 					}
 				}
+			},
+			"PublisherError": {
+				"oneOf": [
+					{
+						"type": "object",
+						"required": [
+							"InvalidKey"
+						],
+						"properties": {
+							"InvalidKey": {
+								"type": "string"
+							}
+						}
+					},
+					{
+						"type": "object",
+						"required": [
+							"InvalidAddress"
+						],
+						"properties": {
+							"InvalidAddress": {
+								"type": "string"
+							}
+						}
+					},
+					{
+						"type": "object",
+						"required": [
+							"InactivePublisher"
+						],
+						"properties": {
+							"InactivePublisher": {
+								"type": "string"
+							}
+						}
+					}
+				]
+			}
+		},
+		"securitySchemes": {
+			"api_key": {
+				"type": "apiKey",
+				"in": "header",
+				"name": "pragma_apikey"
 			}
 		}
 	},
