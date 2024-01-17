@@ -57,6 +57,15 @@
 							],
 							"nullable": true
 						}
+					},
+					{
+						"name": "routing",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "boolean",
+							"nullable": true
+						}
 					}
 				],
 				"responses": {
@@ -162,6 +171,15 @@
 									"$ref": "#/components/schemas/Interval"
 								}
 							],
+							"nullable": true
+						}
+					},
+					{
+						"name": "routing",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "boolean",
 							"nullable": true
 						}
 					}
@@ -449,6 +467,10 @@
 								"$ref": "#/components/schemas/Interval"
 							}
 						],
+						"nullable": true
+					},
+					"routing": {
+						"type": "boolean",
 						"nullable": true
 					},
 					"timestamp": {
