@@ -1,0 +1,134 @@
+.verifiable {
+    color: #15FF81;
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: -1.2px;
+    text-align: left;
+}
+
+.wrapper{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.bigImage{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    visibility: visible;
+}
+
+.smallImage{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    visibility: hidden;
+    width: 100%;
+}
+
+.flex{
+    display: flex;
+    width: 100%;
+}
+
+.headerWrapper{
+    z-index: 1;
+    display: flex;
+    position: relative;
+    margin-left: 20px;
+    margin-right: 20px;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 128px;
+    text-align: left;
+    width: 66%;
+    margin-top: 128px;
+    margin-bottom: 128px;
+    padding-left: 80px;
+}
+
+.heading {
+    color: #B5F0E5;
+    text-align: center;
+    text-decoration-line: none !important;
+    font-style: normal;
+    font-weight: 300;
+}
+
+.description{
+    color: #B5F0E5;
+
+/* Body/Body L */
+font-family: IBM Plex Sans;
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: 28px; /* 155.556% */
+width: 60%;
+}
+
+.statsBox{
+    display: flex;
+    padding: 36px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+    width: 100%;
+    min-height: 100%;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    background: linear-gradient(#082F28, #082F28) padding-box, linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.06%) 050%, rgba(255, 255, 255, 0.205) 100%) border-box;
+    backdrop-filter: blur(12.5px);
+
+}
+
+.searchWrapper{
+    padding-top: 20px;
+    padding-bottom: 30px;
+    width: 60%;
+
+}
+
+@media (max-width: 1024px) {
+    .headerWrapper{
+        width: 90%;
+
+    }
+
+}
+
+@media (max-width: 768px) {
+    .bigImage{
+        visibility: hidden;
+    }
+    .smallImage{
+        visibility: visible;
+        transform: translateX(90px);
+    }
+    .headerWrapper{
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 100%;
+        justify-content: start;
+        padding-top: 0px;
+        padding-bottom: 32px;
+        padding-left: 0px;
+        text-align: center;
+    }
+.description{
+    width: 100%;
+}
+.searchWrapper{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+}

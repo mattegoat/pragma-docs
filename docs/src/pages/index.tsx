@@ -8,12 +8,13 @@ import styled from "@emotion/styled";
 
 import Discord from "@site/static/img/discord.svg";
 import Twitter from "@site/static/img/twitter.svg";
-import phone from "@site/static/img/phone.png";
 
 import ThemedImage from "@theme/ThemedImage";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
 import SearchBar from "@theme-original/SearchBar";
+import ecosystem from "./assets/ecosystem.svg";
+import ecosystemSmall from "./assets/ecosystemSmall.svg";
 
 import {
   InformationCircleIcon,
@@ -22,6 +23,7 @@ import {
   ChatIcon,
   CodeIcon,
 } from "@heroicons/react/outline";
+import BasicHero from "../components/BasicHero";
 
 export const actions = [
   {
@@ -92,6 +94,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  max-width: 1500px;
 `;
 
 const Row = styled.div`
@@ -300,6 +303,13 @@ export default function Home() {
       image={useBaseUrl("/img/background.jpg")}
     >
       <Container>
+        <BasicHero
+          title={"Welcome to the"}
+          greenTitle={"Pragma Documentation"}
+          description={
+            "Get started with the Pragma smart-contracts, the leading oracle on Starknet and zk-Rollups. Use our architecture to unlock access to composable and verifiable data."
+          }
+        />
         <DocsHeader>
           <div
             style={{

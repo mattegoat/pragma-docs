@@ -7,7 +7,7 @@
 
 /* You can override the default Infima variables here. */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
 
 :root {
   --ifm-color-primary: #3578e5;
@@ -19,30 +19,6 @@
   --ifm-color-primary-lightest: #80aaef;
 
   --collapse-button-bg-color-dark: #2e333a;
-
-  --ifm-code-font-size: 95%;
-
-  --ifm-h1-font-size: 1.75rem;
-  --ifm-h2-font-size: 1.5rem;
-  --ifm-h3-font-size: 1.25rem;
-  --ifm-h4-font-size: 1rem;
-  --ifm-h5-font-size: 0.875rem;
-  --ifm-h6-font-size: 0.85rem;
-
-  /* --ifm-table-border-color: var(--ifm-color-emphasis-100); */
-  /* --ifm-toc-border-color: none; */
-  --ifm-toc-border-width: 1px;
-
-  /* --ifm-menu-color: var(--ifm-color-emphasis-900); */
-  --ifm-menu-color-background-active: transparent;
-  --ifm-menu-color-background-hover: transparent;
-
-  --ifm-global-shadow-lw: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
-  --ifm-global-shadow-md: 0 5px 40px rgba(0, 0, 0, 0.1);
-  --ifm-global-shadow-tl: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-
-  --ifm-global-spacing: 1.5rem;
-  /* --ifm-navbar-background-color: rgba(255, 0.2); */
 }
 
 html {
@@ -52,16 +28,11 @@ html {
 html[data-theme='dark'] {
   --ifm-color-primary: white;
   --ifm-color-primary-dark: #5a91ea;
+  --ifm-color-emphasis-600: #B5F0E5;
 
-  /* --ifm-color-secondary: black; */
+  --ifm-navbar-background-color: #004738BF;
 
-  /* --ifm-background-color: #191b1f; */
-  --ifm-navbar-background-color: #191b1f;
-  --ifm-global-shadow-md: 0 5px 4px rgba(255, 255, 255, 0.448);
-
-  background-position: 0px -30vh;
-  background-repeat: no-repeat;
-  background-image: radial-gradient(50% 50% at 50% 50%, rgba(33, 114, 229, 0.1) 0%, rgba(33, 36, 41, 0) 100%);
+  background: #042420;
 
   /* any other colors you wish to overwrite */
 }
@@ -79,7 +50,7 @@ html[data-theme='light'] {
 }
 
 .html {
-  font-family: 'Space Grotesk';
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 16px;
   font-variant: none;
   -webkit-font-smoothing: antialiased;
@@ -91,7 +62,7 @@ html[data-theme='light'] {
 
 .markdown a {
   color: #3578e5;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
 
 }
 
@@ -102,7 +73,7 @@ html[data-theme='light'] {
 p {
   line-height: 1.5rem;
   font-weight: 400;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 hr {
@@ -116,12 +87,13 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300 !important;
 }
 
 h1 {
-  font-size: 32px !important;
+  font-size: 60px;
+  line-height: 72px;
 }
 h2 {
   font-size: 24px !important;
@@ -136,6 +108,29 @@ h4 {
   font-size: 16px !important;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #042420;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #15FF81;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #B5F0E5;
+}
+
+
 .menu__link--sublist:after {
   background: var(--ifm-menu-link-sublist-icon) 50% / 1.5rem 1.5rem;
   /* color: var(  --ifm-color-primary); */
@@ -143,16 +138,63 @@ h4 {
 
 .navbar {
   align-items: center;
+  padding: 20px 40px;
+  height: fit-content;
+  backdrop-filter: blur(12.5px);
+}
+
+.DocSearch-Button{
+  background-color: rgba(181, 240, 229, 0.12) !important;
+  border-radius: 100px !important;
+  padding: 20px 24px !important;
+  color: #B5F0E5 !important;
+  font-family: IBM Plex Sans;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+}
+
+.DocSearch-Button-Keys {
+  justify-content: center !important;
+  align-items: center !important;
+  grid-gap: 3px;
+  transform: translate3d(16px, 1px, 0px);
+}
+
+.iconExternalLink_node_modules-\@docusaurus-theme-classic-lib-theme-Icon-ExternalLink-styles-module {
+  visibility: hidden;
+}
+
+.navbar-sidebar__close {
+  color: #B5F0E5 !important;
+  width: 22px !important;
+  padding-top: 3px !important;
+}
+
+.DocSearch-Button-Key {
+  background: transparent !important;
+  color: #B5F0E5 !important;
+  box-shadow: none !important;
+  margin-top: auto !important;
+  font-size: 1em;
+  margin-right: unset !important;
+  height: unset !important;
+  width: unset !important;
+  padding: unset !important;
+  top: unset !important;
+}
+
+.DocSearch-Button .DocSearch-Search-Icon {
+  color:  transparent !important;
+  width: 20px;
+  height: 20px;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><mask id="mask0_1183_718" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20"><rect width="20" height="20" fill="%23D9D9D9"/></mask><g mask="url(%23mask0_1183_718)"><path d="M15.8893 16.6474L10.9261 11.6843C10.5095 12.0005 10.0526 12.2454 9.55547 12.4191C9.05836 12.5927 8.5454 12.6795 8.01661 12.6795C6.71682 12.6795 5.61184 12.2245 4.70168 11.3146C3.79151 10.4047 3.33643 9.30026 3.33643 8.00133C3.33643 6.70238 3.79138 5.59751 4.7013 4.68672C5.61122 3.77595 6.71565 3.32056 8.01459 3.32056C9.31352 3.32056 10.4184 3.77564 11.3292 4.68581C12.24 5.59597 12.6954 6.70095 12.6954 8.00074C12.6954 8.54556 12.6059 9.06653 12.4269 9.56364C12.248 10.0608 12.0057 10.5096 11.7002 10.9103L16.6633 15.8734L15.8893 16.6474ZM8.01588 11.5962C9.02016 11.5962 9.87059 11.2479 10.5672 10.5513C11.2638 9.85472 11.6121 9.00429 11.6121 8.00002C11.6121 6.99574 11.2638 6.14531 10.5672 5.44872C9.87059 4.75214 9.02016 4.40385 8.01588 4.40385C7.01161 4.40385 6.16118 4.75214 5.46459 5.44872C4.76802 6.14531 4.41974 6.99574 4.41974 8.00002C4.41974 9.00429 4.76802 9.85472 5.46459 10.5513C6.16118 11.2479 7.01161 11.5962 8.01588 11.5962Z" fill="%23B5F0E5"/></g></svg>');
 }
 
 html[data-theme='dark'] .navbar {
   /* background-color: none; */
-  border-bottom: var(--ifm-toc-border-color) 1px solid;
-}
-
-html[data-theme='light'] .navbar {
-  /* background-color: none; */
-  border-bottom: var(--ifm-toc-border-color) 1px solid;
+  border-bottom: 1px solid rgba(181, 240, 229, 0.12);
 }
 
 .container {
@@ -178,35 +220,43 @@ html[data-theme='light'] .navbar {
 }
 
 .navbar__title {
-  font-family: "Space Grotesk", sans-serif;
-  color: var(--ifm-color-primary);
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #B5F0E5;
   font-weight: 500;
 }
 
 .navbar__link {
-  font-family: "Space Grotesk", sans-serif;
-  color: var(--ifm-color-primary);
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #B5F0E5;
   font-weight: 400;
 }
 
 .navbar__logo {
-  height: 20px;
-  width: 20px;
+  height: 26px;
+  width: 202px;
+}
+
+.navbar-sidebar {
+  height: 100vh;
+  backdrop-filter: blur(12.5px);
+}
+
+.navbar-sidebar__back {
+  width: auto !important;
+}
+
+.clean-btn {
+  color: #B5F0E5 ;
+  width: 28px;
+  padding-right: 5px;
+  margin-right: 10px;
 }
 
 .menu__link {
   font-size: 16px;
   font-weight: 400;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
 
-}
-
-html[data-theme='dark'] .navbar__logo {
-  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(337deg) brightness(112%) contrast(104%);
-}
-
-html[data-theme='dark'] .icon__logo {
-  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(337deg) brightness(112%) contrast(104%);
 }
 
 .docusaurus-highlight-code-line {
@@ -227,6 +277,7 @@ html[data-theme='dark'] .icon__logo {
   --ifm-badge-border-color: var(--ifm-badge-background-color);
   color: var(--ifm-color-base);
 }
+
 
 .illustration {
   border-radius: var(--ifm-pre-border-radius);
@@ -388,13 +439,13 @@ html[data-theme='dark'] .DocSearch-Hit :hover {
 }
 html[data-theme='dark'] .DocSearch-Hit a :hover {
   background-color: transparent;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
 
 }
 
 html[data-theme='dark'] .DocSearch-Hit a {
   background-color: var(--ifm-color-emphasis-0);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
 
 }
 
@@ -433,7 +484,7 @@ html[data-theme='dark'] .DocSearch-Hit a {
 
 .table-of-contents {
   opacity: 0.4;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
 
 }
 
@@ -447,6 +498,8 @@ html[data-theme='dark'] .DocSearch-Hit a {
 
 .navbar__inner {
   flex-wrap: unset;
+  max-width: 1500px;
+  margin: auto;
 }
 
 .navbar__item {
@@ -463,20 +516,6 @@ html[data-theme='dark'] .DocSearch-Hit a {
 
 .navbar__item.V3_active.V3 {
   display: inline-block;
-}
-
-.navbar__item.V2_active.V2 {
-  display: inline-block;
-}
-
-.navbar__item.V1_active.V1 {
-  display: inline-block;
-}
-
-.menu__link.V3_active,
-.V2_active,
-.V1_active {
-  display: none;
 }
 
 .menu__list-item--collapsed .menu__link {
@@ -522,6 +561,21 @@ html[data-theme='dark'] .DocSearch-Hit a {
     display: none;
   }
 }
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 36px;
+    line-height: 48px;
+  }
+  .navbar {
+    padding: 16px 24px;
+  }
+  .navbar__logo{
+    transform: translateY(2px);
+  }
+}
+
+
 
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
