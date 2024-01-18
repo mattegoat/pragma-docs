@@ -17,6 +17,7 @@
   --ifm-color-primary-light: #4e89e8;
   --ifm-color-primary-lighter: #5a91ea;
   --ifm-color-primary-lightest: #80aaef;
+  --ifm-link-decoration: none !important;
 
   --collapse-button-bg-color-dark: #2e333a;
 }
@@ -29,6 +30,7 @@ html[data-theme='dark'] {
   --ifm-color-primary: white;
   --ifm-color-primary-dark: #5a91ea;
   --ifm-color-emphasis-600: #B5F0E5;
+  --ifm-link-decoration: none;
 
   --ifm-navbar-background-color: #004738BF;
 
@@ -66,6 +68,16 @@ html[data-theme='light'] {
 
 }
 
+a  {
+  text-decoration: none !important;
+}
+
+a :hover {
+  text-decoration: none !important;
+}
+
+
+
 .blog {
   max-width: 650px;
 }
@@ -88,7 +100,7 @@ h3,
 h4,
 h5 {
   font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 300 !important;
+  font-weight: 300;
 }
 
 h1 {
@@ -96,16 +108,26 @@ h1 {
   line-height: 72px;
 }
 h2 {
-  font-size: 24px !important;
+  color: #B5F0E5;
+text-align: center;
+
+/* Headline/H2 */
+font-family: IBM Plex Sans;
+font-size: 48px;
+font-style: normal;
+font-weight: 300;
+line-height: 60px; /* 125% */
+letter-spacing: -0.96px;
 }
 h3 {
   font-size: 20px !important;
 }
 h4 {
-  font-size: 20px !important;
-}
-h4 {
-  font-size: 16px !important;
+  color: #B5F0E5 !important;
+  font-size: 30px !important;
+  font-style: normal;
+  font-weight: 400 !important;
+  line-height: 38px !important; /* 126.667% */
 }
 
 /* width */
@@ -440,6 +462,7 @@ html[data-theme='dark'] .DocSearch-Hit :hover {
 html[data-theme='dark'] .DocSearch-Hit a :hover {
   background-color: transparent;
   font-family: 'IBM Plex Sans', sans-serif;
+  text-decoration: none !important;
 
 }
 
