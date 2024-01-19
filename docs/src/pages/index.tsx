@@ -27,6 +27,8 @@ import BasicHero from "../components/BasicHero";
 import BoxContainer from "../components/BoxContainer";
 import GettingStarted from "../components/GettingStarted";
 import DeveloperLink from "../components/DeveloperLink";
+import Help from "../components/Help";
+import SocialWrapper from "../components/SocialWrapper";
 
 export const actions = [
   {
@@ -294,53 +296,10 @@ export default function Home() {
         <BoxContainer>
           <DeveloperLink />
         </BoxContainer>
-
-        <hr />
-        <Row>
-          <h2>Need help?</h2>
-          <h2></h2>
-          <h2></h2>
-
-          <Link
-            style={{ textDecoration: "none" }}
-            href={"https://cal.com/0xmatteo/30min"}
-          >
-            <CenterCard>
-              <StyledIcon
-                alt="Icon themed image"
-                sources={{
-                  light: useBaseUrl("/img/phone.png"),
-                  dark: useBaseUrl("/img/phone_inverted.png"),
-                }}
-                style={{ width: "48px", height: "48px", opacity: "0.9" }}
-              />
-              <div>
-                <h3>Schedule a call</h3>
-                <p>Get in touch with the team for any purpose.</p>
-              </div>
-            </CenterCard>
-          </Link>
-          <Link
-            style={{ textDecoration: "none" }}
-            href={"https://kprem87muy4.typeform.com/to/ahJVbIeI"}
-          >
-            <CenterCard>
-              {/* <img src={phone} style={{ width: '48px', height: '48px' }} /> */}
-              <StyledIcon
-                alt="Icon themed image"
-                sources={{
-                  light: useBaseUrl("/img/feedback.png"),
-                  dark: useBaseUrl("/img/feedback_inverted.png"),
-                }}
-                style={{ width: "48px", height: "48px", opacity: "0.9" }}
-              />
-              <div>
-                <h3>Submit Feedback</h3>
-                <p>Submit a Feedback to the team.</p>
-              </div>
-            </CenterCard>
-          </Link>
-        </Row>
+        <Help />
+        <BoxContainer>
+          <SocialWrapper />
+        </BoxContainer>
         <Row>
           <h2>Stay in touch</h2>
           <h2></h2>
