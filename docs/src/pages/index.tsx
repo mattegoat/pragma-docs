@@ -30,6 +30,7 @@ import DeveloperLink from "../components/DeveloperLink";
 import Help from "../components/Help";
 import SocialWrapper from "../components/SocialWrapper";
 import Footer from "../components/Footer";
+import LatestNews from "../components/LatestNews";
 
 export const actions = [
   {
@@ -260,6 +261,9 @@ export default function Home() {
         <Help />
         <BoxContainer>
           <SocialWrapper />
+        </BoxContainer>
+        <BoxContainer>
+          <LatestNews />
         </BoxContainer>
         <Footer />
       </Container>

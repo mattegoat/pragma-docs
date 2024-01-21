@@ -6,11 +6,13 @@ import PopupComponent from "./common/Popup";
 
 interface InputProps {
   placeholderText: string;
+  footer: boolean;
   className?: string;
 }
 
 const InputComponent: React.FC<InputProps> = ({
   placeholderText,
+  footer,
   className,
 }) => {
   const [email, setEmail] = useState<string>("");
@@ -44,7 +46,18 @@ const InputComponent: React.FC<InputProps> = ({
   };
 
   return (
-    <div>
+    <div
+      className={footer ? "" : styles.notFooterInput}
+      style={
+        footer
+          ? { display: "flex", flexDirection: "column", gap: "5px" }
+          : {
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px",
+            }
+      }
+    >
       <div
         style={{
           display: "flex",
@@ -60,7 +73,11 @@ const InputComponent: React.FC<InputProps> = ({
           placeholder={placeholderText}
           className={classNames(className, styles.input)}
         />
-        <button className={styles.emailButton} onClick={handleButtonClick}>
+        <button
+          style={footer ? { display: "unset" } : { display: "none" }}
+          className={styles.emailButton}
+          onClick={handleButtonClick}
+        >
           <ArrowRightIcon
             style={{
               width: "12px",
@@ -71,6 +88,7 @@ const InputComponent: React.FC<InputProps> = ({
         </button>
       </div>
       {!isValidEmail && <p style={{ color: "red" }}>Invalid email format</p>}
+
       {isSubmitted && (
         <PopupComponent
           title="Email submitted successfully"
@@ -99,6 +117,13 @@ const InputComponent: React.FC<InputProps> = ({
           I agree with the privacy policy.
         </div>
       </label>
+      <button
+        className={styles.buttonsolid}
+        style={footer ? { display: "none" } : { display: "unset" }}
+        onClick={handleButtonClick}
+      >
+        Subscribe now
+      </button>
     </div>
   );
 };

@@ -174,7 +174,7 @@ const Footer = () => (
           >
             Subscribe to our mailing list
           </div>
-          <InputComponent placeholderText="Email address" />
+          <InputComponent placeholderText="Email address" footer={true} />
         </div>
       </div>
       <div className={styles.copyright}>
