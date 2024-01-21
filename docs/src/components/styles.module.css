@@ -222,6 +222,10 @@ justify-content: sp;
 gap: 15px;
 }
 
+.devBox:hover{
+    border: 1px solid #FFFFFF80;
+}
+
 .buttons{
     display: flex;
 padding: 16px 24px;
@@ -273,6 +277,200 @@ align-items: flex-start;
 gap: 8px;
 
 }
+
+.input {
+    width: 100%;
+    background-color: transparent;
+    text-transform: uppercase;
+    padding-bottom: 6px;
+    color: #15FF81;
+    border: none;
+    border-bottom: 0.5px solid rgba(181, 240, 229, 0.50);
+}
+
+.input:focus {
+    outline: none;
+}
+
+.input::placeholder {
+    color: rgba(181, 240, 229, 0.50);
+}
+.checkbox {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    width: fit-content;
+}
+
+
+/* Hide the default checkbox */
+
+.checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+/* Style the custom checkbox */
+
+.checkmark {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: transparent;
+    border-radius: 0px;
+    border: 1px solid rgba(181, 240, 229, 0.50);
+}
+
+
+/* On mouse-over, add a background color */
+
+.checkbox:hover input~.checkmark {
+    background-color: rgba(181, 240, 229, 0.50);
+}
+
+
+/* When the checkbox is checked, add a blue background */
+
+.checkbox input:checked~.checkmark {
+    background-color: rgba(181, 240, 229, 0.50);
+}
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+
+/* Show the checkmark when the checkbox is checked */
+
+.checkbox input:checked~.checkmark:after {
+    display: block;
+}
+
+
+/* Style the checkmark as a tick */
+
+.checkbox .checkmark:after {
+    left: 5px;
+    top: 0px;
+    width: 5px;
+    height: 12px;
+    border: solid #042420;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.emailButton{
+    margin-left: auto;
+    cursor: pointer;
+    border-radius: 100%;
+    border: 1px solid #B5F0E580;
+    background: transparent;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 7px;
+    padding-right: 7px;
+    color: #B5F0E580;
+}
+
+.emailButton:hover{
+    background: #B5F0E580;
+    color: #042420;
+}
+
+.bigScreen {
+    max-width: 1700px;
+    padding-bottom: 48px; 
+    padding-top: 54px; 
+    margin: 0 auto; 
+    padding-left: 12px; 
+    padding-right: 12px; 
+  
+    @media (min-width: 1536px) {
+      padding-left: 0; 
+      max-width: 100%;
+    }
+  
+    @media (min-width: 768px) {
+      padding-left: 2.5rem; 
+      padding-right: 2.5rem;
+    }
+  }
+
+.imgFooter{
+    height: 40px;
+    width: "auto";
+}
+
+.footerDescription {
+    width: 100%;
+    padding-top: 1.25rem; 
+    color: #B5F0E5; 
+
+    @media (min-width: 640px) {
+      width: 83.333333%; 
+    }
+  
+    @media (min-width: 768px) {
+      width: 58.333333%; 
+    }
+  
+    @media (min-width: 1024px) {
+      width: 100%;
+    }
+  }
+
+  .gridFooter {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem; 
+  
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr); 
+    }
+  
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(10, 1fr); 
+    }
+  }
+
+  .navFooter {
+    grid-column: 3 span;
+  
+    @media (min-width: 768px) {
+        grid-column: 1 span;
+    }
+  
+    @media (min-width: 1024px) {
+        grid-column: 2 span;
+    }
+  }
+
+  .copyright {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    text-align: left;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #B5F0E5;
+    opacity: 0.5;
+  
+    @media (min-width: 768px) {
+      margin-top: 2.5rem; 
+      padding-top: 2.5rem; 
+    }
+  }
 
 @media (max-width: 1024px) {
     .headerWrapper{
@@ -348,5 +546,8 @@ gap: 8px;
 }
 .socialBox{
     padding: 24px;
+}
+.imgFooter{
+    height: 32px;
 }
 }
