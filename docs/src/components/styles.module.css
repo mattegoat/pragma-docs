@@ -320,6 +320,7 @@ gap: 8px;
     padding-bottom: 6px;
     color: #15FF81;
     border: none;
+    border-radius: none !important;
     border-bottom: 0.5px solid rgba(181, 240, 229, 0.50);
 }
 
