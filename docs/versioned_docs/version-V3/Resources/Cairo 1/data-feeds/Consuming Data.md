@@ -30,7 +30,7 @@ scarb add pragma_lib --git https://github.com/astraly-labs/pragma-lib
 
 ```rust
 
-use pragma_lib::abi::{IOracleABIDispatcher, IOracleABIDispatcherTrait};
+use pragma_lib::abi::{IPragmaABIDispatcher, IPragmaABIDispatcherTrait};
 use pragma_lib::types::{AggregationMode, DataType, PragmaPricesResponse};
 use starknet::ContractAddress;
 use starknet::contract_address::contract_address_const;
@@ -39,7 +39,7 @@ use starknet::contract_address::contract_address_const;
 const KEY :felt252 = 18669995996566340; // felt252 conversion of "BTC/USD", can also write const KEY : felt252 = 'BTC/USD';
 
 fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u128  { 
-    let oracle_dispatcher = IOracleABIDispatcher{contract_address : oracle_address};
+    let oracle_dispatcher = IPragmaABIDispatcher{contract_address : oracle_address};
     let output : PragmaPricesResponse= oracle_dispatcher.get_data(asset, AggregationMode::Median(()));
     return output.price;
 }
@@ -54,7 +54,7 @@ let price = get_asset_price_median(oracle_address, DataType::SpotEntry(KEY));
 
 ```rust
 
-use pragma_lib::abi::{IOracleABIDispatcher, IOracleABIDispatcherTrait};
+use pragma_lib::abi::{IPragmaABIDispatcher, IPragmaABIDispatcherTrait};
 use pragma_lib::types::{AggregationMode, DataType, PragmaPricesResponse};
 use starknet::ContractAddress;
 use starknet::contract_address::contract_address_const;
@@ -65,7 +65,7 @@ const OKX: felt252 = 'OKX'; // felt252 conversion of "OKX"
 const BINANCE: felt252 = 'BINANCE'; // felt252 conversion of "BINANCE"
 
 fn get_asset_price_average(oracle_address: ContractAddress, asset : DataType, sources : Span<felt252>) -> u128  { 
-    let oracle_dispatcher = IOracleABIDispatcher{contract_address : oracle_address};
+    let oracle_dispatcher = IPragmaABIDispatcher{contract_address : oracle_address};
     let output : PragmaPricesResponse= oracle_dispatcher.get_data_for_sources(asset, AggregationMode::Mean(()), sources);
 
     return output.price;
@@ -86,7 +86,7 @@ let price = get_asset_price_average(oracle_address, DataType::SpotEntry(KEY), so
 #### BTC/USD Future Price
 
 ```rust
-use pragma_lib::abi::{IOracleABIDispatcher, IOracleABIDispatcherTrait};
+use pragma_lib::abi::{IPragmaABIDispatcher, IPragmaABIDispatcherTrait};
 use pragma_lib::types::{AggregationMode, DataType, PragmaPricesResponse};
 use starknet::ContractAddress;
 use starknet::contract_address::contract_address_const;
@@ -94,7 +94,7 @@ use starknet::contract_address::contract_address_const;
 const KEY :felt252 = 18669995996566340; // felt252 conversion of "BTC/USD", can write const KEY : felt252 = 'BTC/USD'
 
 fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u128  { 
-    let oracle_dispatcher = IOracleABIDispatcher{contract_address : oracle_address};
+    let oracle_dispatcher = IPragmaABIDispatcher{contract_address : oracle_address};
     let output : PragmaPricesResponse= oracle_dispatcher.get_data(asset, AggregationMode::Median(()));
 
     return output.price;
