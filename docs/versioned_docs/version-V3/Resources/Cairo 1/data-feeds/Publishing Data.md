@@ -39,7 +39,7 @@ The initial publishing frequency for the oracle is every 3 minutes on Starknet S
 
 #### 3.1. Using the Pragma Python SDK
 
-Install the SDK in your virtual envirronement
+Install the SDK in your virtual environment
 
 ```bash
 pip install pragma-sdk
