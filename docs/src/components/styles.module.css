@@ -427,45 +427,25 @@ gap: 8px;
 
 .bigScreen {
     max-width: 1700px;
-    padding-bottom: 48px; 
-    padding-top: 54px; 
-    margin: 0 auto; 
-    padding-left: 12px; 
-    padding-right: 12px; 
-  
-    @media (min-width: 1536px) {
-      padding-left: 0; 
-      max-width: 100%;
-    }
-  
-    @media (min-width: 768px) {
-      padding-left: 2.5rem; 
-      padding-right: 2.5rem;
-    }
+    padding-bottom: 48px;
+    padding-top: 54px;
+    margin: 0 auto;
+    padding-left: 12px;
+    padding-right: 12px;
   }
+  
 
 .imgFooter{
     height: 40px;
     width: "auto";
 }
 
-.footerDescription {
-    width: 100%;
+  .footerDescription {
+    width: 50%;
     padding-top: 1.25rem; 
     color: #B5F0E5; 
-
-    @media (min-width: 640px) {
-      width: 83.333333%; 
-    }
-  
-    @media (min-width: 768px) {
-      width: 58.333333%; 
-    }
-  
-    @media (min-width: 1024px) {
-      width: 100%;
-    }
   }
+
   .gridFooter {
     display: grid;
     grid-template-columns: repeat(10, 1fr); 
@@ -476,14 +456,8 @@ gap: 8px;
   .navFooter {
     grid-column: 3 span;
   
-    @media (min-width: 768px) {
-        grid-column: 1 span;
-    }
-  
-    @media (min-width: 1024px) {
-        grid-column: 2 span;
-    }
   }
+  
 
   .copyright {
     margin-top: 1rem;
@@ -493,12 +467,9 @@ gap: 8px;
     text-transform: uppercase;
     color: #B5F0E5;
     opacity: 0.5;
-  
-    @media (min-width: 768px) {
-      margin-top: 2.5rem; 
-      padding-top: 2.5rem; 
-    }
+
   }
+  
 
   .darkGreenBox {
     display: flex;
@@ -522,6 +493,13 @@ gap: 8px;
     height:100%;
 }
 
+@media (max-width: 1535px) {
+    .bigScreen{
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+  }
+
 @media (max-width: 1024px) {
     .headerWrapper{
         width: 90%;
@@ -533,6 +511,12 @@ gap: 8px;
     .gridFooter{
         grid-template-columns: repeat(3, 1fr); 
       }
+      .footerDescription{
+        width: 58.333333%; 
+      }
+      .navFooter{
+        grid-column: 1 span;
+    }
 
 }
 
@@ -618,6 +602,19 @@ gap: 8px;
   .gridFooter{
     grid-template-columns: 1fr; 
   }
+      
+  .footerDescription{
+    width: 83.333333%; 
+  }
+
+  .navFooter{
+    grid-column: 2 span;
+}
+
+.copyright{
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+  }
 }
 
 @media (max-width: 640px) {
@@ -635,4 +632,7 @@ gap: 8px;
         z-index: -1;
         transform: translateY(170px);
     }
+    .footerDescription{
+        width: 100%;
+      }
 }
