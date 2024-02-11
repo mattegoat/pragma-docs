@@ -98,7 +98,7 @@ const Footer = () => (
           <div style={{ width: "fit-content" }}>
             <img
               className={styles.imgFooter}
-              src="https://pragma-green.vercel.app/pragma-og-img.png"
+              src="https://pragma-green.vercel.app/pragma-logo.png"
               alt="Pragma"
             />
           </div>

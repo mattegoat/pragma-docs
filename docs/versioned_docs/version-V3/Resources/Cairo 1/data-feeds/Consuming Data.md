@@ -10,11 +10,10 @@ You can find the list of supported assets [here](./Supported%20Assets.md).
 
 The current Pragma addresses are:
 
-| Network               | Address                                                            | Explorer                                                                                                                                                                                                                                                |
-| --------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| StarkNet Mainnet      | 0x2a85bd616f912537c50a49a4076db02c00b29b2cdc8a197ce92ed1837fa875b  | [Starkscan](https://starkscan.co/contract/0x2a85bd616f912537c50a49a4076db02c00b29b2cdc8a197ce92ed1837fa875b) [Voyager](https://voyager.online/contract/0x2a85bd616f912537c50a49a4076db02c00b29b2cdc8a197ce92ed1837fa875b)                               |
-| StarkNet Sepolia | 0x36031daa264c24520b11d93af622c848b2499b66b41d611bac95e13cfca131a | [Starkscan](https://sepolia.starkscan.co/contract/0x36031daa264c24520b11d93af622c848b2499b66b41d611bac95e13cfca131a) [Voyager](https://sepolia.voyager.online/contract/0x36031daa264c24520b11d93af622c848b2499b66b41d611bac95e13cfca131a#accountCalls) |
-
+| Network          | Address                                                           | Explorer                                                                                                                                                                                                                                               |
+| ---------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Starknet Mainnet | 0x2a85bd616f912537c50a49a4076db02c00b29b2cdc8a197ce92ed1837fa875b | [Starkscan](https://starkscan.co/contract/0x2a85bd616f912537c50a49a4076db02c00b29b2cdc8a197ce92ed1837fa875b) [Voyager](https://voyager.online/contract/0x2a85bd616f912537c50a49a4076db02c00b29b2cdc8a197ce92ed1837fa875b)                              |
+| Starknet Sepolia | 0x36031daa264c24520b11d93af622c848b2499b66b41d611bac95e13cfca131a | [Starkscan](https://sepolia.starkscan.co/contract/0x36031daa264c24520b11d93af622c848b2499b66b41d611bac95e13cfca131a) [Voyager](https://sepolia.voyager.online/contract/0x36031daa264c24520b11d93af622c848b2499b66b41d611bac95e13cfca131a#accountCalls) |
 
 ## Sample Code
 
@@ -38,7 +37,7 @@ use starknet::contract_address::contract_address_const;
 
 const KEY :felt252 = 18669995996566340; // felt252 conversion of "BTC/USD", can also write const KEY : felt252 = 'BTC/USD';
 
-fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u128  { 
+fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u128  {
     let oracle_dispatcher = IOracleABIDispatcher{contract_address : oracle_address};
     let output : PragmaPricesResponse= oracle_dispatcher.get_data(asset, AggregationMode::Median(()));
     return output.price;
@@ -64,7 +63,7 @@ const KEY: felt252 = 23449611697214276; // felt252 conversion of "SOL/USD", can 
 const OKX: felt252 = 'OKX'; // felt252 conversion of "OKX"
 const BINANCE: felt252 = 'BINANCE'; // felt252 conversion of "BINANCE"
 
-fn get_asset_price_average(oracle_address: ContractAddress, asset : DataType, sources : Span<felt252>) -> u128  { 
+fn get_asset_price_average(oracle_address: ContractAddress, asset : DataType, sources : Span<felt252>) -> u128  {
     let oracle_dispatcher = IOracleABIDispatcher{contract_address : oracle_address};
     let output : PragmaPricesResponse= oracle_dispatcher.get_data_for_sources(asset, AggregationMode::Mean(()), sources);
 
@@ -82,7 +81,6 @@ sources.append(BINANCE);
 let price = get_asset_price_average(oracle_address, DataType::SpotEntry(KEY), sources.span());
 ```
 
-
 #### BTC/USD Future Price
 
 ```rust
@@ -93,7 +91,7 @@ use starknet::contract_address::contract_address_const;
 
 const KEY :felt252 = 18669995996566340; // felt252 conversion of "BTC/USD", can write const KEY : felt252 = 'BTC/USD'
 
-fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u128  { 
+fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u128  {
     let oracle_dispatcher = IOracleABIDispatcher{contract_address : oracle_address};
     let output : PragmaPricesResponse= oracle_dispatcher.get_data(asset, AggregationMode::Median(()));
 
@@ -119,32 +117,31 @@ This is the the simplest function that will aggregate all data into a median for
 #### Returns
 
 This function returns a struct, PragmaPricesResponse, which contains the following fields:
+
 - `price`: aggregation result of all entries for the given key based on the robust median algorithm. Multiplied by `10**decimals`
 - `decimals`: number of places that value has been shifted to allow for greater accuracy
 - `last_updated_timestamp`: timestamp of the most recent entry aggregated
 - `num_sources_aggregated`: number of sources aggregated in the final answer. Use this to check if one of the sources you requested was not available, or if there are enough data reports for you to rely on the answer
-- `expiration_timestamp` : timestamp of when the data will expire. Works only for futures. 
-
+- `expiration_timestamp` : timestamp of when the data will expire. Works only for futures.
 
 ### Function : `get_data_median_for_sources`
 
-This is the simplest function that will aggregate all data for given sources into a median for a given data type. 
+This is the simplest function that will aggregate all data for given sources into a median for a given data type.
 
 #### Inputs
 
 - `data_type`: enum of the data type you are requesting (See DataType structure). By providing the enum data type, you also provide the pair id (for spot entries), or the pair id and the expiration timestamp (for futures).
 - `sources`: array of sources to aggregate. Requires a Span of felt252.
 
-#### Returns 
+#### Returns
 
 This function returns a struct, PragmaPricesResponse, which contains the following fields:
+
 - `price`: aggregation result of all entries for the given key based on the robust median algorithm. Multiplied by `10**decimals`
 - `decimals`: number of places that value has been shifted to allow for greater accuracy
 - `last_updated_timestamp`: timestamp of the most recent entry aggregated
 - `num_sources_aggregated`: number of sources aggregated in the final answer. Use this to check if one of the sources you requested was not available, or if there are enough data reports for you to rely on the answer
-- `expiration_timestamp` : timestamp of when the data will expire. Works only for futures. 
-
-
+- `expiration_timestamp` : timestamp of when the data will expire. Works only for futures.
 
 #### Function: `get_data`
 
@@ -161,8 +158,7 @@ Similar to get_data_median except it allows for an additional parameter to speci
 - `decimals`: number of places that value has been shifted to allow for greater accuracy (fixed point)
 - `last_updated_timestamp`: timestamp of the most recent entry aggregated
 - `num_sources_aggregated`: number of sources aggregated in the final answer. Use this to check if one of the sources you requested was not available, or if there are enough data reports for you to rely on the answer
-- `expiration_timestamp` : timestamp of when the data will expire. Works only for futures. 
-
+- `expiration_timestamp` : timestamp of when the data will expire. Works only for futures.
 
 ### Function: `get_data_with_USD_hop`
 
@@ -173,7 +169,7 @@ This function enables you to rebase the price, i.e. use a different base currenc
 - `base_currency_id`: felt252 for the base currency (e.g. BTC)
 - `quote_currency_id`: felt252 for the base currency (e.g. ETH)
 - `aggregation_mode`: aggregation mode to use for combining the many data sources available in Pragma. Use constants defined in Pragma. Option must currently be set to `MEDIAN`, `MEAN`. Additional options `TWAP`, `EXPONENTIAL_DECAY` are coming soon.
-- `typeof` : SimpleDataType, represents an enum of the data type you are requesting. No pair_id /expiration timestamp required on the enum. 
+- `typeof` : SimpleDataType, represents an enum of the data type you are requesting. No pair_id /expiration timestamp required on the enum.
 - `expiration_timestamp`: expiration timestamp of the data you are requesting. Only required for futures.
 
 #### Returns
@@ -182,8 +178,7 @@ This function enables you to rebase the price, i.e. use a different base currenc
 - `decimals`: number of places that value has been shifted to allow for greater accuracy (fixed point)
 - `last_updated_timestamp`: timestamp of the most recent entry aggregated
 - `num_sources_aggregated`: number of sources aggregated in the final answer. Use this to check if one of the sources you requested was not available, or if there are enough data reports for you to rely on the answer
-- `expiration_timestamp` : timestamp of when the data will expire. Works only for futures. 
-
+- `expiration_timestamp` : timestamp of when the data will expire. Works only for futures.
 
 ### Function: `get_data_for_sources`
 
@@ -202,7 +197,6 @@ This function enables you to get the price of one currency in terms of another, 
 - `last_updated_timestamp`: timestamp of the most recent entry aggregated
 - `num_sources_aggregated`: number of sources aggregated in the final answer. Use this to check if one of the sources you requested was not available, or if there are enough data reports for you to rely on the answer
 - `expiration_timestamp` : timestamp of when the data will expire. Works only for futures.
-
 
 ### Function: `get_data_entry`
 
@@ -256,8 +250,8 @@ This function returns the last checkpoint, i.e. the last snapshot of the oracle 
 
 #### Returns
 
-- `checkpoint` : a structure Checkpoint i.e. a `struct` with members `timestamp`, the timestamp of the checkpoint, `value`, the aggregated price at that checkpoint (according to the `aggregation_mode`), the `aggregation_mode`, the mode to use for combining the data sources available, `num_sources_aggregated`, the number of sources aggregated for that checkpoint. 
-- `idx` : u64, the index of the checkpoint returned. 
+- `checkpoint` : a structure Checkpoint i.e. a `struct` with members `timestamp`, the timestamp of the checkpoint, `value`, the aggregated price at that checkpoint (according to the `aggregation_mode`), the `aggregation_mode`, the mode to use for combining the data sources available, `num_sources_aggregated`, the number of sources aggregated for that checkpoint.
+- `idx` : u64, the index of the checkpoint returned.
 
 ### Function `get_latest_checkpoint_index`
 
@@ -284,4 +278,4 @@ This function returns the latest checkpoint, i.e. the last snapshot of the oracl
 
 #### Returns
 
-- `checkpoint` : a structure Checkpoint i.e. a `struct` with members `timestamp`, the timestamp of the checkpoint, `value`, the aggregated price at that checkpoint (according to the `aggregation_mode`), the `aggregation_mode`, the mode to use for combining the data sources available, `num_sources_aggregated`, the number of sources aggregated for that checkpoint. 
+- `checkpoint` : a structure Checkpoint i.e. a `struct` with members `timestamp`, the timestamp of the checkpoint, `value`, the aggregated price at that checkpoint (according to the `aggregation_mode`), the `aggregation_mode`, the mode to use for combining the data sources available, `num_sources_aggregated`, the number of sources aggregated for that checkpoint.

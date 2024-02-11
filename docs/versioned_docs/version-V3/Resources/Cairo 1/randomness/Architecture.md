@@ -153,7 +153,7 @@ When smart contracts request randomness, they specify a random seed. This seed u
 
 Pragma Oracle's verifiable random function (VRF) over a specific elliptic curve, named Curve25519. Most known blockchain implementations of a VRF are using the so-called "Bitcoin curve", or secpk256k1. We chose this algorithm because it is more secure than other commonly used ones (that possibly have backdoors - see [here](https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/#thedownside) and [here](https://blog.cryptographyengineering.com/2013/09/18/the-many-flaws-of-dualecdrbg/)). We chose this curve in particular for two reasons:
 
-- Building the tools to perform arithmetic operations on Curve25519 is a premiere for programmable blockchains and theoretically enables compatibility with [all the protocols](https://en.wikipedia.org/wiki/Curve25519#Protocols) that use Curve25519 for digital signatures, such as IPFS, Ripple, Monero, Signal, Protonmail, and many others. This is a great step towards interoperability with StarkNet and it is only possible by leveraging its computational capabilities.
+- Building the tools to perform arithmetic operations on Curve25519 is a premiere for programmable blockchains and theoretically enables compatibility with [all the protocols](https://en.wikipedia.org/wiki/Curve25519#Protocols) that use Curve25519 for digital signatures, such as IPFS, Ripple, Monero, Signal, Protonmail, and many others. This is a great step towards interoperability with Starknet and it is only possible by leveraging its computational capabilities.
 
 - One key part of the VRF algorithm implies taking a public input and converting it to an elliptic curve point. This process is called "hashing to the curve", and the standard way of doing it for Curve25519 is using [Elligator2](https://eprint.iacr.org/2013/325). In Cairo, part of the Elligator algorithm can be computed quickly and safely using a hint and allows cheaper verification costs than hashing to the secpk256k1 curve.
 
@@ -164,28 +164,28 @@ As mentioned above, in the first phase of Pragma Oracle's VRF feed, the randomne
 In order to make it easier to verify that a specific piece of randomness was verifiable, we provide an open source implementation of the verifier. Follow these simple steps to verify any randomness provided by Pragma Oracle:
 
 1. Install the Pragma Python package `pip install pragma-sdk`
-2. Run `python3 -m pragma-sdk.cli random verify-random <TRANSACTION_HASH>` where `TRANSACTION_HASH` is the hash of the StarkNet testnet transaction in which the randomness was submitted to your smart contract.
+2. Run `python3 -m pragma-sdk.cli random verify-random <TRANSACTION_HASH>` where `TRANSACTION_HASH` is the hash of the Starknet testnet transaction in which the randomness was submitted to your smart contract.
 
 ## Pricing
 
 To use Pragma VRF, you must have a sufficient amount of the payment token in your consuming contract.
 
 | Fee Token | Testnet | Mainnet |
-| -------- | ------- | ------- |
-| ETH | ✅ | ✅ |
-| STRK | ❌ | ❌ |
+| --------- | ------- | ------- |
+| ETH       | ✅      | ✅      |
+| STRK      | ❌      | ❌      |
 
 Pricing is divied in two parts :
+
 1. **Callback gas usage** : when requesting randomness you input a `callback_fee_limit` parameter that will be paid in the transaction's fee token. When randomness is submitted to the consumer contract, the fee excess is refunded.
 2. **Premium** : decreasing premium fee that goes to whoever is fulfilling the randomness request. You can find the exact pricing table below. The premium is paid in the fee token for now and will be replaced by a custom payment token along the road.
 
 | Total Number of Requests | Price (USD) |
-| -------- | ------- |
-| < 10 | 1$ |
-| < 30 | 0.5$ |
-| < 100 | 0.25$ |
-| > 100 | 0.1$ |
-
+| ------------------------ | ----------- |
+| < 10                     | 1$          |
+| < 30                     | 0.5$        |
+| < 100                    | 0.25$       |
+| > 100                    | 0.1$        |
 
 ## Technical Specification
 
@@ -195,7 +195,7 @@ Allows your smart contract to request randomness. Upon calling the Pragma contra
 
 #### Inputs
 
-- `seed`: random seed that feeds into the verifiable random algorithm, must be different every time. 
+- `seed`: random seed that feeds into the verifiable random algorithm, must be different every time.
 - `callback_address`: address to call `receive_random_words` on with the randomness
 - `callback_fee_limit`: overall fee limit on the callback function
 - `publish_delay`: minimum number of blocks to wait from the request to fulfillment
@@ -241,5 +241,5 @@ Get the status of a randomness request.
 #### Returns
 
 - `status_`: status of the request, see [here](https://github.com/astraly-labs/pragma-oracle/blob/main/src/randomness/randomness.cairo).
-There are four defined status: 
+  There are four defined status:
   0=UNINITIALIZED, 1=RECEIVED, 2=FULFILLED, 3=CANCELLED, 4=OUT_OF_GAS

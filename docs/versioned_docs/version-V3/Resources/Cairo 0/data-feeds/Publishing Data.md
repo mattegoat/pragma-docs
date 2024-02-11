@@ -40,7 +40,7 @@ starknet new_account --account <account_name>
 
 You should then be able to find your public/private keys under `~/.starknet/accounts/starknet_open_zeppelin_accounts.json`
 
-### 4. Deploy an account contract on StarkNet
+### 4. Deploy an account contract on Starknet
 
 Next you will need to send some testnet/mainnet ETH on this account address in order to deploy the account.
 
