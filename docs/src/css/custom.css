@@ -63,7 +63,7 @@ html[data-theme='light'] {
 }
 
 .markdown a {
-  color: #3578e5;
+  color: #15FF81;
   font-family: 'IBM Plex Sans', sans-serif;
 
 }
@@ -109,8 +109,6 @@ h1 {
 }
 h2 {
   color: #B5F0E5;
-text-align: center;
-
 /* Headline/H2 */
 font-family: IBM Plex Sans;
 font-size: 48px;

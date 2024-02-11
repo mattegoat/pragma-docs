@@ -29,7 +29,13 @@ export const github = [
 export default function DeveloperLink() {
   return (
     <div className={styles.devWrapper}>
-      <h2>Developer Links</h2>
+      <h2
+        style={{
+          textAlign: "center",
+        }}
+      >
+        Developer Links
+      </h2>
       <div className={styles.descriptionDev}>
         Find useful repositories, to integrate Pragma to your Dapp, or to start
         developing on Starknet.
