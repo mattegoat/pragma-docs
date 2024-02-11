@@ -466,19 +466,11 @@ gap: 8px;
       width: 100%;
     }
   }
-
   .gridFooter {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(10, 1fr); 
     gap: 1.25rem; 
-  
-    @media (min-width: 768px) {
-      grid-template-columns: repeat(3, 1fr); 
-    }
-  
-    @media (min-width: 1024px) {
-      grid-template-columns: repeat(10, 1fr); 
-    }
+
   }
 
   .navFooter {
@@ -538,6 +530,9 @@ gap: 8px;
     .imgHelp{
         visibility: hidden;
     }
+    .gridFooter{
+        grid-template-columns: repeat(3, 1fr); 
+      }
 
 }
 
@@ -619,6 +614,10 @@ gap: 8px;
     padding: 20px;
     width: 100%;
 }
+
+  .gridFooter{
+    grid-template-columns: 1fr; 
+  }
 }
 
 @media (max-width: 640px) {
