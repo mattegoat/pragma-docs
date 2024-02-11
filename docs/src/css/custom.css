@@ -298,6 +298,7 @@ html[data-theme='dark'] .navbar {
   display: none;
 }
 
+
 .badge--secondary {
   --ifm-badge-background-color: var(--ifm-color-emphasis-0);
   --ifm-badge-border-color: var(--ifm-badge-background-color);
