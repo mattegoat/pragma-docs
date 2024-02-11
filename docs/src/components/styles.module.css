@@ -295,9 +295,6 @@ width: fit-content;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px; /* Adjust the gap as needed */
   
-    @media (max-width: 768px) {
-        grid-template-columns: repeat(1, minmax(0, 1fr));
-    }
   }
 
 .helpBox{
@@ -630,6 +627,9 @@ gap: 8px;
     padding-right: 0px;
     padding-left: 0px;
   }
+  .gridContainer{
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
 }
 
 @media (max-width: 640px) {
