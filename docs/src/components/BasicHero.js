@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./styles.module.css";
-import GreenText from "./GreenText";
 import DocsBig from "@site/static/img/docs.svg";
 import DocsSmall from "@site/static/img/docsSmall.svg";
 import SearchBar from "@theme-original/SearchBar";
