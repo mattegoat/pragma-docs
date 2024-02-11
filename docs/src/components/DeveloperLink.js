@@ -32,6 +32,7 @@ export default function DeveloperLink() {
       <h2
         style={{
           textAlign: "center",
+          paddingTop: "30px",
         }}
       >
         Developer Links

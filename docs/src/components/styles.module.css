@@ -139,8 +139,8 @@ padding-bottom: 20px;
     display: flex;
     flex-direction: row;
     gap: 32px;
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-left: 5%;
+    padding-right: 5%;
     width: 100%;
     padding-top:40px;
     padding-bottom:40px;
@@ -535,8 +535,12 @@ gap: 8px;
         width: 90%;
 
     }
+    .imgHelp{
+        visibility: hidden;
+    }
 
 }
+
 
 @media (max-width: 768px) {
     .bigImage{
@@ -553,7 +557,8 @@ gap: 8px;
         justify-content: start;
         padding-top: 0px;
         padding-bottom: 32px;
-        padding-left: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
         text-align: center;
     }
     .boxContainer{
@@ -575,6 +580,8 @@ gap: 8px;
     gap: 16px;
     padding-left: 0px;
     padding-right: 0px;
+    flex-wrap: nowrap;
+    flex-direction: column;
 }
 .devWrapper{
     gap: 16px;
@@ -595,9 +602,6 @@ gap: 8px;
     margin-left: unset;
     gap: 15px;
 }
-.imgHelp{
-    visibility: hidden;
-}
 .socialWrapper{
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 16px;
@@ -610,6 +614,10 @@ gap: 8px;
 }
 .notFooterInput{
     width: 70%;
+}
+.productBox{
+    padding: 20px;
+    width: 100%;
 }
 }
 
