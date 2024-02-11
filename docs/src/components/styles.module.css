@@ -451,7 +451,8 @@ gap: 8px;
     display: grid;
     grid-template-columns: repeat(10, 1fr); 
     gap: 1.25rem; 
-
+    padding-right: 30px;
+    padding-left: 30px;
   }
 
   .navFooter {
@@ -467,7 +468,8 @@ gap: 8px;
     text-transform: uppercase;
     color: #B5F0E5;
     opacity: 0.5;
-
+    padding-right: 30px;
+    padding-left: 30px;
   }
   
 
@@ -491,6 +493,11 @@ gap: 8px;
     right: 0;
     top: 0;
     height:100%;
+}
+
+.logoWrapFoot{
+    padding-right: 30px;
+    padding-left: 30px;
 }
 
 @media (max-width: 1535px) {
@@ -601,7 +608,13 @@ gap: 8px;
 
   .gridFooter{
     grid-template-columns: 1fr; 
+    padding-right: 0px;
+    padding-left: 0px;
   }
+  .logoWrapFoot{
+    padding-right: 0px;
+    padding-left: 0px;
+}
       
   .footerDescription{
     width: 83.333333%; 
@@ -614,6 +627,8 @@ gap: 8px;
 .copyright{
     margin-top: 2.5rem;
     padding-top: 2.5rem;
+    padding-right: 0px;
+    padding-left: 0px;
   }
 }
 

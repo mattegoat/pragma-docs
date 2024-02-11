@@ -93,7 +93,12 @@ const Footer = () => (
     }}
   >
     <div className={styles.bigScreen}>
-      <div style={{ paddingBottom: "80px" }}>
+      <div
+        style={{
+          paddingBottom: "80px",
+        }}
+        className={styles.logoWrapFoot}
+      >
         <a href="/">
           <div style={{ width: "fit-content" }}>
             <img
