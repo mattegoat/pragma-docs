@@ -43,7 +43,7 @@ export default function DeveloperLink() {
       </div>
       <div className={styles.gridContainer}>
         {github.map((repo, index) => (
-          <a style={{ cursor: "pointer" }} href={repo.href}>
+          <a style={{ cursor: "pointer" }} href={repo.href} key={index}>
             <div key={index} className={styles.devBox}>
               <GitHub
                 style={{
