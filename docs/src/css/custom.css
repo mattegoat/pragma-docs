@@ -638,6 +638,10 @@ html[data-theme='dark'] .DocSearch-Hit a {
   color: #B5F0E5 !important;
 }
 
+.DocSearch-Reset {
+  color: #B5F0E5 !important;
+}
+
 @media (max-width: 960px) {
   .menu {
     /* background-color: var(--ifm-color-emphasis-0); */
