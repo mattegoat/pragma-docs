@@ -134,11 +134,11 @@ const Footer = () => (
                     <a
                       style={{
                         fontSize: "16px",
-                        color: "#B5F0E5",
                         lineHeight: "16px",
                         letterSpacing: "2%",
                         paddingBottom: "20px",
                       }}
+                      className={styles.linkFooter}
                       href={href}
                     >
                       {title}
@@ -147,11 +147,11 @@ const Footer = () => (
                     <a
                       style={{
                         fontSize: "16px",
-                        color: "#B5F0E5",
                         lineHeight: "16px",
                         letterSpacing: "2%",
                         paddingBottom: "20px",
                       }}
+                      className={styles.linkFooter}
                       href={href}
                     >
                       {title}

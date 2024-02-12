@@ -186,6 +186,7 @@ padding-bottom: 20px;
     border-radius: 20px;
     border: 1px solid #FFFFFF40;
     background:rgba(0, 0, 0, 0.12);
+    transition: border 0.4s ease; /* Smooth transition for background color change */
 }
 
 .socialBox:hover {
@@ -222,10 +223,13 @@ flex-direction: row;
 align-items: flex-start;
 justify-content: sp;
 gap: 15px;
+transition: border 0.4s ease; /* Smooth transition for background color change */
+
 }
 
 .devBox:hover{
     border: 1px solid #FFFFFF80;
+
 }
 
 .buttons{
@@ -248,6 +252,8 @@ letter-spacing: 0.7px;
 text-transform: uppercase;
 cursor: pointer;
 margin-top: auto;
+transition: background-color 0.3s ease; /* Smooth transition for background color change */
+
 }
 
 .buttons:hover{
@@ -278,6 +284,8 @@ text-transform: uppercase;
 cursor: pointer;
 margin-top: auto;
 width: fit-content;
+transition: background-color 0.3s ease; /* Smooth transition for background color change */
+
 }
 
 .buttonsolid:hover{
@@ -338,6 +346,7 @@ gap: 8px;
     cursor: pointer;
     font-size: 18px;
     width: fit-content;
+
 }
 
 
@@ -368,6 +377,8 @@ gap: 8px;
 
 .checkbox:hover input~.checkmark {
     background-color: rgba(181, 240, 229, 0.50);
+    transition: background-color 0.3s ease; /* Smooth transition for background color change */
+
 }
 
 
@@ -417,6 +428,8 @@ gap: 8px;
     padding-left: 7px;
     padding-right: 7px;
     color: #B5F0E580;
+    transition: background-color 0.3s ease; /* Smooth transition for background color change */
+
 }
 
 .emailButton:hover{
@@ -496,6 +509,16 @@ gap: 8px;
 .logoWrapFoot{
     padding-right: 30px;
     padding-left: 30px;
+}
+
+
+.linkFooter{
+    color:#B5F0E5;
+    ;
+}
+
+.linkFooter:hover{
+    color: white;
 }
 
 @media (max-width: 1535px) {
