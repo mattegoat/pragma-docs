@@ -20,12 +20,12 @@ const content: FooterColumn[] = [
     links: [
       {
         title: "Documentation",
-        href: "https://docs.pragmaoracle.com/docs/introduction",
+        href: "https://docs.pragma.build/docs/introduction",
         external: true,
       },
       {
         title: "View on Block Explorer",
-        href: `/`,
+        href: `https://voyager.online/contract/0x02a85bd616f912537c50a49a4076db02c00b29b2cdc8a197ce92ed1837fa875b`,
         external: true,
       },
     ],
@@ -35,22 +35,17 @@ const content: FooterColumn[] = [
     links: [
       {
         title: "Home",
-        href: "/",
+        href: "https://pragma.build",
         external: false,
       },
       {
-        title: "Features",
-        href: "/features",
+        title: "Ecosystem",
+        href: "https://pragma.build/ecosystem",
         external: false,
       },
       {
-        title: "Publishers",
-        href: "/publishers",
-        external: false,
-      },
-      {
-        title: "Protocols",
-        href: "/protocols",
+        title: "Resources",
+        href: "https://pragma.build/resources",
         external: false,
       },
     ],
@@ -70,7 +65,7 @@ const content: FooterColumn[] = [
       },
       {
         title: "Contact Us",
-        href: "mailto:support@pragmaoracle.com?body=Hi%Pragma-Team,",
+        href: "mailto:support@pragma.build?body=Hi%Pragma-Team,",
         external: true,
       },
     ],

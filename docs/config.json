@@ -1,7 +1,7 @@
 {
   "index_name": "pragma-docs",
-  "start_urls": ["https://docs.pragmaoracle.com/"],
-  "sitemap_urls": ["https://docs.pragmaoracle.com/sitemap.xml"],
+  "start_urls": ["https://docs.pragma.build/"],
+  "sitemap_urls": ["https://docs.pragma.build/sitemap.xml"],
   "sitemap_alternate_links": true,
   "stop_urls": [],
   "selectors": {
