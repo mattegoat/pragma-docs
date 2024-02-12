@@ -21,17 +21,20 @@ export default function Help() {
           <div className={styles.descriptionStart}>
             Get in touch with the team for any purpose.
           </div>
-          <a className={styles.buttons} href={"/"}>
+          <a className={styles.buttons} href={"https://cal.com/0xmatteo/15min"}>
             Schedule now
           </a>
         </div>
         <div className={styles.helpBox}>
           <h4>Submit Feedback</h4>
           <div className={styles.descriptionStart}>
-            Get in touch with the team for any purpose.
+            Submit a feedback, ask any question.
           </div>
-          <a className={styles.buttons} href={"/"}>
-            Schedule now
+          <a
+            className={styles.buttons}
+            href={"https://kprem87muy4.typeform.com/to/ahJVbIeI"}
+          >
+            Submit now
           </a>
         </div>
       </div>
