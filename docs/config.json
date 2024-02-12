@@ -1,6 +1,6 @@
 {
   "index_name": "pragma-docs",
-  "start_urls": ["https://pragma-docs.vercel.app/"],
+  "start_urls": ["https://pragma-docs.vercel.app/", "https://pragma-docs.vercel.app/introduction", "https://pragma-docs.vercel.app/howItWorks", "https://pragma-docs.vercel.app/GettingStarted"],
   "sitemap_urls": ["https://pragma-docs.vercel.app/sitemap.xml"],
   "sitemap_alternate_links": true,
   "stop_urls": [],
