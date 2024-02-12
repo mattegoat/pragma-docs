@@ -4,7 +4,7 @@ const katex = require("rehype-katex");
 module.exports = {
   title: "Pragma",
   tagline: "Documentation and Guides",
-  url: "https://docs.pragma.build",
+  url: "https://pragma-docs.vercel.app/",
   baseUrl: "/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "ignore",
@@ -19,9 +19,9 @@ module.exports = {
       additionalLanguages: ["solidity", "rust", "python"],
     },
     algolia: {
-      apiKey: "c5f7e297cfcfbfc974aefa31f18b9e94",
+      apiKey: "eca75468ae0780924db0b070f4f354a2",
       indexName: "pragma-docs",
-      appId: "6EMSEESU12",
+      appId: "MN6QHW795Z",
     },
     navbar: {
       logo: {
