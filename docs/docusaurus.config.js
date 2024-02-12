@@ -8,7 +8,7 @@ module.exports = {
   baseUrl: "/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "ignore",
-  favicon: "img/favicon.png",
+  favicon: "img/favicon.ico",
   organizationName: "Astraly-Labs", // Usually your GitHub org/user name.
   projectName: "pragma-docs", // Usually your repo name.
   trailingSlash: false,
