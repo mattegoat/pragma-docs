@@ -17,18 +17,18 @@
 				"operationId": "get_ohlc",
 				"parameters": [
 					{
-						"name": "quote",
+						"name": "base",
 						"in": "path",
-						"description": "Quote Asset",
+						"description": "Base Asset",
 						"required": true,
 						"schema": {
 							"type": "string"
 						}
 					},
 					{
-						"name": "base",
+						"name": "quote",
 						"in": "path",
-						"description": "Base Asset",
+						"description": "Quote Asset",
 						"required": true,
 						"schema": {
 							"type": "string"
@@ -64,6 +64,19 @@
 						"required": true,
 						"schema": {
 							"type": "boolean",
+							"nullable": true
+						}
+					},
+					{
+						"name": "aggregation",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"allOf": [
+								{
+									"$ref": "#/components/schemas/AggregationMode"
+								}
+							],
 							"nullable": true
 						}
 					}
@@ -133,18 +146,18 @@
 				"operationId": "get_entry",
 				"parameters": [
 					{
-						"name": "quote",
+						"name": "base",
 						"in": "path",
-						"description": "Quote Asset",
+						"description": "Base Asset",
 						"required": true,
 						"schema": {
 							"type": "string"
 						}
 					},
 					{
-						"name": "base",
+						"name": "quote",
 						"in": "path",
-						"description": "Base Asset",
+						"description": "Quote Asset",
 						"required": true,
 						"schema": {
 							"type": "string"
@@ -180,6 +193,19 @@
 						"required": true,
 						"schema": {
 							"type": "boolean",
+							"nullable": true
+						}
+					},
+					{
+						"name": "aggregation",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"allOf": [
+								{
+									"$ref": "#/components/schemas/AggregationMode"
+								}
+							],
 							"nullable": true
 						}
 					}
@@ -461,6 +487,14 @@
 			"GetEntryParams": {
 				"type": "object",
 				"properties": {
+					"aggregation": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/AggregationMode"
+							}
+						],
+						"nullable": true
+					},
 					"interval": {
 						"allOf": [
 							{

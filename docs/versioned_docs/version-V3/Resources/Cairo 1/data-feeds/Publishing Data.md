@@ -14,7 +14,18 @@ Here is the step-by-step breakdown:
 
 ### 1. Account Setup
 
-Please follow the up-to-date guide on [starkli](https://book.starkli.rs/tutorials/starkli-101#starkli-101).
+```bash
+starkli signer gen-keypair
+```
+Store the given private key somewhere safe you can then use it in the next commands.
+
+```bash
+starkli account oz init /path/to/account.json --private-key <0x..>
+
+starkli account deploy /path/to/account.json --private-key <0x..>
+```
+
+For more info you can look up here [starkli](https://book.starkli.rs/tutorials/starkli-101#starkli-101).
 
 ### 2. Register your account contract address with Pragma
 
@@ -28,7 +39,7 @@ The initial publishing frequency for the oracle is every 3 minutes on Starknet S
 
 #### 3.1. Using the Pragma Python SDK
 
-Install the SDK in your virtual envirronement
+Install the SDK in your virtual environment
 
 ```bash
 pip install pragma-sdk

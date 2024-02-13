@@ -17,7 +17,7 @@ You can find the latest deployed contracts at the following addresses :
 
 [Sepolia](https://sepolia.voyager.online/contract/0x60c69136b39319547a4df303b6b3a26fab8b2d78de90b6bd215ce82e9cb515c) : 0x60c69136b39319547a4df303b6b3a26fab8b2d78de90b6bd215ce82e9cb515c
 
-[Mainnet](https://voyager.online/contract/0x) : 🔜
+[Mainnet](https://voyager.online/contract/0x4fb09ce7113bbdf568f225bc757a29cb2b72959c21ca63a7d59bdb9026da661) : 0x4fb09ce7113bbdf568f225bc757a29cb2b72959c21ca63a7d59bdb9026da661
 
 ## Sample Code
 
