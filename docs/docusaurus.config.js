@@ -4,7 +4,7 @@ const katex = require("rehype-katex");
 module.exports = {
   title: "Pragma",
   tagline: "Documentation and Guides",
-  url: "https://pragma-docs.vercel.app/",
+  url: "https://docs.pragma.build/",
   baseUrl: "/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "ignore",
