@@ -14,7 +14,7 @@ For any price feed, Pragma offers a realized volatility feed. The realized volat
 
 If you are just trying to get started with our realized volatility feed, see this self-contained code snippet here. You can find the full Oracle interface specification is available [here](https://github.com/Astraly-Labs/pragma-oracle/blob/main/src/compute_engines/summary_stats/summary_stats.cairo).
 
-#### BTC/USD 1 week  Realised volatility
+#### BTC/USD 1 week Realised volatility
 
 ```rust
 use starknet::ContractAddress;
@@ -71,10 +71,10 @@ Currently, Pragma sets a checkpoint every 5 minutes. If you need more granular d
 - `data_type`: enum of the data type you are requesting (See DataType structure). By providing the enum data type, you also provide the pair id (for spot entries), or the pair id and the expiration timestamp (for futures)
 - `start_tick`: timestamp at the beginning of the period over which you want to calculate realized volatility
 - `end_tick`: timestamp at the end of the period over which you want to calculate realized volatility. If set to 0, it defaults to the timestamp of the last published block
-- `num_samples`: number of samples on which you want to calculate volatility. StarkNet currently limits computation, so there is a max of 200 for this input
+- `num_samples`: number of samples on which you want to calculate volatility. Starknet currently limits computation, so there is a max of 200 for this input
 - `aggregation_mode`: aggregation mode to use for combining the many data sources available in Pragma. Use the structure AggregationMode defined in Pragma. Option must currently be set to `MEDIAN` or `MEAN`, . Additional options `VWAP`, `EXPONENTIAL_DECAY` are coming soon.
 
 #### Returns
 
 - `volatility`: annualized realized volatility percentage. Volatility is reported with 8 decimals of precision. To convert it to percentage, divide the output by 10^8 (e.g. 7076538586 means annualized volatility is around 70%)
-- `decimals` : number of decimals, i.e. , the number of places that value has been shifted to allow for greater accuracy. 
+- `decimals` : number of decimals, i.e. , the number of places that value has been shifted to allow for greater accuracy.

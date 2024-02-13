@@ -63,7 +63,7 @@ Currently, Pragma sets a checkpoint every 5 minutes. If you need more granular d
 - `pair_id`: uppercased utf8-encoded string
 - `start_key`: timestamp at the beginning of the period over which you want to calculate realized volatility
 - `end_key`: timestamp at the end of the period over which you want to calculate realized volatility. If set to 0, it defaults to the timestamp of the last published block
-- `num_samples`: number of samples on which you want to calculate volatility. StarkNet currently limits computation, so there is a max of 200 for this input
+- `num_samples`: number of samples on which you want to calculate volatility. Starknet currently limits computation, so there is a max of 200 for this input
 
 #### Returns
 
