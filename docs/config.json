@@ -42,6 +42,20 @@
       "url_without_anchor",
       "type"
     ]
+    "attributesForFaceting": [
+      "language",
+      "version",
+      "type",
+      "docusaurus_tag"
+    ],
+    "attributesToRetrieve": [
+      "hierarchy",
+      "content",
+      "anchor",
+      "url",
+      "url_without_anchor",
+      "type"
+    ]
   },
   "conversation_id": [
     "833762294"
