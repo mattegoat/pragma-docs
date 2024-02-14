@@ -68,7 +68,7 @@ module.exports = {
       /** @type {import('docusaurus-preset-openapi').Options} */
       {
         api: {
-          path: "versioned_docs/version-V3/Resources/PragmApi/openapi.json",
+          path: "docs/Resources/PragmApi/openapi.json",
           routeBasePath: "/Resources/PragmApi/get-started",
         },
         proxy: {
@@ -84,12 +84,6 @@ module.exports = {
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
           // editUrl: 'https://github.com/Astraly-Labs/astraly-docs/tree/main/',
-          includeCurrentVersion: false,
-          versions: {
-            V3: {
-              banner: "none",
-            },
-          },
         },
         sitemap: {
           changefreq: "weekly",

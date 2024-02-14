@@ -707,7 +707,9 @@ html[data-theme='dark'] .DocSearch-Hit a:hover {
 .pagination-nav__link--next:hover {
   background: #B5F0E510 ;
 }
-
+.pagination-nav__link:hover {
+  background: #B5F0E510 ;
+}
 .pagination-nav__sublabel {
   color: #B5F0E580 ;
 
