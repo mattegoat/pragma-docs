@@ -1,10 +1,7 @@
 {
   "index_name": "pragma-docs",
   "start_urls": [
-    "https://docs.pragma.build/",
-    "https://docs.pragma.build/introduction",
-    "https://docs.pragma.build/howItWorks",
-    "https://docs.pragma.build/GettingStarted"
+    "https://docs.pragma.build/"
   ],
   "sitemap_urls": [
     "https://docs.pragma.build/sitemap.xml"
