@@ -1,7 +1,7 @@
 ---
 id: yield-curve
 title: Yield Curve
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 ---

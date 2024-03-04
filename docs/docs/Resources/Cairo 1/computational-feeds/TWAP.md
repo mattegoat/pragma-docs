@@ -1,7 +1,7 @@
 ---
 id: TWAP
 title: Time weighted average price (TWAP)
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 ## Time weighted average price (TWAP)
