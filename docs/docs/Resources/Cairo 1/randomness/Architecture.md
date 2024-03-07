@@ -79,7 +79,8 @@ mod ExampleRandomness {
             callback_address: ContractAddress,
             callback_fee_limit: u128,
             publish_delay: u64,
-            num_words: u64
+            num_words: u64,
+            calldata: Array<felt252>
         ) {
             let randomness_contract_address = self.randomness_contract_address.read();
 
@@ -98,7 +99,7 @@ mod ExampleRandomness {
             };
             let request_id = randomness_dispatcher
                 .request_random(
-                    seed, callback_address, callback_fee_limit, publish_delay, num_words
+                    seed, callback_address, callback_fee_limit, publish_delay, num_words, calldata
                 );
 
             let current_block_number = get_block_number();
@@ -112,7 +113,8 @@ mod ExampleRandomness {
             ref self: ContractState,
             requestor_address: ContractAddress,
             request_id: u64,
-            random_words: Span<felt252>
+            random_words: Span<felt252>,
+            calldata: Array<felt252>
         ) {
             // Have to make sure that the caller is the Pragma Randomness Oracle contract
             let caller_address = get_caller_address();
@@ -200,6 +202,7 @@ Allows your smart contract to request randomness. Upon calling the Pragma contra
 - `callback_fee_limit`: overall fee limit on the callback function
 - `publish_delay`: minimum number of blocks to wait from the request to fulfillment
 - `num_words`: number of random words to receive in one call. Each word is a felt252.
+- `calldata`: calldata we want to pass down to the callback function
 
 #### Returns
 
@@ -214,6 +217,7 @@ This is function must be defined on the contract at `callback_address` initially
 - `requestor_address`: address that submitted the randomness request
 - `request_id`: id of the randomness request (auto-incrementing for each `requestor_address`)
 - `random_words`: an span of random words
+- `calldata`: calldata passed in the random request
 
 ### Function: `cancel_random_request`
 
