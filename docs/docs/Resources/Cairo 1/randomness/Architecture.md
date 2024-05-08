@@ -35,23 +35,29 @@ trait IExampleRandomness<TContractState> {
         callback_address: ContractAddress,
         callback_fee_limit: u128,
         publish_delay: u64,
-        num_words: u64
+        num_words: u64,
+        calldata: Array<felt252>
     );
     fn receive_random_words(
         ref self: TContractState,
         requestor_address: ContractAddress,
         request_id: u64,
-        random_words: Span<felt252>
+        random_words: Span<felt252>,
+        calldata: Array<felt252>
     );
+    fn withdraw_funds(ref self: TContractState, receiver: ContractAddress);
 }
 
 #[starknet::contract]
 mod ExampleRandomness {
     use super::{ContractAddress, IExampleRandomness};
     use starknet::info::{get_block_number, get_caller_address, get_contract_address};
-    use pragma_lib::abi::{IRandomnessDispatcher, IRandomnessDispatcherTrait};
+    use pragma::randomness::randomness::{IRandomnessDispatcher, IRandomnessDispatcherTrait};
+    use pragma::admin::admin::Ownable;
     use array::{ArrayTrait, SpanTrait};
-    use openzeppelin::token::erc20::{ERC20, interface::{IERC20Dispatcher, IERC20DispatcherTrait}};
+    use openzeppelin::token::erc20::interface::{
+        ERC20CamelABIDispatcher, ERC20CamelABIDispatcherTrait
+    };
     use traits::{TryInto, Into};
 
     #[storage]
@@ -73,6 +79,7 @@ mod ExampleRandomness {
             return last_random;
         }
 
+
         fn request_my_randomness(
             ref self: ContractState,
             seed: u64,
@@ -83,20 +90,26 @@ mod ExampleRandomness {
             calldata: Array<felt252>
         ) {
             let randomness_contract_address = self.randomness_contract_address.read();
+            let randomness_dispatcher = IRandomnessDispatcher {
+                contract_address: randomness_contract_address
+            };
+            let caller = get_caller_address();
+            let compute_fees = randomness_dispatcher.compute_premium_fee(caller);
 
             // Approve the randomness contract to transfer the callback fee
             // You would need to send some ETH to this contract first to cover the fees
-            let eth_dispatcher = IERC20Dispatcher {
+            let eth_dispatcher = ERC20CamelABIDispatcher {
                 contract_address: 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7 // ETH Contract Address
                     .try_into()
                     .unwrap()
             };
-            eth_dispatcher.approve(randomness_contract_address, callback_fee_limit.into());
+            eth_dispatcher
+                .approve(
+                    randomness_contract_address,
+                    (callback_fee_limit + compute_fees + callback_fee_limit / 5).into()
+                );
 
             // Request the randomness
-            let randomness_dispatcher = IRandomnessDispatcher {
-                contract_address: randomness_contract_address
-            };
             let request_id = randomness_dispatcher
                 .request_random(
                     seed, callback_address, callback_fee_limit, publish_delay, num_words, calldata
@@ -106,6 +119,17 @@ mod ExampleRandomness {
             self.min_block_number_storage.write(current_block_number + publish_delay);
 
             return ();
+        }
+
+        fn withdraw_funds(ref self: ContractState, receiver: ContractAddress) {
+            assert_only_admin();
+            let eth_dispatcher = ERC20CamelABIDispatcher {
+                contract_address: 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7 // ETH Contract Address
+                    .try_into()
+                    .unwrap()
+            };
+            let balance = eth_dispatcher.balanceOf(get_contract_address());
+            eth_dispatcher.transfer(receiver, balance);
         }
 
 
@@ -143,8 +167,14 @@ mod ExampleRandomness {
             return ();
         }
     }
-}
 
+    fn assert_only_admin() {
+        let state: Ownable::ContractState = Ownable::unsafe_new_contract_state();
+        let admin = Ownable::OwnableImpl::owner(@state);
+        let caller = get_caller_address();
+        assert(caller == admin, 'Unauthorized');
+    }
+}
 ```
 
 ## How Randomness is Generated
