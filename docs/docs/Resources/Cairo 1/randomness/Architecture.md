@@ -219,6 +219,10 @@ Pricing is divied in two parts :
 | < 100                    | 0.25$       |
 | > 100                    | 0.1$        |
 
+## Retry Policy
+
+We will retry every 30 seconds to fulfill your requests until **30** blocks have passed the specified minimum block number.
+
 ## Technical Specification
 
 ### Function: `request_random`
