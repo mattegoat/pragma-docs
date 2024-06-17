@@ -10,4 +10,5 @@ This documentation contains the following documentation :
 - Computational Feeds
 - Randomness
 - Architecture
+- Pragma API (StarkEx/Offchain)
 - Pragma X 🔜
