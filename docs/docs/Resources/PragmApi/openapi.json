@@ -37,13 +37,13 @@
 					{
 						"name": "timestamp",
 						"in": "path",
+						"description": "The unix timestamp in seconds. This endpoint will return the first update whose\ntimestamp is <= the provided value.",
 						"required": true,
 						"schema": {
 							"type": "integer",
-							"format": "int64",
-							"nullable": true,
-							"minimum": 0
-						}
+							"format": "int64"
+						},
+						"example": 1717632000
 					},
 					{
 						"name": "interval",
@@ -138,6 +138,69 @@
 				}
 			}
 		},
+		"/node/v1/data/publish_future": {
+			"post": {
+				"tags": [
+					"handlers::entries::create_future_entry"
+				],
+				"operationId": "create_future_entries",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreatePerpEntryRequest"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "Entries published successfuly",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CreatePerpEntryResponse"
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized Publisher",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/EntryError"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/node/v1/data/subscribe": {
+			"get": {
+				"tags": [
+					"handlers::entries::subscribe_to_entry"
+				],
+				"operationId": "subscribe_to_entry",
+				"responses": {
+					"200": {
+						"description": "Subscribe to a list of entries",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/SubscribeToEntryResponse"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
 		"/node/v1/data/{base}/{quote}": {
 			"get": {
 				"tags": [
@@ -166,13 +229,13 @@
 					{
 						"name": "timestamp",
 						"in": "path",
+						"description": "The unix timestamp in seconds. This endpoint will return the first update whose\ntimestamp is <= the provided value.",
 						"required": true,
 						"schema": {
 							"type": "integer",
-							"format": "int64",
-							"nullable": true,
-							"minimum": 0
-						}
+							"format": "int64"
+						},
+						"example": 1717632000
 					},
 					{
 						"name": "interval",
@@ -220,6 +283,205 @@
 									"items": {
 										"$ref": "#/components/schemas/GetEntryResponse"
 									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/node/v1/onchain/checkpoints/{base}/{quote}": {
+			"get": {
+				"tags": [
+					"handlers::entries::get_onchain::checkpoints"
+				],
+				"operationId": "get_onchain_checkpoints",
+				"parameters": [
+					{
+						"name": "base",
+						"in": "path",
+						"description": "Base Asset",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "quote",
+						"in": "path",
+						"description": "Quote Asset",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "network",
+						"in": "query",
+						"description": "Network",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/Network"
+						}
+					},
+					{
+						"name": "limit",
+						"in": "query",
+						"description": "Limit of response size",
+						"required": false,
+						"schema": {
+							"type": "integer",
+							"format": "int64",
+							"nullable": true,
+							"minimum": 0
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Get the onchain checkpoints for a pair",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetOnchainCheckpointsResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/node/v1/onchain/ohlc/subscribe": {
+			"get": {
+				"tags": [
+					"handlers::entries::get_onchain::ohlc"
+				],
+				"operationId": "subscribe_to_onchain_ohlc",
+				"responses": {
+					"200": {
+						"description": "Subscribe to a list of OHLC entries",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/SubscribeToEntryResponse"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/node/v1/onchain/publishers": {
+			"get": {
+				"tags": [
+					"handlers::entries::get_onchain::publishers"
+				],
+				"operationId": "get_onchain_publishers",
+				"parameters": [
+					{
+						"name": "network",
+						"in": "query",
+						"description": "Network",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/Network"
+						}
+					},
+					{
+						"name": "data_type",
+						"in": "query",
+						"description": "Data type",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/DataType"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Get the onchain publishers",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetOnchainPublishersResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/node/v1/onchain/{base}/{quote}": {
+			"get": {
+				"tags": [
+					"handlers::entries::get_onchain"
+				],
+				"operationId": "get_onchain",
+				"parameters": [
+					{
+						"name": "base",
+						"in": "path",
+						"description": "Base Asset",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "quote",
+						"in": "path",
+						"description": "Quote Asset",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "network",
+						"in": "query",
+						"description": "Network",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/Network"
+						}
+					},
+					{
+						"name": "aggregation",
+						"in": "query",
+						"description": "Aggregation Mode",
+						"required": false,
+						"schema": {
+							"allOf": [
+								{
+									"$ref": "#/components/schemas/AggregationMode"
+								}
+							],
+							"nullable": true
+						}
+					},
+					{
+						"name": "timestamp",
+						"in": "query",
+						"description": "Timestamp",
+						"required": false,
+						"schema": {
+							"type": "integer",
+							"format": "int64",
+							"nullable": true,
+							"minimum": 0
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Get the onchain price",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetOnchainResponse"
 								}
 							}
 						}
@@ -295,6 +557,14 @@
 	},
 	"components": {
 		"schemas": {
+			"AggregationMode": {
+				"type": "string",
+				"enum": [
+					"median",
+					"mean",
+					"twap"
+				]
+			},
 			"BaseEntry": {
 				"type": "object",
 				"required": [
@@ -313,6 +583,31 @@
 						"type": "integer",
 						"format": "int64",
 						"minimum": 0
+					}
+				}
+			},
+			"Checkpoint": {
+				"type": "object",
+				"required": [
+					"tx_hash",
+					"price",
+					"timestamp",
+					"sender_address"
+				],
+				"properties": {
+					"price": {
+						"type": "string"
+					},
+					"sender_address": {
+						"type": "string"
+					},
+					"timestamp": {
+						"type": "integer",
+						"format": "int64",
+						"minimum": 0
+					},
+					"tx_hash": {
+						"type": "string"
 					}
 				}
 			},
@@ -349,6 +644,47 @@
 					}
 				}
 			},
+			"CreateFutureEntryRequest": {
+				"type": "object",
+				"required": [
+					"signature",
+					"entries"
+				],
+				"properties": {
+					"entries": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/FutureEntry"
+						}
+					},
+					"signature": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/FieldElement"
+						}
+					}
+				}
+			},
+			"CreateFutureEntryResponse": {
+				"type": "object",
+				"required": [
+					"number_entries_created"
+				],
+				"properties": {
+					"number_entries_created": {
+						"type": "integer",
+						"minimum": 0
+					}
+				}
+			},
+			"DataType": {
+				"type": "string",
+				"enum": [
+					"spot_entry",
+					"perp_entry",
+					"future_entry"
+				]
+			},
 			"Entry": {
 				"type": "object",
 				"required": [
@@ -383,6 +719,12 @@
 						]
 					},
 					{
+						"type": "string",
+						"enum": [
+							"BadRequest"
+						]
+					},
+					{
 						"type": "object",
 						"required": [
 							"NotFound"
@@ -414,6 +756,12 @@
 								"$ref": "#/components/schemas/EcdsaVerifyError"
 							}
 						}
+					},
+					{
+						"type": "string",
+						"enum": [
+							"InvalidSigner"
+						]
 					},
 					{
 						"type": "string",
@@ -484,8 +832,40 @@
 					}
 				]
 			},
+			"FutureEntry": {
+				"type": "object",
+				"required": [
+					"base",
+					"pair_id",
+					"price",
+					"volume",
+					"expiration_timestamp"
+				],
+				"properties": {
+					"base": {
+						"$ref": "#/components/schemas/BaseEntry"
+					},
+					"expiration_timestamp": {
+						"type": "integer",
+						"format": "int64",
+						"minimum": 0
+					},
+					"pair_id": {
+						"type": "string"
+					},
+					"price": {
+						"type": "integer",
+						"minimum": 0
+					},
+					"volume": {
+						"type": "integer",
+						"minimum": 0
+					}
+				}
+			},
 			"GetEntryParams": {
 				"type": "object",
+				"description": "Query parameters structs",
 				"properties": {
 					"aggregation": {
 						"allOf": [
@@ -508,10 +888,12 @@
 						"nullable": true
 					},
 					"timestamp": {
-						"type": "integer",
-						"format": "int64",
-						"nullable": true,
-						"minimum": 0
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/UnixTimestamp"
+							}
+						],
+						"nullable": true
 					}
 				}
 			},
@@ -565,6 +947,137 @@
 					}
 				}
 			},
+			"GetOnchainCheckpointsParams": {
+				"type": "object",
+				"required": [
+					"network"
+				],
+				"properties": {
+					"limit": {
+						"type": "integer",
+						"format": "int64",
+						"nullable": true,
+						"minimum": 0
+					},
+					"network": {
+						"$ref": "#/components/schemas/Network"
+					}
+				}
+			},
+			"GetOnchainCheckpointsResponse": {
+				"type": "array",
+				"items": {
+					"$ref": "#/components/schemas/Checkpoint"
+				}
+			},
+			"GetOnchainOHLCResponse": {
+				"type": "object",
+				"required": [
+					"pair_id",
+					"data"
+				],
+				"properties": {
+					"data": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/OHLCEntry"
+						}
+					},
+					"pair_id": {
+						"type": "string"
+					}
+				}
+			},
+			"GetOnchainParams": {
+				"type": "object",
+				"required": [
+					"network"
+				],
+				"properties": {
+					"aggregation": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/AggregationMode"
+							}
+						],
+						"nullable": true
+					},
+					"network": {
+						"$ref": "#/components/schemas/Network"
+					},
+					"timestamp": {
+						"type": "integer",
+						"format": "int64",
+						"nullable": true,
+						"minimum": 0
+					}
+				}
+			},
+			"GetOnchainPublishersParams": {
+				"type": "object",
+				"required": [
+					"network",
+					"data_type"
+				],
+				"properties": {
+					"data_type": {
+						"$ref": "#/components/schemas/DataType"
+					},
+					"network": {
+						"$ref": "#/components/schemas/Network"
+					}
+				}
+			},
+			"GetOnchainPublishersResponse": {
+				"type": "array",
+				"items": {
+					"$ref": "#/components/schemas/Publisher"
+				}
+			},
+			"GetOnchainResponse": {
+				"type": "object",
+				"required": [
+					"pair_id",
+					"last_updated_timestamp",
+					"price",
+					"decimals",
+					"nb_sources_aggregated",
+					"asset_type",
+					"components"
+				],
+				"properties": {
+					"asset_type": {
+						"type": "string"
+					},
+					"components": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/OnchainEntry"
+						}
+					},
+					"decimals": {
+						"type": "integer",
+						"format": "int32",
+						"minimum": 0
+					},
+					"last_updated_timestamp": {
+						"type": "integer",
+						"format": "int64",
+						"minimum": 0
+					},
+					"nb_sources_aggregated": {
+						"type": "integer",
+						"format": "int32",
+						"minimum": 0
+					},
+					"pair_id": {
+						"type": "string"
+					},
+					"price": {
+						"type": "string"
+					}
+				}
+			},
 			"GetVolatilityResponse": {
 				"type": "object",
 				"required": [
@@ -597,46 +1110,171 @@
 			},
 			"Interval": {
 				"type": "string",
-				"description": "Query parameters structs",
 				"enum": [
 					"1min",
 					"15min",
-					"1h"
+					"1h",
+					"2h"
 				]
+			},
+			"Network": {
+				"type": "string",
+				"enum": [
+					"testnet",
+					"mainnet"
+				]
+			},
+			"OnchainEntry": {
+				"type": "object",
+				"required": [
+					"publisher",
+					"source",
+					"price",
+					"tx_hash",
+					"timestamp"
+				],
+				"properties": {
+					"price": {
+						"type": "string"
+					},
+					"publisher": {
+						"type": "string"
+					},
+					"source": {
+						"type": "string"
+					},
+					"timestamp": {
+						"type": "integer",
+						"format": "int64",
+						"minimum": 0
+					},
+					"tx_hash": {
+						"type": "string"
+					}
+				}
+			},
+			"PerpEntry": {
+				"type": "object",
+				"required": [
+					"base",
+					"pair_id",
+					"price",
+					"volume"
+				],
+				"properties": {
+					"base": {
+						"$ref": "#/components/schemas/BaseEntry"
+					},
+					"pair_id": {
+						"type": "string"
+					},
+					"price": {
+						"type": "integer",
+						"minimum": 0
+					},
+					"volume": {
+						"type": "integer",
+						"minimum": 0
+					}
+				}
 			},
 			"Publisher": {
 				"type": "object",
 				"required": [
-					"id",
-					"name",
-					"master_key",
-					"active_key",
-					"account_address",
-					"active"
+					"publisher",
+					"website_url",
+					"last_updated_timestamp",
+					"type",
+					"nb_feeds",
+					"daily_updates",
+					"total_updates",
+					"components"
 				],
 				"properties": {
-					"account_address": {
+					"components": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/PublisherEntry"
+						}
+					},
+					"daily_updates": {
+						"type": "integer",
+						"format": "int32",
+						"minimum": 0
+					},
+					"last_updated_timestamp": {
+						"type": "integer",
+						"format": "int64",
+						"minimum": 0
+					},
+					"nb_feeds": {
+						"type": "integer",
+						"format": "int32",
+						"minimum": 0
+					},
+					"publisher": {
 						"type": "string"
 					},
-					"active": {
-						"type": "boolean"
+					"total_updates": {
+						"type": "integer",
+						"format": "int32",
+						"minimum": 0
 					},
-					"active_key": {
+					"type": {
+						"type": "integer",
+						"format": "int32",
+						"minimum": 0
+					},
+					"website_url": {
+						"type": "string"
+					}
+				}
+			},
+			"PublisherEntry": {
+				"type": "object",
+				"required": [
+					"pair_id",
+					"last_updated_timestamp",
+					"price",
+					"source",
+					"decimals",
+					"daily_updates"
+				],
+				"properties": {
+					"daily_updates": {
+						"type": "integer",
+						"format": "int32",
+						"minimum": 0
+					},
+					"decimals": {
+						"type": "integer",
+						"format": "int32",
+						"minimum": 0
+					},
+					"last_updated_timestamp": {
+						"type": "integer",
+						"format": "int64",
+						"minimum": 0
+					},
+					"pair_id": {
 						"type": "string"
 					},
-					"id": {
-						"$ref": "#/components/schemas/Uuid"
-					},
-					"master_key": {
+					"price": {
 						"type": "string"
 					},
-					"name": {
+					"source": {
 						"type": "string"
 					}
 				}
 			},
 			"PublisherError": {
 				"oneOf": [
+					{
+						"type": "string",
+						"enum": [
+							"InternalServerError"
+						]
+					},
 					{
 						"type": "object",
 						"required": [
@@ -669,8 +1307,32 @@
 								"type": "string"
 							}
 						}
+					},
+					{
+						"type": "string",
+						"enum": [
+							"NotFound"
+						]
 					}
 				]
+			},
+			"SubscribeToEntryResponse": {
+				"type": "object",
+				"required": [
+					"oracle_prices",
+					"timestamp"
+				],
+				"properties": {
+					"oracle_prices": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/AssetOraclePrice"
+						}
+					},
+					"timestamp": {
+						"$ref": "#/components/schemas/UnixTimestamp"
+					}
+				}
 			}
 		},
 		"securitySchemes": {
