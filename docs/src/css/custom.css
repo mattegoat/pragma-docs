@@ -761,9 +761,19 @@ html[data-theme="dark"] .DocSearch-Hit a:hover {
   }
 }
 
+.admonition-under-development {
+  background-color: #fdf6e3;
+  border-left: 8px solid #b58900;
+}
+
+.admonition-under-development .admonition-icon svg {
+  fill: #b58900;
+}
+
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
