@@ -18,7 +18,6 @@ The second is the Oracle implementation and its proxy, which are also designed t
 
 ## Aggregation
 
-
 <div><img width="100%" height="100%" src="https://i.ibb.co/ZXmp89H/Screenshot-2023-11-21-at-10-10-30.png" alt="Capture-d-e-cran-2023-11-16-a-18-08-21" border="0"/></div>
 
 Our system incorporates multiple publishers, each responsible for providing data from various sources. To determine the price for a given source, we consider the prices submitted by all these publishers. Our approach involves conducting an initial on-chain aggregation based on the median of these prices. This median value then becomes the established price for that particular source.
@@ -36,10 +35,10 @@ In case you find bugs in our contracts, we have a bug bounty program in place wi
 
 On Starknet, the contracts are currently deployed at the following addresses:
 
-| Contract           | Testnet (Cairo 0)                                                                                                   | Testnet (Cairo 1)                                                                                                    | Mainnet (Cairo 0)                                                                                                      | Mainnet (Cairo 1)                                                                                                     |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Publisher Registry | [Testnet](https://goerli.voyager.online/contract/0x5cb0afa98435de7da6da7fad3b40c9d17e747a57bca28feb1c41f05e391f54e) | [Sepolia](https://sepolia.voyager.online/contract/0x1b08e27ab436cd491631156da5f3aa7ff04aee1e6ca925eb2ca84397c22b74d) | [Mainnet](https://voyager.online/contract/0x04746485fa57b49dc992c35d7f12054b5a7d24b0e187021cd8f40bc2517700bc)          | [Mainnet](https://voyager.online/contract/0x24a55b928496ef83468fdb9a5430fe031ac386b8f62f5c2eb7dd20ef7237415)          |
-| Oracle             | [Testnet](https://goerli.voyager.online/contract/0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093) | [Sepolia](https://sepolia.voyager.online/contract/0x36031daa264c24520b11d93af622c848b2499b66b41d611bac95e13cfca131a) | [Mainnet](https://voyager.online/contract/0x0346c57f094d641ad94e43468628d8e9c574dcb2803ec372576ccc60a40be2c4#overview) | [Mainnet](https://voyager.online/contract/0x2a85bd616f912537c50a49a4076db02c00b29b2cdc8a197ce92ed1837fa875b#overview) |
+| Contract           | Testnet (Cairo 1)                                                                                                    | Mainnet (Cairo 1)                                                                                                     |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Publisher Registry | [Sepolia](https://sepolia.voyager.online/contract/0x1b08e27ab436cd491631156da5f3aa7ff04aee1e6ca925eb2ca84397c22b74d) | [Mainnet](https://voyager.online/contract/0x24a55b928496ef83468fdb9a5430fe031ac386b8f62f5c2eb7dd20ef7237415)          |
+| Oracle             | [Sepolia](https://sepolia.voyager.online/contract/0x36031daa264c24520b11d93af622c848b2499b66b41d611bac95e13cfca131a) | [Mainnet](https://voyager.online/contract/0x2a85bd616f912537c50a49a4076db02c00b29b2cdc8a197ce92ed1837fa875b#overview) |
 
 ## Pragma X
 

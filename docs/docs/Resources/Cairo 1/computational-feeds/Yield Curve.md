@@ -27,7 +27,7 @@ fn get_yield_curve_points(number_of_decimals : u32) -> Span<YieldPoint> {
     let yield_curve_dispatcher = IYieldCurveABIDispatcher { contract_address: YIELD_CURVE_ADDRESS };
     let yield_curve_points = yield_curve_dispatcher
         .get_yield_points(number_of_decimals);
-        
+
     return yield_curve_points; // will return the yield curve points multiiplied by 10^number_of_decimals
 }
 

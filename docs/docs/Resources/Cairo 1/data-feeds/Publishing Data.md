@@ -8,28 +8,37 @@ sidebar_position: 3
 
 Pragma makes publishing data easy because there is no off-chain infrastructure, so publishing only requires signing and timestamping data before sending it on-chain. All of this can be done with a simple, stateless node that costs a few dollars a month to run.
 
-*Estimated Time*: A few hours to a day depending on your underlying data infrastructure.
+_Estimated Time_: A few hours to a day depending on your underlying data infrastructure.
+
+_SDK Version_: This walkthrough is only valid for the SDK versions `>=2.0.0`.
 
 Here is the step-by-step breakdown:
 
 ### 1. Account Setup
 
+We highly recommend using keystores instead of plain private keys for security.
+
 ```bash
-starkli signer gen-keypair
+starkli signer keystore new /path/to/key.json
 ```
-Store the given private key somewhere safe you can then use it in the next commands.
 
 ```bash
-starkli account oz init /path/to/account.json --private-key <0x..>
+export STARKNET_KEYSTORE="/path/to/key.json"
+```
 
-starkli account deploy /path/to/account.json --private-key <0x..>
+```bash
+starkli account oz init /path/to/account.json
+```
+
+```bash
+starkli account deploy /path/to/account.json
 ```
 
 For more info you can look up here [starkli](https://book.starkli.rs/tutorials/starkli-101#starkli-101).
 
 ### 2. Register your account contract address with Pragma
 
-Currently, publisher registration is permissioned while we create a robust ecosystem of publishers that will enable the transition to being a completely open network. During that initial phase, publishers send their publisher ID (the felt-encoded uppercased string, e.g. `str_to_felt("GEMINI")=78362974965321`) and account contract address to the Pragma team. Publishers should also publish their account contract address/public key online so that third parties can verify their identity with them directly.
+Currently, publisher registration is permissioned while we create a robust ecosystem of publishers that will enable the transition to being a completely open network. During that initial phase, publishers send their publisher ID (the felt-encoded uppercased string, e.g. `FLOWDESK`) and account contract address to the Pragma team. Publishers should also publish their account contract address/public key online so that third parties can verify their identity with them directly.
 
 ### 3. Set up the data fetching logic
 
@@ -45,21 +54,22 @@ Install the SDK in your virtual environment
 pip install pragma-sdk
 ```
 
-See a full sample script [here](https://github.com/Astraly-Labs/pragma-sdk/blob/master/stagecoach/jobs/publishers/starknet-publisher/app.py), or copy paste the code below to get started. Note that you need to set environment variables `PUBLISHER`, `PUBLISHER_ADDRESS`, and `PUBLISHER_PRIVATE_KEY` before running the code. You can use the sample .env file here to set them (the file does not include `PUBLISHER_PRIVATE_KEY` for obvious reasons).
+Full installation instructions can be found here
+
+See a full sample script [here](https://github.com/Astraly-Labs/pragma-sdk/blob/master/stagecoach/jobs/publishers/starknet-publisher/app.py), or copy paste the code below to get started.
+
+Note that you need to set environment variables `PUBLISHER`, `PUBLISHER_ADDRESS`, and `PUBLISHER_KEYSTORE_PASSWORD` before running the code. You can use the sample .env file here to set them (the file does not include `PUBLISHER_KEYSTORE_PASSWORD` for obvious reasons).
+
 To make fetching data simple, implement your own fetching function using whatever libraries you want, as long as it returns a `List[Entry]`.
 
 A few notes on expected parameters:
+
 - If you are a Market Maker/Hedge Fund, the `source` and `publisher` fields will be the same.
 - The `volume` field refers to a 24h cumulative volume in the `quote` asset. Our SDK automatically rebases it to be denominated
-by the `base` asset given its `price`.
-- In order to run the `publish` job, you will need to setup a `PragmaPublisherClient` that will use
-the Starknet account you have deployed in step 1 and which you manage with `starkli`.
-- You will also need an `RPC_KEY` corresponding to an [Infura](https://www.infura.io/) API Key.
-⚠️ Soon the SDK will give you access to Pragma's own RPC providers by default and let you the option to add your own RPC url directly.
-
-⚠️ Troubleshoting ⚠️
-- Make sure you have `cmake` installed if you run into `ERROR: Could not build wheels for crypto-cpp-py, which is required to install pyproject.toml-based projects`
-- `starknet_py.net.client_errors.ClientError: Client failed with code 401: invalid project id`. This means you probably have not set your `RPC_KEY` env variable correctly.
+  by the `base` asset given its `price`.
+- In order to run the `publish` job, you will need to setup a `PragmaOnChainClient` that will use
+  the Starknet account you have deployed in step 1 and which you manage with `starkli`.
+- It's highly recommended you use your own RPC if possible, providers such as [Nethermind](https://data.voyager.online/) are recommended.
 
 ```python
 import asyncio
@@ -68,31 +78,26 @@ import os
 import time
 from typing import List
 
-from pragma.core.entry import SpotEntry, FutureEntry
-from pragma.core.utils import currency_pair_to_pair_id, log_entry
-from pragma.core.assets import PRAGMA_ALL_ASSETS, PragmaAsset
-from pragma.publisher.client import PragmaPublisherClient
+from pragma_sdk.common.types.pair import Pair
+from pragma_sdk.common.types.entry import Entry, SpotEntry, FutureEntry
+from pragma_sdk.onchain.client import PragmaOnChainClient
+
 
 logger = logging.getLogger(__name__)
 
 # You can fetch your data using any strategy or libraries you want
+def fetch_entries(pairs: List[Pair], *args, **kwargs) -> List[Entry]:
+    entries: List[Entry] = []
 
-def fetch_entries(assets: List[PragmaAsset], *args, **kwargs) -> List[SpotEntry]:
-    entries = []
-    
-    for asset in assets:
-        if asset["type"] == 'ONCHAIN':
-          continue
-        
+    for pair in pairs:
         entries.append(
             SpotEntry(
                 timestamp=int(time.time()),
                 source="MY_SOURCE",
                 publisher="MY_PUBLISHER",
-                pair_id=currency_pair_to_pair_id(*asset["pair"]),
-                price=10 * 10 ** asset["decimals"], # shifted 10 ** decimals
+                pair_id=pair.id,
+                price=10 * 10 ** pair.decimals(),  # shifted 10 ** decimals
                 volume=0,
-                autoscale_volume=False
             )
         )
         entries.append(
@@ -100,61 +105,83 @@ def fetch_entries(assets: List[PragmaAsset], *args, **kwargs) -> List[SpotEntry]
                 timestamp=int(time.time()),
                 source="MY_SOURCE",
                 publisher="MY_PUBLISHER",
-                pair_id=currency_pair_to_pair_id(*asset["pair"]),
-                price=10 * 10 ** asset["decimals"], # shifted 10 ** decimals
-                expiry_timestamp=1693275381, # Set to 0 for perpetual contracts
+                pair_id=pair.id,
+                price=10 * 10 ** pair.decimals(),  # shifted 10 ** decimals
+                expiry_timestamp=1693275381,  # Set to 0 for perpetual contracts
                 volume=0,
-                autoscale_volume=False
             )
         )
 
     return entries
 
-async def publish_all(assets):
-    # We get the private key and address of the account deployed in step 1.
-    publisher_private_key = int(os.environ.get("PUBLISHER_PRIVATE_KEY"), 0)
+
+async def publish_all(pairs: List[Pair]):
+    # We get the keystore password and address of the account deployed in step 1.
+    keystore_password = int(os.environ.get("PUBLISHER_KEYSTORE_PASSWORD"), 0)
     publisher_address = int(os.environ.get("PUBLISHER_ADDRESS"), 0)
 
-    publisher_client = PragmaPublisherClient(
-        account_private_key=publisher_private_key,
+    publisher_client = PragmaOnChainClient(
+        account_private_key=("/path/to/keystore", keystore_password),
         account_contract_address=publisher_address,
-        network=os.environ['NETWORK'] # ENV var set to `testnet | mainnet`
+        network=os.environ["NETWORK"],  # ENV var set to `sepolia | mainnet`
     )
 
     # Use your own custom logic
-    _entries = fetch_entries(assets)
+    _entries = fetch_entries(pairs)
     await publisher_client.publish_many(_entries)
 
     logger.info("Publishing the following entries:")
     for entry in _entries:
-        log_entry(entry, logger=logger)
+        logger.info(entry, logger=logger)
+
+
+PAIRS_TO_PUBLISH = [
+    Pair.from_tickers("ETH", "USD"),
+    Pair.from_tickers("BTC", "USD"),
+    Pair.from_tickers("WBTC", "USD"),
+    ... # more pairs
+]
 
 if __name__ == "__main__":
-    asyncio.run(publish_all(PRAGMA_ALL_ASSETS))
+    asyncio.run(publish_all(PAIRS_TO_PUBLISH))
+
 ```
 
-#### Publish on API
+To use a custom RPC, you will need to set the `network` constructor argument to your rpc url. In that case it is **mandatory** that you set the `chain_name` argument.
+
+```python
+    publisher_client = PragmaOnChainClient(
+        account_private_key=("/path/to/keystore", keystore_password),
+        account_contract_address=publisher_address,
+        network="https://my.custom.mainnet.rpc.url",
+        chain_name="mainnet"
+    )
+```
+
+#### 3.2. Publish on API
 
 If you're willing to publish on the [Pragma API](https://mirror.xyz/pragmagic.eth/6kLIyEzYanQNWn58tPfMpzIxehz7SZ3jM-sqJENy79k) aswell, there are 2 simple changes to make :
 
-You will to specify an `API_KEY` and an `API_URL`. 
+You will have to specify an `API_KEY` and an `API_URL`.
 Currently the only way to get an API key is for us to give it to you, so please let us know if you need it!
 
 There are 2 environments :
+
 - dev: `https://api.dev.pragma.build/node` (default)
 - prod: `https://api.prod.pragma.build/node`
 
-Then you just need to ingest them in the `PragmaPublisherClient` constructor and switch `publish_many` to `publish_data`.
+Then you just need to use the `PragmaAPIClient` instead of the `PragmaOnChainClient`.
+
 ```python
-    publisher_client = PragmaPublisherClient(
-            account_private_key=publisher_private_key,
+    publisher_client = PragmaAPIClient(
+            account_private_key=("path/to/keystore", keystore_password),
             account_contract_address=PUBLISHER_ADDRESS,
             api_url=API_URL, // dev or prod url
-            api_key=API_KEY, // the key that we gave to you
+            api_key=API_KEY, // the api key that you received
         )
 
     // ... everything else stays the same
-    await publisher_client.publish_data(_entries) // use the `publish_data` method
+    await publisher_client.publish_entries(_entries)
 ```
 
 ⚠️ Whitelist ⚠️
@@ -162,11 +189,11 @@ Then you just need to ingest them in the `PragmaPublisherClient` constructor and
 To publish on the API, same as onchain you will need to be whitelisted.
 We have a secure system where you will have a master key and an active publishing key that lets you rotate the active key in case it's compromised.
 
-#### Docker Image
+### 4. Docker Image
 
 In this setup, a Python script would fetch data (your custom logic) and then use the Pragma SDK to publish that data, similar to the script above. In order to deploy you can use the pragma-publisher Docker base image. The base image is available on [Dockerhub](https://hub.docker.com/r/astralylabs/pragma-client) and comes with the Python and all requirements (including the pragma Python package) installed.
 
-Again, note the .env file in that same [folder](https://github.com/Astraly-Labs/pragma-sdk/tree/master/stagecoach/jobs/publishers/custom/) which is passed to Docker at run time via the `--env-file` arg, with `PUBLISHER` and `PUBLISHER_ADDRESS` variables set, as well as a `PUBLISHER_PRIVATE_KEY` variable (which is not in the repository for obvious reasons).
+Again, note the .env file in that same [folder](https://github.com/Astraly-Labs/pragma-sdk/tree/master/stagecoach/jobs/publishers/custom/) which is passed to Docker at run time via the `--env-file` arg, with `PUBLISHER` and `PUBLISHER_ADDRESS` variables set, as well as a `PUBLISHER_KEYSTORE_PASSWORD` variable (which is not in the repository for obvious reasons).
 
 Alternatively, you can find an example of how to use the SDK in a serverless deployment (e.g. AWS Lambda).
 

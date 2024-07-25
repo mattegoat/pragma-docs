@@ -56,7 +56,6 @@ We calculate the Time wighted average price using the following formula:
   <a href="https://ibb.co/tcjqN3M"><img width="100%" heigth="100%" src="	https://i.ibb.co/Q69FtYd/TWAP.jpg" alt="realised-volatility"/></a>
   </div>
 
-
 ## Technical Specification
 
 ### Function: `calculate_twap`

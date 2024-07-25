@@ -6,7 +6,6 @@ sidebar_position: 2
 
 ---
 
-
 Many computational feeds depend on historical data for their functionality. To improve access to this data, Pragma has introduced a feature known as checkpoints.
 
 ## Understanding Checkpoints
@@ -23,10 +22,10 @@ Pragma routinely uses this function to create checkpoints for frequently used cu
 
 ## List of checkpoints currently set by Pragma
 
-| Pair     | Pair Id | Decimals | Mainnet |
-| -------- | ----------- | -------- | ------- |
-| BTC/USD      | 18669995996566340     | 8        | ✅      |
-| ETH/USD      | 19514442401534788     | 8        | ✅      |
-| USDC/USD      | 6148332971638477636     | 8        | ✅      |
+| Pair     | Pair Id             | Decimals | Mainnet |
+| -------- | ------------------- | -------- | ------- |
+| BTC/USD  | 18669995996566340   | 8        | ✅      |
+| ETH/USD  | 19514442401534788   | 8        | ✅      |
+| USDC/USD | 6148332971638477636 | 8        | ✅      |
 
 Currently, the checkpoints are set every Tuesdays at 00:00 UTC for [Carmine Options](https://github.com/CarmineOptions/keeper-bot)
