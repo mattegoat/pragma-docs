@@ -56,7 +56,7 @@ pip install pragma-sdk
 
 Full installation instructions can be found here
 
-See a full sample script [here](https://github.com/Astraly-Labs/pragma-sdk/blob/master/stagecoach/jobs/publishers/starknet-publisher/app.py), or copy paste the code below to get started.
+See a full sample script [here](https://github.com/astraly-labs/pragma-sdk/blob/master/pragma-sdk/tests/docs/publish.py), or copy paste the code below to get started.
 
 Note that you need to set environment variables `PUBLISHER`, `PUBLISHER_ADDRESS`, and `PUBLISHER_KEYSTORE_PASSWORD` before running the code. You can use the sample .env file here to set them (the file does not include `PUBLISHER_KEYSTORE_PASSWORD` for obvious reasons).
 
@@ -206,3 +206,9 @@ CMD python fetch-and-publish.py
 
 Then you can build the docker image `docker build . -t pragma-publisher`.
 Finally just run it with the provided env file `docker run --env-file .env pragma-publisher`
+
+## Price Pusher
+
+If you don't have any data but still want to push data onto the network to increase resiliency of the system.
+You can simply run the `price-pusher` [image](https://github.com/astraly-labs/pragma-sdk/pkgs/container/pragma-sdk%2Fprice-pusher).
+More instructions on this service can be found [here](https://github.com/astraly-labs/pragma-sdk/tree/master/price-pusher)

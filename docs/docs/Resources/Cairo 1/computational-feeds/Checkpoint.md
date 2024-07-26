@@ -28,4 +28,12 @@ Pragma routinely uses this function to create checkpoints for frequently used cu
 | ETH/USD  | 19514442401534788   | 8        | ✅      |
 | USDC/USD | 6148332971638477636 | 8        | ✅      |
 
-Currently, the checkpoints are set every Tuesdays at 00:00 UTC for [Carmine Options](https://github.com/CarmineOptions/keeper-bot)
+Currently, the checkpoints are set every Tuesdays at 00:00 UTC for [Carmine Options](https://carmine.finance/)
+
+## Checkpointer
+
+We provide an easy to run CLI tool to set checkpoints for the assets you need at the frequency you need.
+More information on the CLI can be found [here](https://github.com/astraly-labs/pragma-sdk/blob/master/checkpointer/README.md).
+
+On the high-level it's a simple service that given a configuration file and some CLI parameters will do all the heavy lifting for you.
+The docker image is hosted [here](https://github.com/astraly-labs/pragma-sdk/pkgs/container/pragma-sdk%2Fcheckpointer).
