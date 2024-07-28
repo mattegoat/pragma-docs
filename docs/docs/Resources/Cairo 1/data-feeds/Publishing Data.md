@@ -147,7 +147,11 @@ if __name__ == "__main__":
 
 ```
 
+:::tip
+
 To use a custom RPC, you will need to set the `network` constructor argument to your rpc url. In that case it is **mandatory** that you set the `chain_name` argument.
+
+:::
 
 ```python
     publisher_client = PragmaOnChainClient(
@@ -184,21 +188,23 @@ Then you just need to use the `PragmaAPIClient` instead of the `PragmaOnChainCli
     await publisher_client.publish_entries(_entries)
 ```
 
-⚠️ Whitelist ⚠️
+:::warning
 
 To publish on the API, same as onchain you will need to be whitelisted.
 We have a secure system where you will have a master key and an active publishing key that lets you rotate the active key in case it's compromised.
 
+:::
+
 ### 4. Docker Image
 
-In this setup, a Python script would fetch data (your custom logic) and then use the Pragma SDK to publish that data, similar to the script above. In order to deploy you can use the pragma-publisher Docker base image. The base image is available on [Dockerhub](https://hub.docker.com/r/astralylabs/pragma-client) and comes with the Python and all requirements (including the pragma Python package) installed.
+In this setup, a Python script would fetch data (your custom logic) and then use the Pragma SDK to publish that data, similar to the script above. In order to deploy you can use the pragma-publisher Docker base image. The base image is available on [ghcr](https://github.com/astraly-labs/pragma-sdk/pkgs/container/pragma-sdk%2Fpragma-sdk) and comes with the Python and all requirements (including the pragma Python package) installed.
 
-Again, note the .env file in that same [folder](https://github.com/Astraly-Labs/pragma-sdk/tree/master/stagecoach/jobs/publishers/custom/) which is passed to Docker at run time via the `--env-file` arg, with `PUBLISHER` and `PUBLISHER_ADDRESS` variables set, as well as a `PUBLISHER_KEYSTORE_PASSWORD` variable (which is not in the repository for obvious reasons).
+Again, note the .env file in that same which is passed to Docker at run time via the `--env-file` arg, with `PUBLISHER` and `PUBLISHER_ADDRESS` variables set, as well as a `PUBLISHER_KEYSTORE_PASSWORD` variable (which is not in the repository for obvious reasons).
 
 Alternatively, you can find an example of how to use the SDK in a serverless deployment (e.g. AWS Lambda).
 
 ```bash
-FROM astralylabs/pragma-client:latest
+FROM astraly-labs/pragma-sdk/pragma-sdk:2.0.1:latest
 
 COPY fetch-and-publish.py ./fetch-and-publish.py
 CMD python fetch-and-publish.py

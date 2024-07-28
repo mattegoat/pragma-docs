@@ -9,7 +9,11 @@ sidebar_position: 1
 Pragma offers a verifiable randomness feed that allows protocols to request secure randomness on-chain.
 This feed is being rolled out in two phases: In the first phase (currently live) the randomness proof is posted as calldata, allowing anyone to verify it off-chain. See below for more details on how to verify the randomness.
 
+:::note
+
 In the second phase, the proof will be verified directly on-chain (coming soon) and requesters will be required to cover gas costs of their callback function plus a small fee to cover the cost of generating randomness.
+
+:::
 
 ## Deployed Contracts
 
@@ -21,7 +25,8 @@ You can find the latest deployed contracts at the following addresses :
 
 ## Sample Code
 
-If you are just trying to get started with using randomness, see the self-contained code snippet. If you'd like to use more advanced oracle functions, read on past the code block for further information. You can find a full sample randomness receiver contract [here](https://github.com/astraly-labs/pragma-oracle/blob/main/src/randomness/example_randomness.cairo).
+If you are just trying to get started with using randomness, see the self-contained code snippet. If you'd like to use more advanced oracle functions, read on past the code block for further information. 
+You can find a full sample randomness receiver contract [here](https://github.com/astraly-labs/pragma-oracle/blob/main/src/randomness/example_randomness.cairo).
 
 ```rust
 use starknet::ContractAddress;
@@ -221,7 +226,7 @@ Pricing is divied in two parts :
 
 ## Retry Policy
 
-We will retry every 30 seconds to fulfill your requests until **30** blocks have passed the specified minimum block number.
+We will retry every second to fulfill your requests until **10** blocks have passed the specified minimum block number.
 
 ## Technical Specification
 

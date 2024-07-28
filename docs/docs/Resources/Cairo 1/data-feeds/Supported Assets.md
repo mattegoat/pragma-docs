@@ -24,6 +24,7 @@ The `pair_id` is calculated by utf-8 encoding the uppercased string (e.g. `str_t
 | WBTC/BTC   | 6287680677295051843      | 8        | ✅      |
 | BTC/EUR    | 18669995995518290        | 8        | ✅      |
 | WSTETH/USD | 412383036120118613857092 | 8        | ✅      |
+| R/USD      | 352981439300             | 8        | ✅      |
 | LORDS/USD  | 1407668255603079598916   | 8        | ✅      |
 | UNI/USD    | 24011449254105924        | 8        | ✅      |
 | STRK/USD   | 6004514686061859652      | 8        | ✅      |
