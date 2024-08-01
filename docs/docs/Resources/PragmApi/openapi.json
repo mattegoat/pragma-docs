@@ -11,7 +11,9 @@
   "paths": {
     "/node/v1/aggregation/candlestick/{base}/{quote}": {
       "get": {
-        "tags": ["handlers::entries::get_ohlc"],
+        "tags": [
+          "handlers::entries::get_ohlc"
+        ],
         "operationId": "get_ohlc",
         "parameters": [
           {
@@ -77,6 +79,28 @@
               ],
               "nullable": true
             }
+          },
+          {
+            "name": "entry_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/EntryType"
+                }
+              ],
+              "nullable": true
+            }
+          },
+          {
+            "name": "expiry",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
           }
         ],
         "responses": {
@@ -98,7 +122,9 @@
     },
     "/node/v1/data/publish": {
       "post": {
-        "tags": ["handlers::entries::create_entry"],
+        "tags": [
+          "handlers::entries::create_entry"
+        ],
         "operationId": "create_entries",
         "requestBody": {
           "content": {
@@ -136,7 +162,9 @@
     },
     "/node/v1/data/publish_future": {
       "post": {
-        "tags": ["handlers::entries::create_future_entry"],
+        "tags": [
+          "handlers::entries::create_future_entry"
+        ],
         "operationId": "create_future_entries",
         "requestBody": {
           "content": {
@@ -174,7 +202,9 @@
     },
     "/node/v1/data/subscribe": {
       "get": {
-        "tags": ["handlers::entries::subscribe_to_entry"],
+        "tags": [
+          "handlers::entries::subscribe_to_entry"
+        ],
         "operationId": "subscribe_to_entry",
         "responses": {
           "200": {
@@ -195,7 +225,9 @@
     },
     "/node/v1/data/{base}/{quote}": {
       "get": {
-        "tags": ["handlers::entries::get_entry"],
+        "tags": [
+          "handlers::entries::get_entry"
+        ],
         "operationId": "get_entry",
         "parameters": [
           {
@@ -261,6 +293,28 @@
               ],
               "nullable": true
             }
+          },
+          {
+            "name": "entry_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/EntryType"
+                }
+              ],
+              "nullable": true
+            }
+          },
+          {
+            "name": "expiry",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
           }
         ],
         "responses": {
@@ -282,7 +336,9 @@
     },
     "/node/v1/onchain/checkpoints/{base}/{quote}": {
       "get": {
-        "tags": ["handlers::entries::get_onchain::checkpoints"],
+        "tags": [
+          "handlers::entries::get_onchain::checkpoints"
+        ],
         "operationId": "get_onchain_checkpoints",
         "parameters": [
           {
@@ -339,9 +395,98 @@
         }
       }
     },
+    "/node/v1/onchain/history/{base}/{quote}": {
+      "get": {
+        "tags": [
+          "handlers::entries::get_onchain::history"
+        ],
+        "operationId": "get_onchain_history",
+        "parameters": [
+          {
+            "name": "base",
+            "in": "path",
+            "description": "Base Asset",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quote",
+            "in": "path",
+            "description": "Quote Asset",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "network",
+            "in": "query",
+            "description": "Network",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Network"
+            }
+          },
+          {
+            "name": "aggregation",
+            "in": "query",
+            "description": "Aggregation Mode",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/AggregationMode"
+                }
+              ],
+              "nullable": true
+            }
+          },
+          {
+            "name": "timestamp",
+            "in": "query",
+            "description": "Timestamp or timestamp range",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "chunk_interval",
+            "in": "query",
+            "description": "Chunk time length for each block of data, will always be 1 hour for single timestamps",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ChunkInterval"
+                }
+              ],
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get the onchain price history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOnchainHistoryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/node/v1/onchain/ohlc/subscribe": {
       "get": {
-        "tags": ["handlers::entries::get_onchain::ohlc"],
+        "tags": [
+          "handlers::entries::get_onchain::ohlc"
+        ],
         "operationId": "subscribe_to_onchain_ohlc",
         "responses": {
           "200": {
@@ -362,7 +507,9 @@
     },
     "/node/v1/onchain/publishers": {
       "get": {
-        "tags": ["handlers::entries::get_onchain::publishers"],
+        "tags": [
+          "handlers::entries::get_onchain::publishers"
+        ],
         "operationId": "get_onchain_publishers",
         "parameters": [
           {
@@ -400,7 +547,9 @@
     },
     "/node/v1/onchain/{base}/{quote}": {
       "get": {
-        "tags": ["handlers::entries::get_onchain"],
+        "tags": [
+          "handlers::entries::get_onchain"
+        ],
         "operationId": "get_onchain",
         "parameters": [
           {
@@ -473,7 +622,9 @@
     },
     "/node/v1/volatility/{quote}/{base}": {
       "get": {
-        "tags": ["handlers::entries::get_volatility"],
+        "tags": [
+          "handlers::entries::get_volatility"
+        ],
         "operationId": "get_volatility",
         "parameters": [
           {
@@ -539,11 +690,19 @@
     "schemas": {
       "AggregationMode": {
         "type": "string",
-        "enum": ["median", "mean", "twap"]
+        "enum": [
+          "median",
+          "mean",
+          "twap"
+        ]
       },
       "BaseEntry": {
         "type": "object",
-        "required": ["timestamp", "source", "publisher"],
+        "required": [
+          "timestamp",
+          "source",
+          "publisher"
+        ],
         "properties": {
           "publisher": {
             "type": "string"
@@ -560,7 +719,12 @@
       },
       "Checkpoint": {
         "type": "object",
-        "required": ["tx_hash", "price", "timestamp", "sender_address"],
+        "required": [
+          "tx_hash",
+          "price",
+          "timestamp",
+          "sender_address"
+        ],
         "properties": {
           "price": {
             "type": "string"
@@ -578,9 +742,26 @@
           }
         }
       },
+      "ChunkInterval": {
+        "type": "string",
+        "enum": [
+          "1s",
+          "10s",
+          "1min",
+          "15min",
+          "30min",
+          "1h",
+          "2h",
+          "1d",
+          "1w"
+        ]
+      },
       "CreateEntryRequest": {
         "type": "object",
-        "required": ["signature", "entries"],
+        "required": [
+          "signature",
+          "entries"
+        ],
         "properties": {
           "entries": {
             "type": "array",
@@ -598,7 +779,9 @@
       },
       "CreateEntryResponse": {
         "type": "object",
-        "required": ["number_entries_created"],
+        "required": [
+          "number_entries_created"
+        ],
         "properties": {
           "number_entries_created": {
             "type": "integer",
@@ -608,7 +791,10 @@
       },
       "CreateFutureEntryRequest": {
         "type": "object",
-        "required": ["signature", "entries"],
+        "required": [
+          "signature",
+          "entries"
+        ],
         "properties": {
           "entries": {
             "type": "array",
@@ -626,7 +812,9 @@
       },
       "CreateFutureEntryResponse": {
         "type": "object",
-        "required": ["number_entries_created"],
+        "required": [
+          "number_entries_created"
+        ],
         "properties": {
           "number_entries_created": {
             "type": "integer",
@@ -636,11 +824,20 @@
       },
       "DataType": {
         "type": "string",
-        "enum": ["spot_entry", "perp_entry", "future_entry"]
+        "enum": [
+          "spot_entry",
+          "perp_entry",
+          "future_entry"
+        ]
       },
       "Entry": {
         "type": "object",
-        "required": ["base", "pair_id", "price", "volume"],
+        "required": [
+          "base",
+          "pair_id",
+          "price",
+          "volume"
+        ],
         "properties": {
           "base": {
             "$ref": "#/components/schemas/BaseEntry"
@@ -662,15 +859,21 @@
         "oneOf": [
           {
             "type": "string",
-            "enum": ["InternalServerError"]
+            "enum": [
+              "InternalServerError"
+            ]
           },
           {
             "type": "string",
-            "enum": ["BadRequest"]
+            "enum": [
+              "BadRequest"
+            ]
           },
           {
             "type": "object",
-            "required": ["NotFound"],
+            "required": [
+              "NotFound"
+            ],
             "properties": {
               "NotFound": {
                 "type": "string"
@@ -679,7 +882,9 @@
           },
           {
             "type": "object",
-            "required": ["InfraError"],
+            "required": [
+              "InfraError"
+            ],
             "properties": {
               "InfraError": {
                 "$ref": "#/components/schemas/InfraError"
@@ -688,7 +893,9 @@
           },
           {
             "type": "object",
-            "required": ["InvalidSignature"],
+            "required": [
+              "InvalidSignature"
+            ],
             "properties": {
               "InvalidSignature": {
                 "$ref": "#/components/schemas/EcdsaVerifyError"
@@ -697,19 +904,54 @@
           },
           {
             "type": "string",
-            "enum": ["InvalidSigner"]
-          },
-          {
-            "type": "string",
-            "enum": ["Unauthorized"]
-          },
-          {
-            "type": "string",
-            "enum": ["InvalidTimestamp"]
+            "enum": [
+              "InvalidSigner"
+            ]
           },
           {
             "type": "object",
-            "required": ["PublisherError"],
+            "required": [
+              "Unauthorized"
+            ],
+            "properties": {
+              "Unauthorized": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "InvalidTimestamp"
+            ],
+            "properties": {
+              "InvalidTimestamp": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "string",
+            "enum": [
+              "InvalidExpiry"
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "MissingData"
+            ],
+            "properties": {
+              "MissingData": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "PublisherError"
+            ],
             "properties": {
               "PublisherError": {
                 "$ref": "#/components/schemas/PublisherError"
@@ -718,7 +960,9 @@
           },
           {
             "type": "object",
-            "required": ["UnknownPairId"],
+            "required": [
+              "UnknownPairId"
+            ],
             "properties": {
               "UnknownPairId": {
                 "type": "string"
@@ -727,7 +971,9 @@
           },
           {
             "type": "object",
-            "required": ["VolatilityError"],
+            "required": [
+              "VolatilityError"
+            ],
             "properties": {
               "VolatilityError": {
                 "$ref": "#/components/schemas/VolatilityError"
@@ -736,7 +982,9 @@
           },
           {
             "type": "object",
-            "required": ["PublishData"],
+            "required": [
+              "PublishData"
+            ],
             "properties": {
               "PublishData": {
                 "type": "string"
@@ -745,7 +993,9 @@
           },
           {
             "type": "object",
-            "required": ["BuildPublish"],
+            "required": [
+              "BuildPublish"
+            ],
             "properties": {
               "BuildPublish": {
                 "type": "string"
@@ -787,7 +1037,6 @@
       },
       "GetEntryParams": {
         "type": "object",
-        "description": "Query parameters structs",
         "properties": {
           "aggregation": {
             "allOf": [
@@ -795,6 +1044,18 @@
                 "$ref": "#/components/schemas/AggregationMode"
               }
             ],
+            "nullable": true
+          },
+          "entry_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntryType"
+              }
+            ],
+            "nullable": true
+          },
+          "expiry": {
+            "type": "string",
             "nullable": true
           },
           "interval": {
@@ -853,7 +1114,10 @@
       },
       "GetOHLCResponse": {
         "type": "object",
-        "required": ["pair_id", "data"],
+        "required": [
+          "pair_id",
+          "data"
+        ],
         "properties": {
           "data": {
             "type": "array",
@@ -868,7 +1132,9 @@
       },
       "GetOnchainCheckpointsParams": {
         "type": "object",
-        "required": ["network"],
+        "required": [
+          "network"
+        ],
         "properties": {
           "limit": {
             "type": "integer",
@@ -887,9 +1153,86 @@
           "$ref": "#/components/schemas/Checkpoint"
         }
       },
+      "GetOnchainHistoryEntry": {
+        "type": "object",
+        "required": [
+          "pair_id",
+          "last_updated_timestamp",
+          "price",
+          "decimals",
+          "nb_sources_aggregated"
+        ],
+        "properties": {
+          "decimals": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "last_updated_timestamp": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "nb_sources_aggregated": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "pair_id": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOnchainHistoryParams": {
+        "type": "object",
+        "required": [
+          "network"
+        ],
+        "properties": {
+          "aggregation": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AggregationMode"
+              }
+            ],
+            "nullable": true
+          },
+          "chunk_interval": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ChunkInterval"
+              }
+            ],
+            "nullable": true
+          },
+          "network": {
+            "$ref": "#/components/schemas/Network"
+          },
+          "timestamp": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TimestampParam"
+              }
+            ],
+            "nullable": true
+          }
+        }
+      },
+      "GetOnchainHistoryResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/GetOnchainHistoryEntry"
+        }
+      },
       "GetOnchainOHLCResponse": {
         "type": "object",
-        "required": ["pair_id", "data"],
+        "required": [
+          "pair_id",
+          "data"
+        ],
         "properties": {
           "data": {
             "type": "array",
@@ -904,7 +1247,9 @@
       },
       "GetOnchainParams": {
         "type": "object",
-        "required": ["network"],
+        "required": [
+          "network"
+        ],
         "properties": {
           "aggregation": {
             "allOf": [
@@ -914,20 +1259,33 @@
             ],
             "nullable": true
           },
+          "components": {
+            "type": "boolean",
+            "nullable": true
+          },
           "network": {
             "$ref": "#/components/schemas/Network"
           },
+          "routing": {
+            "type": "boolean",
+            "nullable": true
+          },
           "timestamp": {
-            "type": "integer",
-            "format": "int64",
-            "nullable": true,
-            "minimum": 0
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TimestampParam"
+              }
+            ],
+            "nullable": true
           }
         }
       },
       "GetOnchainPublishersParams": {
         "type": "object",
-        "required": ["network", "data_type"],
+        "required": [
+          "network",
+          "data_type"
+        ],
         "properties": {
           "data_type": {
             "$ref": "#/components/schemas/DataType"
@@ -952,7 +1310,7 @@
           "decimals",
           "nb_sources_aggregated",
           "asset_type",
-          "components"
+          "variations"
         ],
         "properties": {
           "asset_type": {
@@ -962,7 +1320,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/OnchainEntry"
-            }
+            },
+            "nullable": true
           },
           "decimals": {
             "type": "integer",
@@ -984,12 +1343,23 @@
           },
           "price": {
             "type": "string"
+          },
+          "variations": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "float"
+            }
           }
         }
       },
       "GetVolatilityResponse": {
         "type": "object",
-        "required": ["pair_id", "volatility", "decimals"],
+        "required": [
+          "pair_id",
+          "volatility",
+          "decimals"
+        ],
         "properties": {
           "decimals": {
             "type": "integer",
@@ -1006,20 +1376,87 @@
         }
       },
       "InfraError": {
-        "type": "string",
-        "enum": ["InternalServerError", "NotFound", "InvalidTimeStamp"]
+        "oneOf": [
+          {
+            "type": "string",
+            "enum": [
+              "InternalServerError"
+            ]
+          },
+          {
+            "type": "string",
+            "enum": [
+              "RoutingError"
+            ]
+          },
+          {
+            "type": "string",
+            "enum": [
+              "NotFound"
+            ]
+          },
+          {
+            "type": "object",
+            "required": [
+              "InvalidTimestamp"
+            ],
+            "properties": {
+              "InvalidTimestamp": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "NonZeroU32Conversion"
+            ],
+            "properties": {
+              "NonZeroU32Conversion": {
+                "$ref": "#/components/schemas/TryFromIntError"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "AxumError"
+            ],
+            "properties": {
+              "AxumError": {
+                "$ref": "#/components/schemas/axum.Error"
+              }
+            }
+          }
+        ]
       },
       "Interval": {
         "type": "string",
-        "enum": ["1min", "15min", "1h", "2h"]
+        "enum": [
+          "1min",
+          "15min",
+          "1h",
+          "2h",
+          "1d",
+          "1w"
+        ]
       },
       "Network": {
         "type": "string",
-        "enum": ["testnet", "mainnet"]
+        "enum": [
+          "testnet",
+          "mainnet"
+        ]
       },
       "OnchainEntry": {
         "type": "object",
-        "required": ["publisher", "source", "price", "tx_hash", "timestamp"],
+        "required": [
+          "publisher",
+          "source",
+          "price",
+          "tx_hash",
+          "timestamp"
+        ],
         "properties": {
           "price": {
             "type": "string"
@@ -1042,7 +1479,12 @@
       },
       "PerpEntry": {
         "type": "object",
-        "required": ["base", "pair_id", "price", "volume"],
+        "required": [
+          "base",
+          "pair_id",
+          "price",
+          "volume"
+        ],
         "properties": {
           "base": {
             "$ref": "#/components/schemas/BaseEntry"
@@ -1153,11 +1595,15 @@
         "oneOf": [
           {
             "type": "string",
-            "enum": ["InternalServerError"]
+            "enum": [
+              "InternalServerError"
+            ]
           },
           {
             "type": "object",
-            "required": ["InvalidKey"],
+            "required": [
+              "InvalidKey"
+            ],
             "properties": {
               "InvalidKey": {
                 "type": "string"
@@ -1166,7 +1612,9 @@
           },
           {
             "type": "object",
-            "required": ["InvalidAddress"],
+            "required": [
+              "InvalidAddress"
+            ],
             "properties": {
               "InvalidAddress": {
                 "type": "string"
@@ -1175,7 +1623,9 @@
           },
           {
             "type": "object",
-            "required": ["InactivePublisher"],
+            "required": [
+              "InactivePublisher"
+            ],
             "properties": {
               "InactivePublisher": {
                 "type": "string"
@@ -1184,13 +1634,18 @@
           },
           {
             "type": "string",
-            "enum": ["NotFound"]
+            "enum": [
+              "NotFound"
+            ]
           }
         ]
       },
       "SubscribeToEntryResponse": {
         "type": "object",
-        "required": ["oracle_prices", "timestamp"],
+        "required": [
+          "oracle_prices",
+          "timestamp"
+        ],
         "properties": {
           "oracle_prices": {
             "type": "array",
