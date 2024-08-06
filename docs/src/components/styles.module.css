@@ -203,6 +203,14 @@
   font-family: IBM Plex Sans;
 }
 
+.startWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 20px;
+}
+
 .productBox {
   border-radius: 20px;
   border: 1px solid #ffffff40;
@@ -211,7 +219,33 @@
   padding: 40px;
   flex-direction: column;
   align-items: flex-start;
-  flex: 1 0 0;
+  width: calc(25% - 20px);
+  max-width: calc(33.333% - 20px);
+  box-sizing: border-box;
+}
+
+.descriptionStart {
+  margin: 10px 0;
+  flex-grow: 1;
+}
+
+.buttons {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+@media (max-width: 1024px) {
+  .productBox {
+    width: calc(50% - 20px);
+    max-width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .productBox {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .devBox {
