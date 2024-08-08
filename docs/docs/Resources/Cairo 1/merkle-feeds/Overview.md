@@ -25,3 +25,12 @@ A Merkle Feed is an efficient way to publish and verify large amounts of data on
 2. Merkle root is published on-chain *every* block.
 3. Merkle proofs with associated data can be retrieved through REST and WebSocket endpoints or through a rust crate we provide.
 4. Data is updated on-demand on-chain upon successful verification of the merkle proof.
+
+
+## Contract Address
+
+We use the same contract as the one used for Realized Volatilty or TWAP.
+You can find it at these addresses:
+
+- Sepolia: [0x015df5075251c103ad1e2b22328e426ad145d2003fc7f80c66c4820649fef1e7](https://sepolia.voyager.online/contract/0x015df5075251c103ad1e2b22328e426ad145d2003fc7f80c66c4820649fef1e7#readContract)
+- Mainnet: 🔜
