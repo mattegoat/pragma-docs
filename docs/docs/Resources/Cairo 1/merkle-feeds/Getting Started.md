@@ -59,7 +59,7 @@ let signer = LocalWallet::from(SigningKey::from_secret_scalar(
 ));
 let address = Felt::from_hex("YOUR_ACCOUNT_CONTRACT_ADDRESS_IN_HEX_HERE").unwrap();
 let summary_stats_address =
-        Felt::from_hex("0x54563a0537b3ae0ba91032d674a6d468f30a59dc4deb8f0dce4e642b94be15c").unwrap();
+        Felt::from_hex("0x0379afb83d2f8e38ab08252750233665a812a24278aacdde52475618edbf879c").unwrap();
 
 let mut account = SingleOwnerAccount::new(
         provider,
