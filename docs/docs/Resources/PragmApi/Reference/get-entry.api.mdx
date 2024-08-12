@@ -1,0 +1,42 @@
+---
+id: get-entry
+title: "get_entry"
+description: "get_entry"
+sidebar_label: "get_entry"
+hide_title: true
+hide_table_of_contents: true
+api: eJzFVttOGzEQ/RXLT62UkgRakFbtA5UQQlVVldIniiKzO0lMd23jSwBF+++dsTebDeHWFKU8ZI09nnPm7jn3YuJ4ds5zKzxk2VSoogTrsmwCfgTK2zt+0ePaAJ5LrU4KnvHlUY8bYUUFHq+gljlX+A9KXAoHeCgVro3wU1wX4HIrDSnBzc8owA6dA49HFq6DtICqvQ3Q4y6fQiV4Nuf+zpA6561UE17XvRbhOmj/NMR3kvgnDC8rcF5U5kmcsymwoOQta8WZVMxBrlXhdtjZVDoGqjBaKs9uZFkyCz5YxTxeHEvrPAumQO+zm6l28Et19Dj28VOUM1bPZAEFm4kywM5LDEI4mIBF0bG2lfBpa/89r3scblF9iVLDg+HB/t7uYDDo2E03LQLdM/txRFGW38Yx/qvORCAVKkqvYYWaenz4ofmSvl36GRb0c0NJ5qUnSvxkAV/jpgplKS5pn0C70bE6+ATyMpINtUutSxBE4nHVYjKxMIkJ/4o+qKCQEbhK+P5GmK7dh0vUr7qAZ8yPBTiKWK9H0RlNxYLVTjk/Dpin0KV4RKBndPkZcrdGxvbwV6Fp6dxXfEGXkZty4Ege85U+q3V4DJ4lF7PoG+ZCnoNz41ASEyxHj/vRD8aUMo+O7l85ujxfJyOsFdECD5Xr7OvLK8hXO8o5Eq5GTgeLeKNF8kAR26O0IxlXVuYUqm5TKSCXlSgduRgrHN3uZbKwPXmunvd2KaGkkhVFEKv4MS4PKVq5t6C63hIX5B86WZrzgs6zglgv0wpDFzPrtAkydmH6u99pu3MHZ85UN8Mo+hlTLON9hYXTnw372E9Ff05jqO7P46yoUQqbcrDS3/2gYCdHCyNHv+GuG3gjv0Cbu1MQRTSlyWxjxaQSIxSiW8RRqrGO1xtjksQ7YrI2K3ADMw/IxKwtFnLjDAdoEhnsDHcG0efa+UqojiCayhb2r+htuXu49X1TCqSOGoIt6Sz5BpM0MZoN6Tr6Bz9ZM6izNE4xDXEEeRKeR+f9tGVd0/Z1AITNznE5E1am4sRGUkhHawzEGLMV1ni1VcffnDb18patDP8HmS9CocjUOPKS82Kk0uuCus1G6Kvvgg3gk682xv9P74UNDF3W9sbGbgbcPkC2jLt4UmwZtvvc2DJ05xWxbeT0RKgvULJpstRQ0uEhTm7jO9fWRja9CdoZcHx0hq34Dy3qVbU=
+sidebar_class_name: "get api-method"
+info_path: docs/Resources/PragmAPI/Reference/pragma-node
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>get_entry</h1>
+
+<MethodEndpoint method={"get"} path={"/node/v1/data/{base}/{quote}"}></MethodEndpoint>
+
+
+
+get_entry
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"base","in":"path","description":"Base Asset","required":true,"schema":{"type":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"quote","in":"path","description":"Quote Asset","required":true,"schema":{"type":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"timestamp","in":"path","description":"The unix timestamp in seconds. This endpoint will return the first update whose\ntimestamp is <= the provided value.","required":true,"schema":{"type":"integer","format":"int64"},"example":1717632000}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"interval","in":"path","required":true,"schema":{"allOf":[{"type":"string","enum":["1min","15min","1h","2h","1d","1w"],"title":"Interval"}],"nullable":true}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"routing","in":"path","required":true,"schema":{"type":"boolean","nullable":true}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"aggregation","in":"path","required":true,"schema":{"allOf":[{"type":"string","enum":["median","mean","twap"],"title":"AggregationMode"}],"nullable":true}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"entry_type","in":"path","required":true,"schema":{"allOf":[{"type":"string","enum":["spot","perp","future"],"title":"EntryType"}],"nullable":true}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"expiry","in":"path","required":true,"schema":{"type":"string","nullable":true}}}></ParamsItem></ul></div></details><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+Get median entry successfuly
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"decimals"} required={true} schemaName={"int32"} qualifierMessage={undefined} schema={{"type":"integer","format":"int32","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"num_sources_aggregated"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"pair_id"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"price"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"timestamp"} required={true} schemaName={"int64"} qualifierMessage={undefined} schema={{"type":"integer","format":"int64","minimum":0}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"[\n  {\n    \"decimals\": 0,\n    \"num_sources_aggregated\": 0,\n    \"pair_id\": \"string\",\n    \"price\": \"string\",\n    \"timestamp\": 0\n  }\n]"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

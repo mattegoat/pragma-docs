@@ -1,0 +1,42 @@
+---
+id: get-onchain-entry
+title: "get_onchain_entry"
+description: "get_onchain_entry"
+sidebar_label: "get_onchain_entry"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVsFu2zAM/ZVApw3IlrQbdvCtA4piGLZuXXcqAkOxmVitLKuSnDYI/O8jZSWWGzdtukvsWDTfI/lIesMcX1qW3LDMcAdJUnCVSzA2SSqVFVyoJFmCS0E5s2azMas0oKGo1LecJYyOgl0wGTPNDS/BoQ90u2EK/6DlnFvAQ6HwXnNX4H0ONjNCkzN8+BUNRmfWgsMjA/e1MIAQztQwZjYroOQs2TC31uTOOiPUkjXNeIdwX1fuMMRvsvgvDAXuoTJ3W5T7GnzIfZifO6PXQowZqLqkKljQlRQcn5SYU4SjnDvhJESOY0Z8uTSw9BU5zOqsMxz9qHLo0VtwaXv8uJSXC1+/55iWkAtOmCX4i3vgOiYb4Xm4Bs9ULSWf0zHlIw7DiRKs46U+HMR1ZHaAfeAslIMlGLRdVKbkrn305TPbZzIjf1ZXyoIlD6fTKV366BfgRq6AUVD8aKv4rEIg5XzetJYi81FPbi29tdnnVc1vIetL8AYVK0wqcnwquXVprXPsxzyNE6ONyMDnJBMlxkxxzFNb1SYDm26VAOSDk8hTjzdmK26Ep2SpQNpQDzvRBhoZ7iufQisxKRicjY65MZziFg5K+2Jc9VwKW/gytFSjSNxjWnBLndrFuUexNR5i1/keOg1oQ0cd2qvUUgolSpL9tOk4Dw2KnfovW4mce4U0e3qLavgSgU+nTwk8o4/jIxkWz/GEttIdLNGzxYtUOSAhnueCDrn81RNDsMMhNO8zW8gKr01cBOzXuA5XocHJqGmejpahVYZrrKjCnvObDZdKwiYK59lkdTIJ5pMNLbdmsvEbqCGdQ1Yb4dZ/qPNDn2mR3sE67iItvsN6O+8K4LkPKAxEbfiy5Cka0VtEV6hF5V8P0bUWH1Q7y/vB0BTBvFOwyW7G+qTjWm5Nph9PPk59hSrrSq4iQ4x2b8b1/O9icPDoJlqiIXmqjfT96tN0wwKz1Qn+BHd4l4QvgaTd19jtBRIg+43P418jm4YetxuAVlAuLPVON+mfkNnNX/buKkye96NuCw9y9bWI9vmKyzok6RjAga16AK6/rN8IGe/AA1jx4uiQZqHv/Ch6a2p7n2qDFLYSV+sYfUvNK+C4oCP0/lfcG+Bb4TUzNAxdR5loz86yDLSL3tpb6JTC3Vy4OL/G3vwHiJPcnw==
+sidebar_class_name: "get api-method"
+info_path: docs/Resources/PragmAPI/Reference/pragma-node
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>get_onchain_entry</h1>
+
+<MethodEndpoint method={"get"} path={"/node/v1/onchain/{base}/{quote}"}></MethodEndpoint>
+
+
+
+get_onchain_entry
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"base","in":"path","description":"Base Asset","required":true,"schema":{"type":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"quote","in":"path","description":"Quote Asset","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"network","in":"query","description":"Network","required":true,"schema":{"type":"string","enum":["sepolia","mainnet"],"title":"Network"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"aggregation","in":"query","description":"Aggregation Mode","required":false,"schema":{"allOf":[{"type":"string","enum":["median","mean","twap"],"title":"AggregationMode"}],"nullable":true}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"timestamp","in":"query","description":"Timestamp","required":false,"schema":{"type":"integer","format":"int64","nullable":true}}}></ParamsItem></ul></div></details><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+Get the onchain entry
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"asset_type"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>components</strong><span className={"openapi-schema__name"}> object[]</span><span className={"openapi-schema__divider"}></span><span className={"openapi-schema__nullable"}>nullable</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"price"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"publisher"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"source"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"timestamp"} required={true} schemaName={"int64"} qualifierMessage={undefined} schema={{"type":"integer","format":"int64","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"tx_hash"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"decimals"} required={true} schemaName={"int32"} qualifierMessage={undefined} schema={{"type":"integer","format":"int32","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"last_updated_timestamp"} required={true} schemaName={"int64"} qualifierMessage={undefined} schema={{"type":"integer","format":"int64","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"nb_sources_aggregated"} required={true} schemaName={"int32"} qualifierMessage={undefined} schema={{"type":"integer","format":"int32","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"pair_id"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"price"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>variations</strong><span className={"openapi-schema__name"}> object</span><span className={"openapi-schema__divider"}></span><span className={"openapi-schema__required"}>required</span></span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem name={"property name*"} required={false} schemaName={"float"} qualifierMessage={undefined} schema={{"type":"number","format":"float"}} collapsible={false} discriminator={false}></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"asset_type\": \"string\",\n  \"components\": [\n    {\n      \"price\": \"string\",\n      \"publisher\": \"string\",\n      \"source\": \"string\",\n      \"timestamp\": 0,\n      \"tx_hash\": \"string\"\n    }\n  ],\n  \"decimals\": 0,\n  \"last_updated_timestamp\": 0,\n  \"nb_sources_aggregated\": 0,\n  \"pair_id\": \"string\",\n  \"price\": \"string\",\n  \"variations\": {}\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

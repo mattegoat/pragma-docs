@@ -1,0 +1,42 @@
+---
+id: get-ohlc
+title: "get_ohlc"
+description: "get_ohlc"
+sidebar_label: "get_ohlc"
+hide_title: true
+hide_table_of_contents: true
+api: eJzFVt1v2zYQ/1cIPm2AF9vd1gJC+5ANRVdsQ7Eue8oCg5HOEluKZMiTHcPQ/747SlHouF/ziswPsnS8u999H/cSVR1lcSnLoBCKolG2MhBiUdSAK9eYUl7NpPNAx9rZ15Us5HQyk14F1QKSAOnYS0sfxHCtItChtvTuFTb0XkEsg/asg4g/EYM4jxGQjgLcdDoAacbQwUzGsoFWyWIvcedZXcSgbS37fjYh3HQOPw3xB3P8JwzULURUrf8kzkUDorP6VkzsQlsRoXS2imfiotFRgK280xbFVhsjAmAXrEASXOsQUXS+otiLbeMi/G0zPVE8f5H4fHAbXUElNsp0cPYlDhEc1BCIde1Cq3AgPf1B9jMJt6TeENfy2fLZ0++fLBaLzG+WDAT0wO2PIypj3qxT/g+DSUC2a7m4li1pmsnlj+M/63vCj2XFjy3XGGpkk+TrO/ieiLYzRl0znUHz7ATX4QDyZUaOpl07Z0CxER9Xreo6QJ3q/SvGoIVKJ+B2wMet8rnf5/eov7sKPuM+WAy7VcL6eiZG77hZqNm55tcd1SnkJr5k0AsW/oxxt16H3b9NzWTOQ8VXLEy22QiR+ale+e+wD18Bije//PazoF5SInZlCTGuO8NmUC8iBSwFwXujyxTl+bvIkvtjS1QIKpmP0MaM7q7fQXk4Ti7JPR1WmuuYkTlc1K0UQtSDtYl6om6eBTKNX64Y47b0bHTN4SwNTYtjtIGct3/izwmsJv9O2nNCQr0fiff55/imGuA5OTn+oSE6iVBaWOrtmD8649/DIZptFNomjRu3TFowyNbPLbXEfLOcZ705L9OuiqjL9/M975x+vk+LoSdBmsBd0Lj7k5M7xEZ5vXoPuzwZXv8KU6E2oKoUgLGMfVB1q1bExFJstbZrl8RH7waO79i4o8XAkdYlsNPF1BkczQ1ty4FlcbY8WzDJu4itshkjeS/GiByonUxHuMW5N4osJwVdMHw2ROtSjgZtlvQ4nGZZzOirGDd1MexTqibaQcga9imgfwXT90y+6YCyXlzS60YFPXQnTZJKR36nfK2ViXBk7NR58pu3Y11/Kw62/wfduUuP5dyknTcENGVvuF7wuDkJ/fBicAL8EKuT8f+nC8MJjt5fgE529jTg6QbyyLh3d4pHhs079JGhs2vEYyMPd4T+ijjHwcsDZTg8p+3tMRM7Wtt8KZhWxauXFzSe/wESZ1Fl
+sidebar_class_name: "get api-method"
+info_path: docs/Resources/PragmAPI/Reference/pragma-node
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>get_ohlc</h1>
+
+<MethodEndpoint method={"get"} path={"/node/v1/aggregation/candlestick/{base}/{quote}"}></MethodEndpoint>
+
+
+
+get_ohlc
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"base","in":"path","description":"Base Asset","required":true,"schema":{"type":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"quote","in":"path","description":"Quote Asset","required":true,"schema":{"type":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"timestamp","in":"path","description":"The unix timestamp in seconds. This endpoint will return the first update whose\ntimestamp is <= the provided value.","required":true,"schema":{"type":"integer","format":"int64"},"example":1717632000}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"interval","in":"path","required":true,"schema":{"allOf":[{"type":"string","enum":["1min","15min","1h","2h","1d","1w"],"title":"Interval"}],"nullable":true}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"routing","in":"path","required":true,"schema":{"type":"boolean","nullable":true}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"aggregation","in":"path","required":true,"schema":{"allOf":[{"type":"string","enum":["median","mean","twap"],"title":"AggregationMode"}],"nullable":true}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"entry_type","in":"path","required":true,"schema":{"allOf":[{"type":"string","enum":["spot","perp","future"],"title":"EntryType"}],"nullable":true}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"expiry","in":"path","required":true,"schema":{"type":"string","nullable":true}}}></ParamsItem></ul></div></details><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+Get OHLC data successfuly
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>data</strong><span className={"openapi-schema__name"}> object[]</span><span className={"openapi-schema__divider"}></span><span className={"openapi-schema__required"}>required</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"close"} required={true} schemaName={""} qualifierMessage={undefined} schema={"integer"}></SchemaItem><SchemaItem collapsible={false} name={"high"} required={true} schemaName={""} qualifierMessage={undefined} schema={"integer"}></SchemaItem><SchemaItem collapsible={false} name={"low"} required={true} schemaName={""} qualifierMessage={undefined} schema={"integer"}></SchemaItem><SchemaItem collapsible={false} name={"open"} required={true} schemaName={""} qualifierMessage={undefined} schema={"integer"}></SchemaItem><SchemaItem collapsible={false} name={"time"} required={true} schemaName={""} qualifierMessage={undefined} schema={"string"}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"pair_id"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"[\n  {\n    \"data\": [\n      {}\n    ],\n    \"pair_id\": \"string\"\n  }\n]"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

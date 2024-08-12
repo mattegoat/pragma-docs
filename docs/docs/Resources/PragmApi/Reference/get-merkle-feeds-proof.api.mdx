@@ -1,0 +1,42 @@
+---
+id: get-merkle-feeds-proof
+title: "get_merkle_feeds_proof"
+description: "get_merkle_feeds_proof"
+sidebar_label: "get_merkle_feeds_proof"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9VU1v00AQ/SurPYEUkhQhDr6BBAUBpSrllEbRxh7H26x3t7vrtJHl/87M2kltpwWpB05xxjPz3rz5cM2D2HieLHjqRIAkKYTOFDifJCW4rYJVDpDhvw2EVWexzpicLyfcWMAgafTXjCe85xFjOr8Jt8KJEgImRZyaa/yD7sZS5KoQvkAfqdFkRaDnDHzqZHyNxi/wIDJIZSkUI2dmchYKYG08uju4q6QDpBBcBRPu0wJKwZOah70lJB+c1BveNJMjuIZwb9x2BPx8JqHUzzyyH+accNBVSfJ5sEZJgZZSSI35SaAggyLviw6uQZuulBJrMhNIn9RamXS7ktkLWBkNQ35mfQtpGEQv+LXYECvsCzYuSPCUhIwnWo2b8JGoMRyV6Y2+0R/oiXmLXcn36M4Ey/ZYhEyZgxwc6BRYMGiOJU17Mn3HIfPE6xJ0Rkg9lSII0WmiKn+r5KIq1+BOi+nsj/VIHWCDlgnPjStFaE3v31GfpJYlsZoj3vLpimUGOshcgmNSx7GjNDSCNIoTpiMeMy5qw0e14Fo81fEl1eKt0b4l/XY+p58h/jmEiNduFDvsUmqwIB1i961VMo37N7v1FFSfzr5wTuxpoAKUEexAEPP/iKkvKfNVx4cqeC5wuExjva5HXNm6CuxehoIVowUGj1r6ACIjHT9LUBkDBSWW5afUe2r/KPuztwXvSmG66xNPDa5MwmfaZDDbnc36MbMYM6t7h6fBEA9p5WTY/yLp2oYIK1db2PdltPIb7A+LWSD3OFPd4lonNqVYoRNFEXupc9NXu/V4Q7ROdgsN2Ecg9ZPjLSCBd3gxW5f59Gw6J5M1PpRC9xyx7oPuscrjpAxAjoUEeAgzq/BEUbrKKXrXqrbgHb3dWRT2UTke1yxmTfpnGwe5QEIUWtdr4eG3U01D5rsKHOq3wMedcLKdfrxOmfT0jA3LhfJwwvI43vzVVbfur9k/vwBP1nbonKa27YSqoNU6Nnbw9aFj8yJiL4M+fHv+M+zx69Is0bcbYepJ+/pDmoINvcCT80J367hu55+ucdD/AHjt01o=
+sidebar_class_name: "get api-method"
+info_path: docs/Resources/PragmAPI/Reference/pragma-node
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>get_merkle_feeds_proof</h1>
+
+<MethodEndpoint method={"get"} path={"/node/v1/merkle_feeds/proof/{option_hash}"}></MethodEndpoint>
+
+
+
+get_merkle_feeds_proof
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"option_hash","in":"path","description":"Hexadecimal hash of the option","required":true,"schema":{"type":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"network","in":"path","required":true,"schema":{"allOf":[{"type":"string","enum":["sepolia","mainnet"],"title":"Network"}],"nullable":true}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"block_id","in":"path","required":true,"schema":{"allOf":[{"oneOf":[{"type":"object","required":["Tag"],"properties":{"Tag":{"type":"string","description":"Block tag.\n\nA tag specifying a dynamic reference to a block.","enum":["Latest","Pending"],"title":"BlockTag"}}},{"type":"object","required":["Number"],"properties":{"Number":{"type":"integer","format":"int64","minimum":0}}}],"description":"Block identifier in the form of hash, number or tag.","title":"BlockId"}],"nullable":true}}}></ParamsItem></ul></div></details><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+Get the merkle proof
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"title"} required={false} schemaName={""} qualifierMessage={undefined} schema={"GetMerkleProofResponse"}></SchemaItem><SchemaItem collapsible={false} name={"type"} required={false} schemaName={""} qualifierMessage={undefined} schema={"array"}></SchemaItem><SchemaItem collapsible={false} name={"items"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"description"} required={false} schemaName={""} qualifierMessage={undefined} schema={"The merkle proof but with hexadecimal hashes instead of Field elements."}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"[\n  [\n    \"string\"\n  ]\n]"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

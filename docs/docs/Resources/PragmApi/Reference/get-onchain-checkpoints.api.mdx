@@ -1,0 +1,42 @@
+---
+id: get-onchain-checkpoints
+title: "get_onchain_checkpoints"
+description: "get_onchain_checkpoints"
+sidebar_label: "get_onchain_checkpoints"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVcFu2zAM/RVDpw3I6nQYdvCtG4Zi2LBh3XYqgkC1mVitLakSnTUz/O8jLcWxm7Rou0tiUxQf+chHtwLl2ovsUuROImRZKXVRgfNZZnReSqWzbA24zEvIb6xRGr1YzISxQO7K6M+FyAQ7RO+J40xY6WQNSPEIohWaXsj/SnqgQ6Xp2Uos6bkAnztlOSQZP5BDcuY9IB05uG2UAwJC18BMeIKopchagVvL4Tw6pdei62YDwm1j8HGIH+zxXxga8I9xNzuU2wbc9gDm2+D0VIiZAN3U3BEP1lRKkqUmZgmOmUeFFYwCjzOqVK3w8Xy+sktiVokDb40mmr36C5P0VrLyx/KjlsIaHPmujKslBtP7d2TQTVXJK84r1FYrrWouYt51C44dsDxHezuf8980rXPABEtI4hQloylKCC2RiZWKoXNDWWjkCNLaSuX9FKbXnsO0h0lL5ySzoBBqP7Kbq2vIp52/FHi3LKXnWbFO5cwKqho8ytrSswddgFvKoqB6ehVYxzpAFQoLdw5H5uDmMZc90JMIHxE8G9I+Nq3DvHwcGBUjK/H+PVC+P/cXsV10v+MQ01Y9LHYSemniPui1T7LLRKpNAenmNI2X0tGltOVV0KVtr9euJzlvnMLtT25k4FVatbyB7bipVn2B7W7QS5BFz1JUgXVyXcslOfEtLkDplemvx6qDxxtO7EAgZKCpAi4/G4TFlG1oiQWX+cnpyZxN1nispR45UuXHZvg+ylAJwh2mtiJ3jte4qh+knrhLEfPbnNJPDMoKmITN4i7NwsajoSwpKb7d9tz+dlXXsTmsA17ChfKs1b3S76U2SEy8uojieJ3s99jRzPv+jDbiRlZNJO45gA9up0dAd0tvD7ngF6fCQnppwZNP0FH43TDq7Rh9l1bfl+dVP0Kffp1eAB/GoVuQY9QHMxHOzvIc7Jiyg03KFA5qPv/0i1T0D4NVy2Y=
+sidebar_class_name: "get api-method"
+info_path: docs/Resources/PragmAPI/Reference/pragma-node
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>get_onchain_checkpoints</h1>
+
+<MethodEndpoint method={"get"} path={"/node/v1/onchain/checkpoints/{base}/{quote}"}></MethodEndpoint>
+
+
+
+get_onchain_checkpoints
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"base","in":"path","description":"Base Asset","required":true,"schema":{"type":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"quote","in":"path","description":"Quote Asset","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"network","in":"query","description":"Network","required":true,"schema":{"type":"string","enum":["sepolia","mainnet"],"title":"Network"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"limit","in":"query","description":"Limit of response size","required":false,"schema":{"type":"integer","format":"int64","nullable":true,"minimum":0}}}></ParamsItem></ul></div></details><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+Get the onchain checkpoints for a pair
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"price"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"sender_address"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"timestamp"} required={true} schemaName={"int64"} qualifierMessage={undefined} schema={{"type":"integer","format":"int64","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"tx_hash"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"[\n  {\n    \"price\": \"string\",\n    \"sender_address\": \"string\",\n    \"timestamp\": 0,\n    \"tx_hash\": \"string\"\n  }\n]"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

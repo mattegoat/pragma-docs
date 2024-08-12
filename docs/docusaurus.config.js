@@ -1,6 +1,3 @@
-const math = require("remark-math");
-const katex = require("rehype-katex");
-
 module.exports = {
   title: "Pragma",
   tagline: "Documentation and Guides",
@@ -64,25 +61,13 @@ module.exports = {
   },
   presets: [
     [
-      "docusaurus-preset-openapi",
-      /** @type {import('docusaurus-preset-openapi').Options} */
+      "classic",
       {
-        api: {
-          path: "docs/Resources/PragmApi/openapi.json",
-          routeBasePath: "/Resources/PragmApi/get-started",
-        },
-        proxy: {
-          "/proxy": {
-            target: "https://api.dev.pragma.build",
-            pathRewrite: { "^/proxy": "" },
-          },
-        },
         docs: {
           path: "docs",
-          remarkPlugins: [math],
-          rehypePlugins: [katex],
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
+          docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
           // editUrl: 'https://github.com/Astraly-Labs/astraly-docs/tree/main/',
         },
         sitemap: {
@@ -92,8 +77,6 @@ module.exports = {
           filename: "sitemap.xml",
         },
         blog: {
-          remarkPlugins: [math],
-          rehypePlugins: [katex],
           path: "blog/",
           blogTitle: "Engineering Blog",
           blogSidebarCount: 0,
@@ -109,6 +92,28 @@ module.exports = {
       },
     ],
   ],
+  plugins: [
+    'my-loaders',
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: "api", // plugin id
+        docsPluginId: "classic", // configured for preset-classic
+        config: {
+          pragma: {
+            specPath: "./openapi.json",
+            outputDir: "docs/Resources/PragmAPI/Reference",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+            },
+            hideSendButton: false,
+            baseUrl: "https://api.dev.pragma.build"
+          },
+        }
+      },
+    ]
+  ],
+  themes: ["docusaurus-theme-openapi-docs"], // export theme components
   stylesheets: [
     {
       href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",

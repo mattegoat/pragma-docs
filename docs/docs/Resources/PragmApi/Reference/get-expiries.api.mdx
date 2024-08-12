@@ -1,0 +1,42 @@
+---
+id: get-expiries
+title: "get_expiries"
+description: "get_expiries"
+sidebar_label: "get_expiries"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVE1v2zAM/SuGThuQ1Wk37OBbBxTFsNO67VQUAWszjjpLVik6aGD4v4+UnTRuug1oLlb4zcdH9oahjqa4NSUBY1FswFcNUiyKGnmFT8GSxWjuFqYNKCa29V8rU5iZdmECEDhkcZRYvfHyR4zuIaIorZd3AN7Iu8JYkg0aR4RfxCC7jBFZVISPnSWU6EwdLkwsN+jAFL3hXdBwkcn62gzD4pDhsWv53ym+q8UbctypcQytj9Kg6C+WS/3Mg18jZ7AF28B9g9m6444w28OSrVvKIAtgSTKXrWf0rDEghMaWCcv8IWqg/rQQIIKddsbo4pG8vX/Act7KrfGdW8W2oxLjCuqasJZhVmkullY2vciWihRbh5HBhYRUaR00abyBdMBsx24PmufEVuqvUVuRvhzwKPp4IQJnvXWdM8VyWPytltcCzfz2pZ7OYl/8a5rndv5X6edP84zJmRscx3jlmXY308Bl/Pp7SaUXnBe+b9ppFxLUwr7C5L6tMN+e5xUw5L2uwJD3iadDPjLkOEjEsiPLux86/xF7CHb1G3fHXAj2G+72NN8gVKm7aQcCQe1gJUbqpWVbv26T+9TfaPFBKzvZDxEIGVG7Lg5rpchuZZlHk+XZ+dkyjaGN7MAfGUrr2VE3s9CH8hmfOA8NSPUSpKNGdSNcQt2xqO25ugtk8immu1Hst/slbELXjZSi7n1C+Bc1w6Dixw5JkLuV5xbI6lqmg1TZqG+Z1lpYjSeVHrbTvLuZ9up9NrtOr/ayn4/X4Wyh6XBENI1vPH96rN6UfX643pB+RG+4E8OJMorEqLssSwx85HVyk/QAHhh+ffVTiPUHw08b6Q==
+sidebar_class_name: "get api-method"
+info_path: docs/Resources/PragmAPI/Reference/pragma-node
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>get_expiries</h1>
+
+<MethodEndpoint method={"get"} path={"/node/v1/data/{base}/{quote}/future_expiries"}></MethodEndpoint>
+
+
+
+get_expiries
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"base","in":"path","description":"Base Asset","required":true,"schema":{"type":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"quote","in":"path","description":"Quote Asset","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+Get available future expiries for a pair
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"decimals"} required={true} schemaName={"int32"} qualifierMessage={undefined} schema={{"type":"integer","format":"int32","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"num_sources_aggregated"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"pair_id"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"price"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"timestamp"} required={true} schemaName={"int64"} qualifierMessage={undefined} schema={{"type":"integer","format":"int64","minimum":0}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"[\n  {\n    \"decimals\": 0,\n    \"num_sources_aggregated\": 0,\n    \"pair_id\": \"string\",\n    \"price\": \"string\",\n    \"timestamp\": 0\n  }\n]"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

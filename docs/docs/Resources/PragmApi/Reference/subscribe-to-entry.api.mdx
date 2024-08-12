@@ -1,0 +1,40 @@
+---
+id: subscribe-to-entry
+title: "subscribe_to_entry"
+description: "subscribe_to_entry"
+sidebar_label: "subscribe_to_entry"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVEtv2zAM/iuGzlmd7OhbD8Uw7LBi6U5BYNA2a6uzJVWigwVG/vtIPxLHzR7oTpb4+vh9NNUpgjKoZKdyD4RJUoEpavQhSUKbhdzrDFOyKRryR7VfKeuQA7U1nwuVqBsxK+UxOGsCctlOfVyv5VOgxDlJ5LTtlBaRjSCqdaDIPkdSQHPaSuXWEN8kE5yrdd5Dxi9B0jsV8gobkBMdHXJB8B4EWhM2YWa32Qvm1Pf02mqPhTC1HvIaU+d13oORbjAQNE74OS8MSQ/dX4e+E6+sbQZ1CiEgpbpgb4OFBjOU5WvQpQFq/XTGYkJ809Cy1gU6sHamVKdF9VsBF7zfeS8d/J/GM85zKUeeDJj+wONCgb+P44/sr3Dex37q65b/0t1bb++mWkzbXsTHNuN/u0L/2HdzmkfcC4mvfbOT99+rT/vzZB9k6b6NGycIPcj1ut3c0gapsrLDJcrwHFDFl9jYAuPDJi6AID4nyogwb72m41Z2bxgHOL3QiS1f+oFqwa0QCvR8M9CI13koG0g5SLKkT22ebZ8+EhsiPkgTasmCDfwQoNDkjLGkjOTAz9UQsr7b3K3F5GygBswsMMyfnEmDK4AzCcKfFLsamAOXan0tvkGfnRpbO2wknTUSZc4q8Q9bMbLEdV0GAb/7+nQS82uLjJjs+HgAryETurs91x9FSnad6rVU93mOTkZygLodRF28gKf9bHyfHp5Yyl95PwVF
+sidebar_class_name: "get api-method"
+info_path: docs/Resources/PragmAPI/Reference/pragma-node
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>subscribe_to_entry</h1>
+
+<MethodEndpoint method={"get"} path={"/node/v1/data/subscribe"}></MethodEndpoint>
+
+
+
+subscribe_to_entry
+
+<div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+Subscribe to a list of entries
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>oracle_prices</strong><span className={"openapi-schema__name"}> object[]</span><span className={"openapi-schema__divider"}></span><span className={"openapi-schema__required"}>required</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"global_asset_id"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"median_price"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"signature"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>signed_prices</strong><span className={"openapi-schema__name"}> object[]</span><span className={"openapi-schema__divider"}></span><span className={"openapi-schema__required"}>required</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"oracle_asset_id"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"oracle_price"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"signature"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"signing_key"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"timestamp"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"timestamp"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"[\n  {\n    \"oracle_prices\": [\n      {\n        \"global_asset_id\": \"string\",\n        \"median_price\": \"string\",\n        \"signature\": \"string\",\n        \"signed_prices\": [\n          {\n            \"oracle_asset_id\": \"string\",\n            \"oracle_price\": \"string\",\n            \"signature\": \"string\",\n            \"signing_key\": \"string\",\n            \"timestamp\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"timestamp\": \"string\"\n  }\n]"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

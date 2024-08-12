@@ -1,0 +1,42 @@
+---
+id: get-onchain-publishers
+title: "get_onchain_publishers"
+description: "get_onchain_publishers"
+sidebar_label: "get_onchain_publishers"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVE1v2zAM/SuBThuQ1cmOvg3YUAwDtqHrTkEQKDYTq5UlVaKzBYb/+0hbdeQ666EXGyQfyccPsRUoj0HkG1F4iZDnlTSlBh/y3Jqiksrk+RFw55q9VqEig9guhXVAaGXN11Lkgu0RnOKWwkkva0AW8k0rDAkEN4B/rH8kuzIkPjXgzySUEAqvHEcl7fcR5OGpUR4oEfoGliIUFdRS5K3As+N4Ab0yR0KCaWquJICzWknS1ESJ0jFlVKghCdx1y5FRKVHu+mivcvpMsEWEvYGVs7gDg31g6p8bhUODjYcoJlQ53z1H67otZ6QIJkDgJB9XK/5N+d0CLrCCRZzFYjKLwhqkDOwlndOq6OeXPQR2bef8pfeSySmEOiR6u3+AAicd2AhVkqJvJvc80MR3j8DeskB1glEobGNwJ8uSigmjmWt2nncK1VDeS+Ssrd3oezHtrdUgzcXWp73mqsp0QAnha+BhR2aG7jKnn899FomShvFjmMNoDndxhOTdcYDp+P77jOgJVTY+tP5VYUVCZmwJ2WmdRZ9s4hOgaLzC8y+ea2yqUy+KJM23fjL90lcgS6rhuWIaiTzWckcg9mK+yhxs7x5rHBAfmMjssZCClgy42nx8aNygExEcIKub9c2KVc4GrKVJgFTp9TWeJBkLQfiLmdOE5nCN12wb+rQRkd5pTZ8Yk7s4OWgVMWBs2+5lgN9edx2rhzvAt6tUQe41b/tB6gAzIuPzEu/u4sN4v7gcsas8+2Ek5/AkdRO79MaE6YV6JWV67y5Jtyx4xVmp5C2h40Zw/YPjp6IAh4nX7JRwlHFfb7/c0978A3txM7k=
+sidebar_class_name: "get api-method"
+info_path: docs/Resources/PragmAPI/Reference/pragma-node
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>get_onchain_publishers</h1>
+
+<MethodEndpoint method={"get"} path={"/node/v1/onchain/publishers"}></MethodEndpoint>
+
+
+
+get_onchain_publishers
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"network","in":"query","description":"Network","required":true,"schema":{"type":"string","enum":["sepolia","mainnet"],"title":"Network"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"data_type","in":"query","description":"Data type","required":true,"schema":{"type":"string","enum":["spot_entry","perp_entry","future_entry"],"title":"DataType"}}}></ParamsItem></ul></div></details><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+Get the onchain publishers
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"account_address"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"active"} required={true} schemaName={"boolean"} qualifierMessage={undefined} schema={{"type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"active_key"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"id"} required={true} schemaName={""} qualifierMessage={undefined} schema={"string"}></SchemaItem><SchemaItem collapsible={false} name={"master_key"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"name"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"[\n  {\n    \"account_address\": \"string\",\n    \"active\": true,\n    \"active_key\": \"string\",\n    \"master_key\": \"string\",\n    \"name\": \"string\"\n  }\n]"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      
