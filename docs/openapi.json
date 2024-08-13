@@ -36,19 +36,18 @@
           },
           {
             "name": "timestamp",
-            "in": "path",
+            "in": "query",
             "description": "The unix timestamp in seconds. This endpoint will return the first update whose\ntimestamp is <= the provided value.",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "integer",
-              "format": "int64"
-            },
-            "example": 1717632000
+              "nullable": true
+            }
           },
           {
             "name": "interval",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "schema": {
               "allOf": [
                 {
@@ -60,8 +59,8 @@
           },
           {
             "name": "routing",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "schema": {
               "type": "boolean",
               "nullable": true
@@ -69,8 +68,8 @@
           },
           {
             "name": "aggregation",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "schema": {
               "allOf": [
                 {
@@ -82,8 +81,8 @@
           },
           {
             "name": "entry_type",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "schema": {
               "allOf": [
                 {
@@ -95,8 +94,8 @@
           },
           {
             "name": "expiry",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "schema": {
               "type": "string",
               "nullable": true
@@ -250,19 +249,18 @@
           },
           {
             "name": "timestamp",
-            "in": "path",
+            "in": "query",
             "description": "The unix timestamp in seconds. This endpoint will return the first update whose\ntimestamp is <= the provided value.",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "integer",
-              "format": "int64"
-            },
-            "example": 1717632000
+              "nullable": true
+            }
           },
           {
             "name": "interval",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "schema": {
               "allOf": [
                 {
@@ -274,8 +272,8 @@
           },
           {
             "name": "routing",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "schema": {
               "type": "boolean",
               "nullable": true
@@ -283,8 +281,8 @@
           },
           {
             "name": "aggregation",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "schema": {
               "allOf": [
                 {
@@ -296,8 +294,8 @@
           },
           {
             "name": "entry_type",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "schema": {
               "allOf": [
                 {
@@ -309,8 +307,8 @@
           },
           {
             "name": "expiry",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "schema": {
               "type": "string",
               "nullable": true
@@ -395,8 +393,8 @@
           },
           {
             "name": "network",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "schema": {
               "allOf": [
                 {
@@ -408,8 +406,8 @@
           },
           {
             "name": "block_id",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "schema": {
               "allOf": [
                 {
@@ -455,8 +453,8 @@
           },
           {
             "name": "network",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "schema": {
               "allOf": [
                 {
@@ -468,8 +466,8 @@
           },
           {
             "name": "block_id",
-            "in": "path",
-            "required": true,
+            "in": "query",
+            "required": false,
             "schema": {
               "allOf": [
                 {
@@ -525,7 +523,6 @@
           {
             "name": "network",
             "in": "query",
-            "description": "Network",
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/Network"
@@ -534,7 +531,6 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Limit of response size",
             "required": false,
             "schema": {
               "type": "integer",
@@ -586,7 +582,6 @@
           {
             "name": "network",
             "in": "query",
-            "description": "Network",
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/Network"
@@ -595,17 +590,14 @@
           {
             "name": "timestamp",
             "in": "query",
-            "description": "Timestamp range",
-            "required": false,
+            "required": true,
             "schema": {
-              "type": "string",
-              "nullable": true
+              "$ref": "#/components/schemas/TimestampRange"
             }
           },
           {
             "name": "chunk_interval",
             "in": "query",
-            "description": "Chunk time length for each block of data",
             "required": false,
             "schema": {
               "allOf": [
@@ -619,7 +611,6 @@
           {
             "name": "routing",
             "in": "query",
-            "description": "Activate routing functionnality",
             "required": false,
             "schema": {
               "type": "boolean",
@@ -674,7 +665,6 @@
           {
             "name": "network",
             "in": "query",
-            "description": "Network",
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/Network"
@@ -683,7 +673,6 @@
           {
             "name": "data_type",
             "in": "query",
-            "description": "Data type",
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/DataType"
@@ -732,7 +721,6 @@
           {
             "name": "network",
             "in": "query",
-            "description": "Network",
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/Network"
@@ -741,7 +729,6 @@
           {
             "name": "aggregation",
             "in": "query",
-            "description": "Aggregation Mode",
             "required": false,
             "schema": {
               "allOf": [
@@ -753,13 +740,30 @@
             }
           },
           {
+            "name": "routing",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "nullable": true
+            }
+          },
+          {
             "name": "timestamp",
             "in": "query",
-            "description": "Timestamp",
             "required": false,
             "schema": {
               "type": "integer",
               "format": "int64",
+              "nullable": true
+            }
+          },
+          {
+            "name": "components",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
               "nullable": true
             }
           }
@@ -805,7 +809,7 @@
           },
           {
             "name": "start",
-            "in": "path",
+            "in": "query",
             "description": "Initial timestamp, combined with final_timestamp, it helps define the period over which the mean is computed",
             "required": true,
             "schema": {
@@ -816,7 +820,7 @@
           },
           {
             "name": "end",
-            "in": "path",
+            "in": "query",
             "description": "Final timestamp",
             "required": true,
             "schema": {
@@ -978,7 +982,9 @@
           },
           "signature": {
             "type": "array",
-            "items": "integer"
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -1009,7 +1015,9 @@
           },
           "signature": {
             "type": "array",
-            "items": "integer"
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -1034,12 +1042,19 @@
           "is_abstract"
         ],
         "properties": {
-          "decimals": "integer",
+          "decimals": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
           "ethereum_address": {
             "type": "string",
             "nullable": true
           },
-          "id": "string",
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
           "is_abstract": {
             "type": "boolean"
           },
@@ -1099,7 +1114,10 @@
           "price"
         ],
         "properties": {
-          "id": "string",
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
           "pair_id": {
             "type": "string"
           },
@@ -1299,7 +1317,10 @@
             "nullable": true,
             "minimum": 0
           },
-          "id": "string",
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
           "pair_id": {
             "type": "string"
           },
@@ -1325,6 +1346,9 @@
       },
       "GetEntryParams": {
         "type": "object",
+        "required": [
+          "timestamp"
+        ],
         "properties": {
           "aggregation": {
             "allOf": [
@@ -1359,14 +1383,9 @@
             "nullable": true
           },
           "timestamp": {
-            "allOf": [
-              {
-                "type": "integer",
-                "format": "int64",
-                "minimum": 0
-              }
-            ],
-            "nullable": true
+            "type": "integer",
+            "format": "int64",
+            "description": "The unix timestamp in seconds. This endpoint will return the first update whose\ntimestamp is <= the provided value."
           }
         }
       },
@@ -1786,17 +1805,17 @@
             "$ref": "#/components/schemas/OptionCurrency"
           },
           "expiration_date": {
-            "type": "integer",
-            "format": "int64"
+            "type": "string",
+            "format": "date"
           },
           "option_type": {
-            "type": "string",
-            "enum": [
-              "C",
-              "P"
-            ]
+            "$ref": "#/components/schemas/OptionType"
           },
-          "strike_price": "integer"
+          "strike_price": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          }
         }
       },
       "Interval": {
@@ -1919,11 +1938,30 @@
           "close"
         ],
         "properties": {
-          "close": "integer",
-          "high": "integer",
-          "low": "integer",
-          "open": "integer",
-          "time": "string"
+          "close": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "high": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "low": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "open": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          }
         }
       },
       "OnchainEntry": {
@@ -1983,8 +2021,20 @@
           "instrument_name": {
             "type": "string"
           },
-          "mark_price": "integer"
+          "mark_price": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          }
         }
+      },
+      "OptionType": {
+        "type": "string",
+        "description": "The possible types for an option.",
+        "enum": [
+          "Put",
+          "Call"
+        ]
       },
       "PerpEntry": {
         "type": "object",
@@ -2031,7 +2081,10 @@
           "active_key": {
             "type": "string"
           },
-          "id": "string",
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
           "master_key": {
             "type": "string"
           },
@@ -2241,16 +2294,18 @@
             }
           },
           "timestamp": {
-            "type": "string"
+            "type": "integer",
+            "format": "int64"
           }
         }
       },
       "TimestampRange": {
-        "type": "string"
+        "type": "string",
+        "description": "Represents a range of timestamps"
       },
       "VolatilityError": {
         "oneOf": [
-          { 
+          {
             "type": "object",
             "required": [
               "InvalidTimestampsRange"
@@ -2580,7 +2635,8 @@
                   }
                 },
                 "timestamp": {
-                  "type": "string"
+                  "type": "integer",
+                  "format": "int64"
                 }
               }
             }
