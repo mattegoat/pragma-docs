@@ -10,7 +10,7 @@ Pragma supports specific pairs that are listed and traded by our data partners. 
 
 ## Asset Pairs
 
-The following asset pairs are officially supported by Pragma. More are added every week, so just reach out on [Twitter](https://twitter.com/PragmaOracle) or [Discord](https://discord.com/invite/N7sM7VzfJB) if you have a specific one you need.
+The following asset pairs are officially supported by Pragma. More are added every week, so just reach out on [Twitter](https://twitter.com/PragmaOracle) or [Discord](https://discord.com/invite/M9aRZtZHU7) if you have a specific one you need.
 
 The `pair_id` is calculated by utf-8 encoding the uppercased string (e.g. `str_to_felt("BTC/USD")`) and used to refer to specific feeds on-chain.
 
@@ -18,32 +18,32 @@ The `pair_id` is calculated by utf-8 encoding the uppercased string (e.g. `str_t
 
 | Ticker     | Pair Id                  | Decimals | Mainnet |
 | ---------- | ------------------------ | -------- | ------- |
-| BTC/USD    | 18669995996566340        | 8        | ✅       |
-| ETH/USD    | 19514442401534788        | 8        | ✅       |
-| WBTC/USD   | 6287680677296296772      | 8        | ✅       |
-| WBTC/BTC   | 6287680677295051843      | 8        | ✅       |
-| BTC/EUR    | 18669995995518290        | 8        | ✅       |
-| WSTETH/USD | 412383036120118613857092 | 8        | ✅       |
-| LORDS/USD  | 1407668255603079598916   | 8        | ✅       |
-| UNI/USD    | 24011449254105924        | 8        | ✅       |
+| BTC/USD    | 18669995996566340        | 8        | ✅      |
+| ETH/USD    | 19514442401534788        | 8        | ✅      |
+| WBTC/USD   | 6287680677296296772      | 8        | ✅      |
+| WBTC/BTC   | 6287680677295051843      | 8        | ✅      |
+| BTC/EUR    | 18669995995518290        | 8        | ✅      |
+| WSTETH/USD | 412383036120118613857092 | 8        | ✅      |
+| LORDS/USD  | 1407668255603079598916   | 8        | ✅      |
+| UNI/USD    | 24011449254105924        | 8        | ✅      |
 
 ### Future
 
 | Ticker   | Pair Id             | Decimals | Mainnet |
 | -------- | ------------------- | -------- | ------- |
-| BTC/USD  | 18669995996566340   | 8        | ✅       |
-| ETH/USD  | 19514442401534788   | 8        | ✅       |
-| BTC/USDT | 4779518975120983124 | 6        | ✅       |
-| ETH/USDT | 4995697254792905812 | 6        | ✅       |
+| BTC/USD  | 18669995996566340   | 8        | ✅      |
+| ETH/USD  | 19514442401534788   | 8        | ✅      |
+| BTC/USDT | 4779518975120983124 | 6        | ✅      |
+| ETH/USDT | 4995697254792905812 | 6        | ✅      |
 
 ### Stablecoins
 
 | Ticker   | Pair Id             | Decimals | Mainnet |
 | -------- | ------------------- | -------- | ------- |
-| USDT/USD | 6148333044652921668 | 6        | ✅       |
-| DAI/USD  | 19212080998863684   | 8        | ✅       |
-| USDC/USD | 6148332971638477636 | 6        | ✅       |
-| LUSD/USD   | 5500394072219931460      | 8        | ✅       |
+| USDT/USD | 6148333044652921668 | 6        | ✅      |
+| DAI/USD  | 19212080998863684   | 8        | ✅      |
+| USDC/USD | 6148332971638477636 | 6        | ✅      |
+| LUSD/USD | 5500394072219931460 | 8        | ✅      |
 
 ## Currencies & Rebasing
 
@@ -55,9 +55,9 @@ Abstract currencies are not tracking a specific token but rather a broader conce
 
 | Currency | Currency Id | Decimals | Mainnet |
 | -------- | ----------- | -------- | ------- |
-| USD      | 5591876     | 8        | ✅       |
-| BTC      | 4346947     | 8        | ✅       |
-| EUR      | 4543826     | 8        | ✅       |
+| USD      | 5591876     | 8        | ✅      |
+| BTC      | 4346947     | 8        | ✅      |
+| EUR      | 4543826     | 8        | ✅      |
 
 ### Concrete Currencies
 

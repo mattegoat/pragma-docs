@@ -10,15 +10,15 @@ The Pragma team is constantly working to improve the network's robustness and fu
 
 ## Native Data From The Most Liquid Markets
 
-We are actively working on building out functionality to pull data (e.g. Uniswap TWAP, overnight rates, DEX liquidity data, etc.) directly from L1 to L2. We're working with Herodotus to ensure the safest bridge possible using storage proofs.
+We are actively working on building out functionality to pull data (e.g. Uniswap TWAP, overnight rates, DEX liquidity data, etc.) directly from L1 to L2. We're working with [Herodotus](https://herodotus.dev) to ensure the safest bridge possible using storage proofs.
 
 ## Further Audits
 
-Pragma Network has already been audited by leading security research firm [Zellic](https://www.zellic.io/) (also audited Pyth, LayerZero, 1inch and many more), report to be released soon. Further audits are upcoming by partners such as Nethermind.
+Pragma Network has already been audited by leading security research firm [Zellic](https://www.zellic.io/) and [Nethermind](https://nethermind.io).
 
-## Pragma X
+## Pragma v2
 
-We're currently working a lot on Pragma X, the V2 of our oracle. Pragma X is an oracle-chain built on [Madara](https://github.com/keep-starknet-strange/madara), and leveraging [SHARP](https://starkware.co/resource/joining-forces-sharp/). It is live on testnet, and the mainnet will follow by the end of the year, don't hesitate to reach out if you want early access to test it out.
+We're currently working a lot on Pragma v2, the second version of our oracle. Pragma v2 is an oracle-chain built on [Madara](https://github.com/keep-starknet-strange/madara), and leveraging [SHARP](https://starkware.co/resource/joining-forces-sharp/). It is live on testnet, and the mainnet will follow by the end of the year, don't hesitate to reach out if you want early access to test it out.
 
 ## Delivering Traditional Finance-Grade Data to DeFi
 
