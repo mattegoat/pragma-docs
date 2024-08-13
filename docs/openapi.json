@@ -8,6 +8,20 @@
     },
     "version": "0.1.0"
   },
+  "servers": [
+    {
+      "url": "https://{environment}.pragma.build",
+      "variables": {
+        "environment": {
+          "default": "api.dev",
+          "enum": [
+            "api.dev",
+            "api.prod"
+          ]
+        }
+      }
+    } 
+  ],
   "paths": {
     "/node/v1/aggregation/candlestick/{base}/{quote}": {
       "get": {
