@@ -8,6 +8,8 @@ sidebar_position: 2
 
 Pragma supports specific pairs that are listed and traded by our data partners. We also support a broader concept of currencies (each pair is a price of the quote currency in terms of the base currency). For pairs not listed, their price can be deduced by "hoping" using pairs that are listed, e.g. we can combine ETH/USD and BTC/USD to get a ETH/BTC feed.
 
+Please read the [risk section](./risks) and contact us before integrating.
+
 ## Asset Pairs
 
 The following asset pairs are officially supported by Pragma. More are added every week, so just reach out on [Twitter](https://twitter.com/PragmaOracle) or [Discord](https://discord.com/invite/M9aRZtZHU7) if you have a specific one you need.

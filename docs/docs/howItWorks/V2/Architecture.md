@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ---
 
-The v2 is taking a layered-approach in order to provide the modularity necessary to anyone's needs. Here is a broad overview of the cake:
+The v2 adopts a layered approach to provide the modularity necessary for any needs. Here's a broad overview of the structure:
 
   <div>
   <img width="100%" height="100%" src="https://i.ibb.co/B49Bcc2/Flowchart-3.png" alt="flowchart contracts" />
@@ -14,25 +14,25 @@ The v2 is taking a layered-approach in order to provide the modularity necessary
 
 ## Data Layer
 
-The data layer is the base layer of the infrastructure, and is responsible for storing and broadcasting the data to the participants. This layer is both very decentralized and low latency, in order to provide the most up-to-data data, and have perfect liveness and censorship-resistance. It is a very light piece of software, as it only has a minimal consensus to verify signatures, and only broadcast data to the network.
+The data layer is the foundation of the infrastructure, responsible for storing and broadcasting data to network participants. This layer is highly decentralized and low-latency, ensuring the most up-to-date data with perfect liveness and censorship-resistance. It's a lightweight piece of software with minimal consensus to verify signatures and broadcast data to the network.
 
   <div>
   <img width="100%" height="100%" src="https://i.ibb.co/JQ66Kh9/Flowchart-4.png" alt="flowchart contracts" />
   </div>
 
-## Non-deterministic trust layer
+## Non-deterministic Trust Layer
 
-This layer is the core of the oracle, and reduces the trust associated with consuming non-deterministic data. To achieve this goal, the non-deterministic data layer is a modular, non-opinionated layer, that enables to build arbitrary slashing rules and reputation mechanisms. In details it enables to create slashing rules, and enforce them on data providers that opted into those rules. Staking and slashing rules are defined on Ethereum L1, and enforced through validity proofs using a co-processor.
+This layer is the core of the oracle, reducing the trust associated with consuming non-deterministic data. It's a modular, non-opinionated layer that enables the creation of arbitrary slashing rules and reputation mechanisms. Specifically, it allows for the creation and enforcement of slashing rules on data providers who opt into these rules. Staking and slashing rules are defined on Ethereum L1 and enforced through validity proofs using a co-processor.
 
   <div>
   <img width="100%" height="100%" src="https://i.ibb.co/HTvR3qB/Flowchart-5.png" alt="flowchart contracts" />
   </div>
 
-## Deterministic trust layer
+## Deterministic Trust Layer
 
-Finally the deterministic layer, which is responsible for two main things: computation and bridging. To perform computation atop the oracle data, there’s two main path possible: zk-computation (TEEs maybe at some point?), or economically secure computation. The zk part is the path we chose to take for the first version of the protocol, but it is totally possible to leverage an AVS with some economic security. The idea is that a protocol, when integrating Pragma, will be able to use their token to secure the deterministic part of their oracle use (computation + bridging through Hyperlane) thanks to Symbiotic. Think about Ethena, having ENA securing their oracle.
+The deterministic layer is responsible for two main functions: computation and bridging. For computation atop oracle data, two main paths are possible: zk-computation (with potential for TEEs in the future) or economically secure computation. While we chose zk-computation for the first version of the protocol, it's entirely possible to leverage an AVS with economic security. The idea is that when integrating Pragma, a protocol can use their token to secure the deterministic part of their oracle use (computation + bridging through Hyperlane) thanks to Symbiotic.
 
-It’s very straightforward, as it’s a blockchain-like design, a few operators run a very light node (because most of the time stateless) in charge of doing a VWAP, a median, or any other computation, and re-stakers can provide the economic security for this module. The data is then bridged using Hyperlane, on a regular basis if needed, or on a pull model.
+The design is straightforward, similar to a blockchain. A few operators run a lightweight node (often stateless) responsible for performing operations like VWAP, median, or other computations. Re-stakers can provide economic security for this module. The data is then bridged using Hyperlane, either regularly or on a pull model as needed.
 
   <div>
   <img width="100%" height="100%" src="https://i.ibb.co/dBqrvk0/Flowchart-6.png" alt="flowchart contracts" />

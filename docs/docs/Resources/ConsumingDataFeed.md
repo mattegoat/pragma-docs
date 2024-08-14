@@ -1,12 +1,12 @@
 ---
 id: Consuming Data Feed
-title: Consuming Data Feed
+title: Getting started
 sidebar_position: 1
 ---
 
 ---
 
-You can get started with Pragma in just a few minutes. This guide will walk you through the process of consuming data from Pragma's oracle network. 
+You can get started with Pragma in just a few minutes. This guide will walk you through the process of consuming data from Pragma's oracle network.
 Here is a simple contract allowing a user to retrieve the price of an asset, using the Pragma Oracle.
 
 ## (Optional) Add Pragma as a dependency to your scarb/snforge project
@@ -15,8 +15,7 @@ Here is a simple contract allowing a user to retrieve the price of an asset, usi
 scarb add pragma_lib --git https://github.com/astraly-labs/pragma-lib
 ```
 
-
-## Overview of the contract 
+## Overview of the contract
 
 ```rust
 use starknet::ContractAddress;
@@ -51,14 +50,14 @@ mod HackTemplate {
     }
 
     #[constructor]
-    fn constructor(ref self: ContractState, pragma_address: ContractAddress, summary_stats_address : ContractAddress) 
+    fn constructor(ref self: ContractState, pragma_address: ContractAddress, summary_stats_address : ContractAddress)
     {
         self.pragma_contract.write(pragma_address);
         self.summary_stats.write(summary_stats_address);
     }
     #[external(v0)]
     impl HackTemplateABIImpl of HackTemplateABI<ContractState> {
-        
+
 
         fn get_asset_price(self: @ContractState, asset_id: felt252) -> u128 {
             // Retrieve the oracle dispatcher
@@ -116,14 +115,14 @@ mod HackTemplate {
     }
 
     #[constructor]
-    fn constructor(ref self: ContractState, pragma_address: ContractAddress, summary_stats_address : ContractAddress) 
+    fn constructor(ref self: ContractState, pragma_address: ContractAddress, summary_stats_address : ContractAddress)
     {
         self.pragma_contract.write(pragma_address);
         self.summary_stats.write(summary_stats_address);
     }
     #[external(v0)]
     impl HackTemplateABIImpl of HackTemplateABI<ContractState> {
-        
+
 
         fn get_asset_price(self: @ContractState, asset_id: felt252) -> u128 {
             // Retrieve the oracle dispatcher
@@ -142,12 +141,12 @@ mod HackTemplate {
 }
 ```
 
-This is the general form of a starknet contract, you can learn more about the way to build a Starknet contract [here](https://book.cairo-lang.org/ch99-01-02-a-simple-contract.html). 
-The notable point here is among the imports: 
+This is the general form of a starknet contract, you can learn more about the way to build a Starknet contract [here](https://book.cairo-lang.org/ch99-01-02-a-simple-contract.html).
+The notable point here is among the imports:
 
-```rust 
+```rust
 use pragma_lib::abi::{
-            IPragmaABIDispatcher, IPragmaABIDispatcherTrait, 
+            IPragmaABIDispatcher, IPragmaABIDispatcherTrait,
             ISummaryStatsABIDispatcher, ISummaryStatsABIDispatcherTrait
         };
 use pragma_lib::types::{DataType, AggregationMode, PragmaPricesResponse};
@@ -183,42 +182,42 @@ We deploying the contract, you will have to specify the oracle contract address 
 The oracle address can be found [here](../Resources/Cairo%201/data-feeds/Consuming%20Data.md).
 The previous contract is a simple contract, allowing a user to retrieve the price of an asset. You can play with a more complete example and deploy using Remix.
 
-
 <div >
 <a href="https://remix.ethereum.org/#activate=Starknet-cairo1-compiler&gist=8a6bffad23983a0ded7a6bebfa0d7974
 " target='_blank' class="button">Open in Remix</a>
 </div>
 
-
 ## Working with Remix
 
-Since everything is already done, you will just have to compile the code and deploy the contract. 
+Since everything is already done, you will just have to compile the code and deploy the contract.
 
-To begin with, you will have to activate the starknet plugin: 
- 
+To begin with, you will have to activate the starknet plugin:
+
   <div>
   <a href="https://ibb.co/p4j19SQ"><img src="https://i.ibb.co/P1GrfdM/starknet-plugin.png" alt="starknet-plugin"/></a>
   </div>
 
 Once activate, the starknet icon should appear on the left side of the screen.
-Then, you will have to compile the code. 
+Then, you will have to compile the code.
 
   <div>
   <a href="https://ibb.co/m56xRMg"><img src="https://i.ibb.co/XxSwWvM/compile.png" alt="compile"/></a>
   </div>
 
-Once compiled, you will have to create and deploy an account, and used the button to get testnet ETH. 
+Once compiled, you will have to create and deploy an account, and used the button to get testnet ETH.
 
 <div>
 <a href="https://ibb.co/vhZ6nnc"><img src="https://i.ibb.co/7Q2dmmS/deploy-account.png" alt="deploy-account" /></a>
   </div>
 
 You can finally deploy the contract. The addresses used for the constructor are the oracle contract address and the summary stats contract address. You can find the oracle address [here](../Resources/Cairo%201/data-feeds/Consuming%20Data.md). You can find the summary stats address [here](../Resources/Cairo%201/computational-feeds/Overview.md).
+
 <div>
 <a href="https://ibb.co/rppfH6B"><img src="https://i.ibb.co/bvvRXB4/deploy.png" alt="deploy"/></a>
 </div>
 
 Once deployed, you can interact with the contract.
+
 <div>
 <a href="https://ibb.co/648RS8b"><img src="https://i.ibb.co/SKcXgc0/interact.png" alt="interact"/></a>
 </div>

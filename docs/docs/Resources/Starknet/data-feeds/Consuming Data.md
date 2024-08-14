@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ---
 
-You can find the list of supported assets [here](./Supported%20Assets.md).
+You can find the list of supported assets [here](./supported-assets).
 
 The current Pragma addresses are:
 
@@ -37,7 +37,7 @@ use starknet::contract_address::contract_address_const;
 
 const KEY :felt252 = 18669995996566340; // felt252 conversion of "BTC/USD", can also write const KEY : felt252 = 'BTC/USD';
 
-fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u128  { 
+fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u128  {
     let oracle_dispatcher = IPragmaABIDispatcher{contract_address : oracle_address};
     let output : PragmaPricesResponse= oracle_dispatcher.get_data(asset, AggregationMode::Median(()));
     return output.price;
@@ -63,7 +63,7 @@ const KEY: felt252 = 23449611697214276; // felt252 conversion of "SOL/USD", can 
 const OKX: felt252 = 'OKX'; // felt252 conversion of "OKX"
 const BINANCE: felt252 = 'BINANCE'; // felt252 conversion of "BINANCE"
 
-fn get_asset_price_average(oracle_address: ContractAddress, asset : DataType, sources : Span<felt252>) -> u128  { 
+fn get_asset_price_average(oracle_address: ContractAddress, asset : DataType, sources : Span<felt252>) -> u128  {
     let oracle_dispatcher = IPragmaABIDispatcher{contract_address : oracle_address};
     let output : PragmaPricesResponse= oracle_dispatcher.get_data_for_sources(asset, AggregationMode::Mean(()), sources);
 
@@ -91,7 +91,7 @@ use starknet::contract_address::contract_address_const;
 
 const KEY :felt252 = 18669995996566340; // felt252 conversion of "BTC/USD", can write const KEY : felt252 = 'BTC/USD'
 
-fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u128  { 
+fn get_asset_price_median(oracle_address: ContractAddress, asset : DataType) -> u128  {
     let oracle_dispatcher = IPragmaABIDispatcher{contract_address : oracle_address};
     let output : PragmaPricesResponse= oracle_dispatcher.get_data(asset, AggregationMode::Median(()));
 
