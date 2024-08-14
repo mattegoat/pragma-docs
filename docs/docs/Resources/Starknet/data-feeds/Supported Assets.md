@@ -18,37 +18,38 @@ The `pair_id` is calculated by utf-8 encoding the uppercased string (e.g. `str_t
 
 ### Spot
 
-| Ticker     | Pair Id                  | Decimals | Mainnet |
-| ---------- | ------------------------ | -------- | ------- |
-| BTC/USD    | 18669995996566340        | 8        | ✅      |
-| ETH/USD    | 19514442401534788        | 8        | ✅      |
-| WBTC/USD   | 6287680677296296772      | 8        | ✅      |
-| WBTC/BTC   | 6287680677295051843      | 8        | ✅      |
-| BTC/EUR    | 18669995995518290        | 8        | ✅      |
-| WSTETH/USD | 412383036120118613857092 | 8        | ✅      |
-| LORDS/USD  | 1407668255603079598916   | 8        | ✅      |
-| UNI/USD    | 24011449254105924        | 8        | ✅      |
-| STRK/USD   | 6004514686061859652      | 8        | ✅      |
-| ZEND/USD   | 6504691291565413188      | 8        | ✅      |
-| EKUBO/USD  | 1278253658919688033092   | 8        | ✅      |
+| Ticker     | Pair Id                  | Decimals | Mainnet | Risk |
+| ---------- | ------------------------ | -------- | ------- | ---- |
+| BTC/USD    | 18669995996566340        | 8        | ✅      | L    |
+| ETH/USD    | 19514442401534788        | 8        | ✅      | L    |
+| WBTC/USD   | 6287680677296296772      | 8        | ✅      | M    |
+| WBTC/BTC   | 6287680677295051843      | 8        | ✅      | M    |
+| BTC/EUR    | 18669995995518290        | 8        | ✅      | L    |
+| WSTETH/USD | 412383036120118613857092 | 8        | ✅      | M    |
+| LORDS/USD  | 1407668255603079598916   | 8        | ✅      | H    |
+| UNI/USD    | 24011449254105924        | 8        | ✅      | M    |
+| STRK/USD   | 6004514686061859652      | 8        | ✅      | L    |
+| ZEND/USD   | 6504691291565413188      | 8        | ✅      | H    |
+| NSTR/USD   | 6504691291565413188      | 8        | ✅      | H    |
+| EKUBO/USD  | 1278253658919688033092   | 8        | ✅      | H    |
 
 ### Future
 
-| Ticker   | Pair Id             | Decimals | Mainnet |
-| -------- | ------------------- | -------- | ------- |
-| BTC/USD  | 18669995996566340   | 8        | ✅      |
-| ETH/USD  | 19514442401534788   | 8        | ✅      |
-| BTC/USDT | 4779518975120983124 | 6        | ✅      |
-| ETH/USDT | 4995697254792905812 | 6        | ✅      |
+| Ticker   | Pair Id             | Decimals | Mainnet | Risk |
+| -------- | ------------------- | -------- | ------- | ---- |
+| BTC/USD  | 18669995996566340   | 8        | ✅      | D    |
+| ETH/USD  | 19514442401534788   | 8        | ✅      | D    |
+| BTC/USDT | 4779518975120983124 | 6        | ✅      | D    |
+| ETH/USDT | 4995697254792905812 | 6        | ✅      | D    |
 
 ### Stablecoins
 
-| Ticker   | Pair Id             | Decimals | Mainnet |
-| -------- | ------------------- | -------- | ------- |
-| USDT/USD | 6148333044652921668 | 6        | ✅      |
-| DAI/USD  | 19212080998863684   | 8        | ✅      |
-| USDC/USD | 6148332971638477636 | 6        | ✅      |
-| LUSD/USD | 5500394072219931460 | 8        | ✅      |
+| Ticker   | Pair Id             | Decimals | Mainnet | Risk |
+| -------- | ------------------- | -------- | ------- | ---- |
+| USDT/USD | 6148333044652921668 | 6        | ✅      | L    |
+| DAI/USD  | 19212080998863684   | 8        | ✅      | M    |
+| USDC/USD | 6148332971638477636 | 6        | ✅      | L    |
+| LUSD/USD | 5500394072219931460 | 8        | ✅      | H    |
 
 ## Currencies & Rebasing
 
@@ -58,30 +59,20 @@ If you want the price of one asset that Pragma lists in the price of another ass
 
 Abstract currencies are not tracking a specific token but rather a broader concept or fiat currency. E.g. there is a difference between the ETH/USD price in the abstract and the ETH/USDC price that can be had in a specific AMM pool.
 
-| Currency | Currency Id | Decimals | Mainnet |
-| -------- | ----------- | -------- | ------- |
-| USD      | 5591876     | 8        | ✅      |
-| BTC      | 4346947     | 8        | ✅      |
-| EUR      | 4543826     | 8        | ✅      |
+| Currency | Currency Id | Decimals | Mainnet | Risk |
+| -------- | ----------- | -------- | ------- | ---- |
+| USD      | 5591876     | 8        | ✅      | L    |
+| BTC      | 4346947     | 8        | ✅      | L    |
+| EUR      | 4543826     | 8        | ✅      | M    |
 
 ### Concrete Currencies
 
 These are specific tokens that exist as on-chain representations.
 
-| Currency | Currency Id  | Decimals | Starknet address Mainnet                                           | Ethereum address Mainnet                   | Starknet address Testnet                                           |
-| -------- | ------------ | -------- | ------------------------------------------------------------------ | ------------------------------------------ | ------------------------------------------------------------------ |
-| BTC      | 4346947      | 8        | 0x03fe2b97c1fd336e750087d68b9b867997fd64a2661ff3ca5a7c771641e8e7ac | 0x2260fac5e5542a773aa44fbcfedf7c193bc2c599 | 0x12d537dc323c439dc65c976fad242d5610d27cfb5f31689a0a319b8be7f3d56  |
-| ETH      | 4543560      | 18       | 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7 | 0x0000000000000000000000000000000000000000 | 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7 |
-| USDC     | 1431520323   | 6        | 0x053c91253bc9682c04929ca02ed00b3e423f6710d2ee7e0d5ebb06f3ecf368a8 | 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48 | 0x001d5b64feabc8ac7c839753994f469704c6fabdd45c8fe6d26ed57b5eb79057 |
-| USDT     | 1431520340   | 6        | 0x068f5c6a61780768455de69077e07e89787839bf8166decfbf92b645209c0fb8 | 0xdac17f958d2ee523a2206206994597c13d831ec7 | 0x386e8d061177f19b3b485c20e31137e6f6bc497cc635ccdfcab96fadf5add6a  |
-| DAI      | 4473161      | 18       | 0x001108cdbe5d82737b9057590adaf97d34e74b5452f0628161d237746b6fe69e | 0x6B175474E89094C44Da98b954EedeAC495271d0F | 0x0278f24c3e74cbf7a375ec099df306289beb0605a346277d200b791a7f811a19 |
-| SOL      | 5459788      | 9        | N/A                                                                | 0xd31a59c85ae9d8edefec411d448f90841571b89c | N/A                                                                |
-| SHIB     | 1397246274   | 18       | N/A                                                                | 0x95aD61b0a150d79219dCF64E1E6Cc01f0B64C4cE | N/A                                                                |
-| BNB      | 4345410      | 18       | N/A                                                                | 0xB8c77482e45F1F44dE1745F52C74426C631bDD52 | N/A                                                                |
-| MATIC    | 331808524611 | 18       | N/A                                                                | 0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0 | N/A                                                                |
-| TUSD     | 1414878020   | 18       | N/A                                                                | 0x0000000000085d4780B73119b644AE5ecd22b376 | N/A                                                                |
-| AVAX     | 1096171864   | 9        | N/A                                                                | N/A                                        | N/A                                                                |
-| DOGE     | 1146046277   | 8        | N/A                                                                | N/A                                        | N/A                                                                |
-| ADA      | 4277313      | 6        | N/A                                                                | N/A                                        | N/A                                                                |
-| XRP      | 5788240      | 6        | N/A                                                                | N/A                                        | N/A                                                                |
-| BUSD     | 1112888132   | 18       | N/A                                                                | N/A                                        | N/A                                                                |
+| Currency | Currency Id | Decimals | Starknet address Mainnet                                           | Ethereum address Mainnet                   | Starknet address Testnet                                           |
+| -------- | ----------- | -------- | ------------------------------------------------------------------ | ------------------------------------------ | ------------------------------------------------------------------ |
+| BTC      | 4346947     | 8        | 0x03fe2b97c1fd336e750087d68b9b867997fd64a2661ff3ca5a7c771641e8e7ac | 0x2260fac5e5542a773aa44fbcfedf7c193bc2c599 | 0x12d537dc323c439dc65c976fad242d5610d27cfb5f31689a0a319b8be7f3d56  |
+| ETH      | 4543560     | 18       | 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7 | 0x0000000000000000000000000000000000000000 | 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7 |
+| USDC     | 1431520323  | 6        | 0x053c91253bc9682c04929ca02ed00b3e423f6710d2ee7e0d5ebb06f3ecf368a8 | 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48 | 0x001d5b64feabc8ac7c839753994f469704c6fabdd45c8fe6d26ed57b5eb79057 |
+| USDT     | 1431520340  | 6        | 0x068f5c6a61780768455de69077e07e89787839bf8166decfbf92b645209c0fb8 | 0xdac17f958d2ee523a2206206994597c13d831ec7 | 0x386e8d061177f19b3b485c20e31137e6f6bc497cc635ccdfcab96fadf5add6a  |
+| DAI      | 4473161     | 18       | 0x001108cdbe5d82737b9057590adaf97d34e74b5452f0628161d237746b6fe69e | 0x6B175474E89094C44Da98b954EedeAC495271d0F | 0x0278f24c3e74cbf7a375ec099df306289beb0605a346277d200b791a7f811a19 |
