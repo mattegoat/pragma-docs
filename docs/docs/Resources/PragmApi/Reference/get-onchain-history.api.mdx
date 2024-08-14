@@ -1,0 +1,42 @@
+---
+id: get-onchain-history
+title: "get_onchain_history"
+description: "get_onchain_history"
+sidebar_label: "get_onchain_history"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vk1v2zAM/SuGThuQxkn3cfCtA4atGLBh3XYqikCxGVutLKmSnC0w/N9H2vJX03Zdh10Shyb5qEfyKTXzPHcsuWSp5R6SpOAqk2BdkmiVFlyoJMnBbwrhvLYHdrVg2gC6Cq3OM5Ywehk8B6cFM9zyEjzmwdQ1U/gDfbfcAb4UCp8N9wU+Z+BSKwylQ+M7dIjOnAOPryzcVsICgnhbwYK5tICSs6Rm/mAonfNWqJw1zWJAuK20fxziK3n8E4YC/1Pbmx7ltoL2yE9NtWCgqpIYd2C0FBwtJbKHaYldL7wk788BZYrsRQnO89I8H3tOxgUYCw6UdxGPLFc5RHoXDTCOjfV8740X5DYrKy0qdbMRCtu95/Lh2nZcullxXMovu3ZAHqJoXWKuBVu/Cd/Uz1P6WGf08XPK2HlfQINGVUnJt2QnRqbVWl35DuSpZYbitlpL4FTG3eRXFO6MVg4cBZyuVvQ15/oD+MgXEHVLIlIuo7A3UQmZ4CoyaKXhTTWeRPmWIWMkulKK+NpRnvq4MG4tpyMID6Wb2PX2GtL5lF/iUgi7EVnb2XGaugo2fQUZpKJEGuis243TlU3BbXieW8hRJTKi3VgSAi+6Iw8RIzwNRA4Wc+y0LbnvTK9OCU4oUVKHV80d7OPNe6iEvwfqj34fxkjGn/K+fT3P24wTiC3+0rX0Y6eE75XH4XrM4yLMDS5UQ6nmM3O/uKKwFjpob6u1KHMJi5XOIN6v4xAQh4C4Jtlt4rrVxgYDHK5Jr8yVlRhbeG9cEsc1qL2wWpU4fs3SWJ6XfLmthKR52XMraOrbHk8cu/bveCWJIW7EMoP9ZIdHCz3h2OD4NO3SOEgrK/zhG010lxddNjdwmE63EZ/g0K9rATxrWxK2+dcJvj+hCGJPqJ1uQwPd3QlOiJkj7UMDrhYQ98kgDtQr4qZzWS3XyxWZjHa+5GriiNQP6zt2ZoYwnMDDLx8bia6Uq2W8Dl27ZKG2/Ro/QkJ8GlMm4dJMuqsNWSuwGIqs28b+sLJpyNwJGfU0E476NErZnbIGfWEvLoIyvIxIEO4rt23G5M5Dga0CU/8FaapKj2N1/keXz1OCxjtg9L4aJ/z5LM7+wNx7yn6q1WGK3hfWNvvZzM7/2zwDvpux5godw6IRE927szQF4ydRR3cTUTho04f333ElfwOvPolJ
+sidebar_class_name: "get api-method"
+info_path: Resources/PragmAPI/Reference/pragma-node
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>get_onchain_history</h1>
+
+<MethodEndpoint method={"get"} path={"/node/v1/onchain/history/{base}/{quote}"}></MethodEndpoint>
+
+
+
+get_onchain_history
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"base","in":"path","description":"Base Asset","required":true,"schema":{"type":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"quote","in":"path","description":"Quote Asset","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"network","in":"query","required":true,"schema":{"type":"string","enum":["sepolia","mainnet"],"title":"Network"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"timestamp","in":"query","required":true,"schema":{"type":"string","description":"Represents a range of timestamps","title":"TimestampRange"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"chunk_interval","in":"query","required":false,"schema":{"allOf":[{"type":"string","enum":["1min","15min","1h","2h","1d","1w"],"title":"Interval"}],"nullable":true}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"routing","in":"query","required":false,"schema":{"type":"boolean","nullable":true}}}></ParamsItem></ul></div></details><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+Get the historical onchain median price
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"decimals"} required={true} schemaName={"int32"} qualifierMessage={undefined} schema={{"type":"integer","format":"int32","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"median_price"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"nb_sources_aggregated"} required={true} schemaName={"int32"} qualifierMessage={undefined} schema={{"type":"integer","format":"int32","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"pair_id"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"timestamp"} required={true} schemaName={"int64"} qualifierMessage={undefined} schema={{"type":"integer","format":"int64","minimum":0}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"[\n  {\n    \"decimals\": 0,\n    \"median_price\": \"string\",\n    \"nb_sources_aggregated\": 0,\n    \"pair_id\": \"string\",\n    \"timestamp\": 0\n  }\n]"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

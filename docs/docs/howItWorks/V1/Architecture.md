@@ -24,6 +24,12 @@ Our system incorporates multiple publishers, each responsible for providing data
 
 This aggregation process is triggered when one of the aggregation functions, as outlined in the 'Consuming Data' section, is called. During this process, users have the flexibility to choose their preferred method of aggregation for the sources. This choice allows them to tailor the final price calculation according to their specific needs or criteria. By utilizing this method of aggregation, we enhance the security of the final price determination, making it less vulnerable to manipulation, as it incorporates a broad and balanced range of data from multiple publishers.
 
+## Explore
+
+We have a fully-fledged explorer available on our [website](https://www.pragma.build/assets).
+There you can explore what's happening on and off-chain, who is providing data etc.
+If there is any other information you would like to see displayed over there, let us know!
+
 ## Security
 
 Our contracts have thoroughly been peer-reviewed by multiple actors in the starknet ecosystem.

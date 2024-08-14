@@ -9,7 +9,11 @@ sidebar_position: 1
 Pragma offers a verifiable randomness feed that allows protocols to request secure randomness on-chain.
 This feed is being rolled out in two phases: In the first phase (currently live) the randomness proof is posted as calldata, allowing anyone to verify it off-chain. See below for more details on how to verify the randomness.
 
+:::note
+
 In the second phase, the proof will be verified directly on-chain (coming soon) and requesters will be required to cover gas costs of their callback function plus a small fee to cover the cost of generating randomness.
+
+:::
 
 ## Deployed Contracts
 
@@ -21,7 +25,8 @@ You can find the latest deployed contracts at the following addresses :
 
 ## Sample Code
 
-If you are just trying to get started with using randomness, see the self-contained code snippet. If you'd like to use more advanced oracle functions, read on past the code block for further information. You can find a full sample randomness receiver contract [here](https://github.com/astraly-labs/pragma-oracle/blob/main/src/randomness/example_randomness.cairo).
+If you are just trying to get started with using randomness, see the self-contained code snippet. If you'd like to use more advanced oracle functions, read on past the code block for further information. 
+You can find a full sample randomness receiver contract [here](https://github.com/astraly-labs/pragma-oracle/blob/main/src/randomness/example_randomness.cairo).
 
 ```rust
 use starknet::ContractAddress;
@@ -35,23 +40,29 @@ trait IExampleRandomness<TContractState> {
         callback_address: ContractAddress,
         callback_fee_limit: u128,
         publish_delay: u64,
-        num_words: u64
+        num_words: u64,
+        calldata: Array<felt252>
     );
     fn receive_random_words(
         ref self: TContractState,
         requestor_address: ContractAddress,
         request_id: u64,
-        random_words: Span<felt252>
+        random_words: Span<felt252>,
+        calldata: Array<felt252>
     );
+    fn withdraw_funds(ref self: TContractState, receiver: ContractAddress);
 }
 
 #[starknet::contract]
 mod ExampleRandomness {
     use super::{ContractAddress, IExampleRandomness};
     use starknet::info::{get_block_number, get_caller_address, get_contract_address};
-    use pragma_lib::abi::{IRandomnessDispatcher, IRandomnessDispatcherTrait};
+    use pragma::randomness::randomness::{IRandomnessDispatcher, IRandomnessDispatcherTrait};
+    use pragma::admin::admin::Ownable;
     use array::{ArrayTrait, SpanTrait};
-    use openzeppelin::token::erc20::{ERC20, interface::{IERC20Dispatcher, IERC20DispatcherTrait}};
+    use openzeppelin::token::erc20::interface::{
+        ERC20CamelABIDispatcher, ERC20CamelABIDispatcherTrait
+    };
     use traits::{TryInto, Into};
 
     #[storage]
@@ -73,32 +84,40 @@ mod ExampleRandomness {
             return last_random;
         }
 
+
         fn request_my_randomness(
             ref self: ContractState,
             seed: u64,
             callback_address: ContractAddress,
             callback_fee_limit: u128,
             publish_delay: u64,
-            num_words: u64
+            num_words: u64,
+            calldata: Array<felt252>
         ) {
             let randomness_contract_address = self.randomness_contract_address.read();
+            let randomness_dispatcher = IRandomnessDispatcher {
+                contract_address: randomness_contract_address
+            };
+            let caller = get_caller_address();
+            let compute_fees = randomness_dispatcher.compute_premium_fee(caller);
 
             // Approve the randomness contract to transfer the callback fee
             // You would need to send some ETH to this contract first to cover the fees
-            let eth_dispatcher = IERC20Dispatcher {
+            let eth_dispatcher = ERC20CamelABIDispatcher {
                 contract_address: 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7 // ETH Contract Address
                     .try_into()
                     .unwrap()
             };
-            eth_dispatcher.approve(randomness_contract_address, callback_fee_limit.into());
+            eth_dispatcher
+                .approve(
+                    randomness_contract_address,
+                    (callback_fee_limit + compute_fees + callback_fee_limit / 5).into()
+                );
 
             // Request the randomness
-            let randomness_dispatcher = IRandomnessDispatcher {
-                contract_address: randomness_contract_address
-            };
             let request_id = randomness_dispatcher
                 .request_random(
-                    seed, callback_address, callback_fee_limit, publish_delay, num_words
+                    seed, callback_address, callback_fee_limit, publish_delay, num_words, calldata
                 );
 
             let current_block_number = get_block_number();
@@ -107,12 +126,24 @@ mod ExampleRandomness {
             return ();
         }
 
+        fn withdraw_funds(ref self: ContractState, receiver: ContractAddress) {
+            assert_only_admin();
+            let eth_dispatcher = ERC20CamelABIDispatcher {
+                contract_address: 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7 // ETH Contract Address
+                    .try_into()
+                    .unwrap()
+            };
+            let balance = eth_dispatcher.balanceOf(get_contract_address());
+            eth_dispatcher.transfer(receiver, balance);
+        }
+
 
         fn receive_random_words(
             ref self: ContractState,
             requestor_address: ContractAddress,
             request_id: u64,
-            random_words: Span<felt252>
+            random_words: Span<felt252>,
+            calldata: Array<felt252>
         ) {
             // Have to make sure that the caller is the Pragma Randomness Oracle contract
             let caller_address = get_caller_address();
@@ -141,8 +172,14 @@ mod ExampleRandomness {
             return ();
         }
     }
-}
 
+    fn assert_only_admin() {
+        let state: Ownable::ContractState = Ownable::unsafe_new_contract_state();
+        let admin = Ownable::OwnableImpl::owner(@state);
+        let caller = get_caller_address();
+        assert(caller == admin, 'Unauthorized');
+    }
+}
 ```
 
 ## How Randomness is Generated
@@ -187,6 +224,10 @@ Pricing is divied in two parts :
 | < 100                    | 0.25$       |
 | > 100                    | 0.1$        |
 
+## Retry Policy
+
+We will retry every second to fulfill your requests until **10** blocks have passed the specified minimum block number.
+
 ## Technical Specification
 
 ### Function: `request_random`
@@ -200,6 +241,7 @@ Allows your smart contract to request randomness. Upon calling the Pragma contra
 - `callback_fee_limit`: overall fee limit on the callback function
 - `publish_delay`: minimum number of blocks to wait from the request to fulfillment
 - `num_words`: number of random words to receive in one call. Each word is a felt252.
+- `calldata`: calldata we want to pass down to the callback function
 
 #### Returns
 
@@ -214,6 +256,7 @@ This is function must be defined on the contract at `callback_address` initially
 - `requestor_address`: address that submitted the randomness request
 - `request_id`: id of the randomness request (auto-incrementing for each `requestor_address`)
 - `random_words`: an span of random words
+- `calldata`: calldata passed in the random request
 
 ### Function: `cancel_random_request`
 

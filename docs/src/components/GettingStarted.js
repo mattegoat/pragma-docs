@@ -28,6 +28,18 @@ const productList = [
     button: "integrate now",
     link: "/Resources/Cairo%201/randomness/randomness",
   },
+  {
+    title: "Optimistic Oracle",
+    description: "A secure dispute arbitration system bringing any data on-chain for DeFi, prediction markets, and more.",
+    button: "integrate now",
+    link: "/Resources/Cairo%201/optimistic-oracle/overview",
+  },
+  {
+    title: "Merkle Feeds",
+    description: "Feeds for options, enabling verified off-chain data retrieval and on-chain validation with our Rust SDK.",
+    button: "integrate now",
+    link: "/Resources/Cairo%201/merkle-feeds/what-are-merkle-feeds",
+  },
 ];
 
 export default function GettingStarted() {

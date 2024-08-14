@@ -28,6 +28,9 @@ The `pair_id` is calculated by utf-8 encoding the uppercased string (e.g. `str_t
 | WSTETH/USD | 412383036120118613857092 | 8        | ✅      |
 | LORDS/USD  | 1407668255603079598916   | 8        | ✅      |
 | UNI/USD    | 24011449254105924        | 8        | ✅      |
+| STRK/USD   | 6004514686061859652      | 8        | ✅      |
+| ZEND/USD   | 6504691291565413188      | 8        | ✅      |
+| EKUBO/USD  | 1278253658919688033092   | 8        | ✅      |
 
 ### Future
 

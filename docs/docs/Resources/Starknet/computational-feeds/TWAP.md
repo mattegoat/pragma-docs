@@ -1,7 +1,7 @@
 ---
 id: TWAP
 title: Time weighted average price (TWAP)
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 ## Time weighted average price (TWAP)
@@ -55,7 +55,6 @@ We calculate the Time wighted average price using the following formula:
   <div>
   <a href="https://ibb.co/tcjqN3M"><img width="100%" heigth="100%" src="	https://i.ibb.co/Q69FtYd/TWAP.jpg" alt="realised-volatility"/></a>
   </div>
-
 
 ## Technical Specification
 

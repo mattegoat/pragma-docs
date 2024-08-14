@@ -1,0 +1,42 @@
+---
+id: get-merkle-feeds-option
+title: "get_merkle_feeds_option"
+description: "get_merkle_feeds_option"
+sidebar_label: "get_merkle_feeds_option"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVk2P2zYQ/SsETy3gtbxF0YNumzRIghSbInFPG8OgpZHFWCIZknJiCPrvmaFki7K8TZuTydF8vnnDccu92DuePvHMCg9pWgqVV2BdmtZgDxVsC4Acb3vwW2281IpvFlwbQHW8vM15yulbrH1WXHAjrKjBoz8M0XKFF9SXynnb1KA8qkiFEiN8ieccXGZlb5zyR9RmumC+BDYxsfClkRYwNMpgwV1WQi142nJ/MhQAdaXa865bXGIq8F+1PZwDfmnAniauClG5iS9RVe+LkPbU64KDamqCzIHRlRQoqYVUGIGg8dJXpP04BOxQppqqEjsSU8JxWrtKZ4etzH8qL61gmqHefYZsitATX4s95WUsNc1LcOSEhDO8rhvwgpJjSJDlJ/VJPdCJOQOZLE6ozgTLT1iGzJiFAiyoDJjXKA5FLSOg/kJqOcrrb1A5RYpwCkEonS7g8m+VPDb1Duy8mEE+1iOVhz1KFrzQtha+F/3xO3VKKllTViuMt7ldscyRZ7KQYJF3gX7khqhYClcumArxmLYBG35VC47ErZ5vqBZntHJ90r+tVvQzjf8afIh3GaBMYylIeuq7MZXMwtQlnx2pt3PmC2sF8Ud6qN1NFl+QnUZ+UNGMDfHZV+lLJr1jtbAHZqzMAhTY4gzRFwSOrLGzojbLq16NzraB6gu+Ew62WWOJKJRif/Tbi4swR/awDXHmXZ7a/5C8a4RRHIUMTWCDHbpirjFGWw95zNAX65d4e7V+E1PzffD18hyyu5XzfyBdt5ihMX+qJrX/byZf5/yn8IL/aJyIzHOYg/TGU9pFwCBN+zgfBkbTd5rfqx48vxhwKZR62B1hT+D7n/JE6RyS430SGyW9kUvaEcUObRzY43mxNLZC89J749IkaUEdpdUqaC6NFftaLHeNrOiZPQoriRKh2EixH8ZCNBWBLIxc5nCMGDJK6ISY5XzTo+IAaSH96SMNY+8XVbYHiFmKkndwOj/zJYg8dHVYA9/u8PsdWXSBLYUOpgPcfQV3BM6M5ijAVwGoB+llqxCdCJteZbW8X65IZLTztVCRIqLPeqxZwHp8eCZRLlV4+OYTU+Hkk7+Aejs074kP+R3vQ3/HBnL6vxBaiKc02uSIXYkpkW3b0nj/Y6uuI3G/BqmzuXTUrXERBlijdX4UVTPU/Kx2tGVH9c3IhduRriC4PMX8lw/DFP3Knv2PchOwMxfUKc7knGVk321QeyAJ5dYrPGQZGB+ZzlYCFXUZrdev1kin741QaSc=
+sidebar_class_name: "get api-method"
+info_path: Resources/PragmAPI/Reference/pragma-node
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>get_merkle_feeds_option</h1>
+
+<MethodEndpoint method={"get"} path={"/node/v1/merkle_feeds/options/{instrument}"}></MethodEndpoint>
+
+
+
+get_merkle_feeds_option
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"instrument","in":"path","description":"Name of the instrument","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"network","in":"query","required":false,"schema":{"allOf":[{"type":"string","enum":["sepolia","mainnet"],"title":"Network"}],"nullable":true}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"block_id","in":"query","required":false,"schema":{"allOf":[{"oneOf":[{"type":"object","required":["Tag"],"properties":{"Tag":{"type":"string","description":"Block tag.\n\nA tag specifying a dynamic reference to a block.","enum":["Latest","Pending"],"title":"BlockTag"}}},{"type":"object","required":["Number"],"properties":{"Number":{"type":"integer","format":"int64","minimum":0}}}],"description":"Block identifier in the form of hash, number or tag.","title":"BlockId"}],"nullable":true}}}></ParamsItem></ul></div></details><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+Get the option
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"base_currency"} required={true} schemaName={"OptionCurrency (string)"} qualifierMessage={"**Possible values:** [`BTC`, `ETH`]"} schema={{"type":"string","description":"The available currencies supported.","enum":["BTC","ETH"],"title":"OptionCurrency"}}></SchemaItem><SchemaItem collapsible={false} name={"current_timestamp"} required={true} schemaName={"int64"} qualifierMessage={undefined} schema={{"type":"integer","format":"int64"}}></SchemaItem><SchemaItem collapsible={false} name={"instrument_name"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"mark_price"} required={true} schemaName={"int64"} qualifierMessage={undefined} schema={{"type":"integer","format":"int64","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"hash"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"[\n  {\n    \"base_currency\": \"BTC\",\n    \"current_timestamp\": 0,\n    \"instrument_name\": \"string\",\n    \"mark_price\": 0,\n    \"hash\": \"string\"\n  }\n]"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      

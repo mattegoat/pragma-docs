@@ -18,7 +18,7 @@ const GreenText: React.FC<GreenTextProps> = ({
     className={classNames(
       styles.greenText,
       isAligned ? "text-center" : "text-left",
-      className
+      className,
     )}
     {...props}
   >
