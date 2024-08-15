@@ -13,7 +13,7 @@ export const socials = [
   {
     name: "Discord",
     description: "Hop in to the community on Discord.",
-    href: "https://discord.com/invite/GFFymAvNQ6",
+    href: "https://discord.com/invite/M9aRZtZHU7",
   },
   {
     name: "GitHub",

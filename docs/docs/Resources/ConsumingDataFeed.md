@@ -1,6 +1,6 @@
 ---
 id: Consuming Data Feed
-title: Consuming Data Feed
+title: Getting started
 sidebar_position: 1
 ---
 

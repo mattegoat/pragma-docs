@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ---
 
-You can find the list of supported assets [here](./Supported%20Assets.md).
+You can find the list of supported assets [here](./supported-assets).
 
 The current Pragma addresses are:
 
