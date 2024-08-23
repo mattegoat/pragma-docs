@@ -30,7 +30,7 @@ The `pair_id` is calculated by utf-8 encoding the uppercased string (e.g. `str_t
 | UNI/USD    | 24011449254105924        | 8        | ✅      | M    |
 | STRK/USD   | 6004514686061859652      | 8        | ✅      | L    |
 | ZEND/USD   | 6504691291565413188      | 8        | ✅      | H    |
-| NSTR/USD   | 6504691291565413188      | 8        | ✅      | H    |
+| NSTR/USD   | 5643947469983535940      | 8        | ✅      | H    |
 | EKUBO/USD  | 1278253658919688033092   | 8        | ✅      | H    |
 
 ### Future
