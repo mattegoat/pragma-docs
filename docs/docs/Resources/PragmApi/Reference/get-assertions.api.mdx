@@ -1,0 +1,42 @@
+---
+id: get-assertions
+title: "get_assertions"
+description: "get_assertions"
+sidebar_label: "get_assertions"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1VduO0zAQ/ZXIz72xIB7ythKwQkgIsfC0qio3mbReHNvYk2qrKP/OTJLm0lahi8RTYnsuZ8ZnjkuBchdE/CQSLxHieC9NqsGHOLYOVa4CqmRjvUw0He4ANzIE8KisCWI9E9YB+dHqcypicXY+E056mQNSPEpRCkMLMgsoseBjZWj1uwB/pEUKIfHKsSvtflKa3KLtMeoCRp2fh9+F8kApM6kDzERI9pBLEZcCj65J4ZXZkakptJZbTXvoC6iqWYfCyR1MY/hGFpEp8i0ByayPyEOZutqbMCiDsANPtuScS2y23t5doJqJXBmVF7mIV0OEmvqP0xC/NuhsFimEPER0HVFb2H8DuObYwdENQ+Bod6sVf8bAHgD7mwtRKJIEQsgoLBeRWEptkN2kc1oldVeXz4F9y0ukdvsMCY6KehIjpqFFqTeJLQybJYX3FH/TtqI55EVNWueZtqga+IMwfULpvWSgdVdvBrJRKSfXUuX03VrDS3hxqpmRDQ1UTbmUsKlM1a3vSM2HtMjdBEROcEHyqk117aDBcu3kHNaV2elYkZI0zGuraoT+Wty2nivhwDCBnsR9gurAffiggisQuEmPgKjpb819QOadeGwCVcPO3Aiy6qPcn1pX7454cdMgDIg/JtnfvN+/E9WYea/NN6iCpqkrJHxvh48qqthoPHgXGkz6u7etOteSjHtaLEc2AagzCo+PPHgt55za/ILjcCac+gLHkx7tQaZ1Ca1YvczpfM4ejEmZzNaubQHOy10u58amcKFhtEEKAFxR3GkfN+9A70Zjslq8WaxqnP5wekwKrxkGogvxclmCOShvTU7XWy2adIttoTSz6yC9YjWrCxsYNrKVyUJjU98ihcOAqf0O/9FMEkGp5WvC5mzAXJoB4t1I8c6r7LqI8IJLR2NpuMS6iLK9lJGk0STsKQfvluVWBvjpdVXxdvMScAtSFbisXuLPUnYyO/2cXkVW332vTgepi/ZeXpN38gmdyNsK9z9mnXgVJ3Kents+6bqnDvWbr71lPTe/cbqnd80NvS7eM47SzeDDxx80H38AQzhEPA==
+sidebar_class_name: "get api-method"
+info_path: Resources/PragmAPI/Reference/pragma-node
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>get_assertions</h1>
+
+<MethodEndpoint method={"get"} path={"/assertions"}></MethodEndpoint>
+
+
+
+get_assertions
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"status","in":"query","description":"Filter by assertion status","required":false,"schema":{"type":"string","nullable":true}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"page","in":"query","description":"Page number for pagination","required":false,"schema":{"type":"integer","format":"int32","nullable":true,"minimum":0}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"limit","in":"query","description":"Number of items per page","required":false,"schema":{"type":"integer","format":"int32","nullable":true,"minimum":0}}}></ParamsItem></ul></div></details><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+Get assertions successfully
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>assertions</strong><span className={"openapi-schema__name"}> object[]</span><span className={"openapi-schema__divider"}></span><span className={"openapi-schema__required"}>required</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"assertion_id"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"bond"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"claim"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"expiration_time"} required={true} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem><SchemaItem collapsible={false} name={"identifier"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"status"} required={true} schemaName={"Status (string)"} qualifierMessage={"**Possible values:** [`Active`, `Disputed`, `Settled`]"} schema={{"type":"string","enum":["Active","Disputed","Settled"],"title":"Status"}}></SchemaItem><SchemaItem collapsible={false} name={"timestamp"} required={true} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"current_page"} required={true} schemaName={"int32"} qualifierMessage={undefined} schema={{"type":"integer","format":"int32","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"total_count"} required={true} schemaName={"int64"} qualifierMessage={undefined} schema={{"type":"integer","format":"int64"}}></SchemaItem><SchemaItem collapsible={false} name={"total_pages"} required={true} schemaName={"int32"} qualifierMessage={undefined} schema={{"type":"integer","format":"int32","minimum":0}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"assertions\": [\n    {\n      \"assertion_id\": \"string\",\n      \"bond\": \"string\",\n      \"claim\": \"string\",\n      \"expiration_time\": \"2024-08-27T14:18:19.845Z\",\n      \"identifier\": \"string\",\n      \"status\": \"Active\",\n      \"timestamp\": \"2024-08-27T14:18:19.848Z\"\n    }\n  ],\n  \"current_page\": 0,\n  \"total_count\": 0,\n  \"total_pages\": 0\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      
