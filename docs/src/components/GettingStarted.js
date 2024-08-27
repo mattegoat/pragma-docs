@@ -7,14 +7,14 @@ const productList = [
     description:
       "Provable data for DeFi. The highest quality data for your dapp.",
     button: "integrate now",
-    link: "/Resources/Cairo%201/data-feeds/consuming-data",
+    link: "/Resources/Starknet/data-feeds/consuming-data",
   },
   {
     title: "Computational feeds",
     description:
       "Provable feeds built with our price feeds. Volatility, Yield curve and more.",
     button: "integrate now",
-    link: "/Resources/Cairo%201/computational-feeds/what-are-computational-feeds",
+    link: "/Resources/Starknet/computational-feeds/what-are-computational-feeds",
   },
   {
     title: "PragmAPI",
@@ -26,7 +26,7 @@ const productList = [
     title: "VRF",
     description: "Verifiable, tamper-proof randomness available onchain.",
     button: "integrate now",
-    link: "/Resources/Cairo%201/randomness/randomness",
+    link: "/Resources/Starknet/randomness/randomness",
   },
   {
     title: "Optimistic Oracle",
