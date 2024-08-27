@@ -6,156 +6,23 @@
     "license": {
       "name": ""
     },
-    "version": "0.1.0",
-    "servers": [
-      {
-        "url": "https://{environment}.pragma.build",
-        "variables": {
-          "environment": {
-            "default": "api.dev",
-            "enum": [
-              "api.dev",
-              "api.prod"
-            ]
-          }
-        }
-      }
-    ]
+    "version": "0.1.0"
   },
+  "servers": [
+    {
+      "url": "https://{environment}.pragma.build",
+      "variables": {
+        "environment": {
+          "default": "api.dev",
+          "enum": [
+            "api.dev",
+            "api.prod"
+          ]
+        }
+      }
+    }
+  ],
   "paths": {
-    "/assertions": {
-      "get": {
-        "tags": [
-          "crate::handlers::optimistic_oracle::get_assertions"
-        ],
-        "operationId": "get_assertions",
-        "parameters": [
-          {
-            "name": "status",
-            "in": "query",
-            "description": "Filter by assertion status",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "Page number for pagination",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "nullable": true,
-              "minimum": 0
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Number of items per page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "nullable": true,
-              "minimum": 0
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Get assertions successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetAssertionsResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/assertions/{assertion_id}": {
-      "get": {
-        "tags": [
-          "crate::handlers::optimistic_oracle::get_assertion_details"
-        ],
-        "operationId": "get_assertion_details",
-        "parameters": [
-          {
-            "name": "assertion_id",
-            "in": "path",
-            "description": "Unique identifier of the assertion",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Get assertion details successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AssertionDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/disputed-assertions": {
-      "get": {
-        "tags": [
-          "crate::handlers::optimistic_oracle::get_disputed_assertions"
-        ],
-        "operationId": "get_disputed_assertions",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "Page number for pagination",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "nullable": true,
-              "minimum": 0
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Number of items per page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "nullable": true,
-              "minimum": 0
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Get disputed assertions successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetDisputedAssertionsResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/node/v1/aggregation/candlestick/{base}/{quote}": {
       "get": {
         "tags": [
@@ -1011,7 +878,140 @@
         }
       }
     },
-    "/resolved-assertions": {
+    "node/v1/optimistic/assertions": {
+      "get": {
+        "tags": [
+          "crate::handlers::optimistic_oracle::get_assertions"
+        ],
+        "operationId": "get_assertions",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter by assertion status",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true,
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get assertions successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAssertionsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "node/v1/optimistic/assertions/{assertion_id}": {
+      "get": {
+        "tags": [
+          "crate::handlers::optimistic_oracle::get_assertion_details"
+        ],
+        "operationId": "get_assertion_details",
+        "parameters": [
+          {
+            "name": "assertion_id",
+            "in": "path",
+            "description": "Unique identifier of the assertion",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get assertion details successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssertionDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "node/v1/optimistic/disputed-assertions": {
+      "get": {
+        "tags": [
+          "crate::handlers::optimistic_oracle::get_disputed_assertions"
+        ],
+        "operationId": "get_disputed_assertions",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true,
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get disputed assertions successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDisputedAssertionsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "node/v1/optimistic/resolved-assertions": {
       "get": {
         "tags": [
           "crate::handlers::optimistic_oracle::get_resolved_assertions"
@@ -1084,7 +1084,7 @@
             "type": "string"
           },
           "bond": {
-            "type": "string"
+            "type": "integer"
           },
           "claim": {
             "type": "string"
