@@ -1,0 +1,42 @@
+---
+id: get-disputed-assertions
+title: "get_disputed_assertions"
+description: "get_disputed_assertions"
+sidebar_label: "get_disputed_assertions"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1VUtv2zAM/iuGznm1u/lWYMAwDBiG9VgUhmLTCTtZUiU6aBD4v4+0ncSe3S477GRL4uPjx9dJkd5FlT6pPGiCNN1rWxgIMU2dJ6wwEuaZCzo3/LgDygqMviYoMh0jBEJno3peKOeBDfDpa6FS9Z7gQnkddAXEHtjpSVk+sLzXO+BHtPz/WkM48qGAmAf0osi3P1gisXW1hZCULiSsgbZ1yKIBXmsMwJ5LbSIsVMz3UGmVnhQdvThAS7CDwLKsXGnqrj7d84WtjdFbw1IUatat0GJVVyrdNM3igtAwF/QxxO8dOlcmSFDFhBlJ+sD+G8BnsR09cwtRrN1vNvIZA/sClJyzkVyzkcQ6zyHGku1LNLljDJZEX3tvMG/pXb9EMXKaQnbbF8hpFN2Tms86OdImy11tRT6vQ2BHWU9O9yiHtpJ8kFoi7AIayd5E14CexSycqxUdgpbI23z9LbKLBXUxG9TQAw1P9DaN5WrhVlcZFsKX0Vjxd+usHOHNY9drGXdo2zcFU4QltoAiaapb0vmRD5X/AIk4uIKJFNDuVNO7mtLdnMHM6fyJayIzSFbBw2bZSjUj+HN2+4BmzIGVPD+ph5zwIER87unn30cgMvz3LESQdI967Aw1Q2puBNlcrTxcstiMs39zvMMimQv4Ul3TxwGOc6wDPM240+baZdQdw877194aIOH5MgETf/ZjiVE1IjweSe8vCF4Oe9fvkHZf0J4P1hWwPtytr0tpfVZfjtT593BeLnUwrLon8jFdr09gDxicrbjYmpUPelfp1bZGI9Vy0AFlxrY8DAS7YVrq2ggN2uOqgMOg8q438sdNxgXXtGM5Ao8upOOjjM2+6zxmv+A4HEAev8HxvFb2oIuW937nvC35fSkaQiDa0rWqPetdBEthZrKK+ILnNwj96WWFSWkJN53IZnW32rDh3xHzzI8=
+sidebar_class_name: "get api-method"
+info_path: Resources/PragmAPI/Reference/pragma-node
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>get_disputed_assertions</h1>
+
+<MethodEndpoint method={"get"} path={"node/v1/optimistic/disputed-assertions"}></MethodEndpoint>
+
+
+
+get_disputed_assertions
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"page","in":"query","description":"Page number for pagination","required":false,"schema":{"type":"integer","format":"int32","nullable":true,"minimum":0}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"limit","in":"query","description":"Number of items per page","required":false,"schema":{"type":"integer","format":"int32","nullable":true,"minimum":0}}}></ParamsItem></ul></div></details><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+Get disputed assertions successfully
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"current_page"} required={true} schemaName={"int32"} qualifierMessage={undefined} schema={{"type":"integer","format":"int32","minimum":0}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>disputed_assertions</strong><span className={"openapi-schema__name"}> object[]</span><span className={"openapi-schema__divider"}></span><span className={"openapi-schema__required"}>required</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>assertion</strong><span className={"openapi-schema__name"}> object</span><span className={"openapi-schema__divider"}></span><span className={"openapi-schema__required"}>required</span></span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"assertion_id"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"bond"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer"}}></SchemaItem><SchemaItem collapsible={false} name={"claim"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"expiration_time"} required={true} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem><SchemaItem collapsible={false} name={"identifier"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"status"} required={true} schemaName={"Status (string)"} qualifierMessage={"**Possible values:** [`Active`, `Disputed`, `Settled`]"} schema={{"type":"string","enum":["Active","Disputed","Settled"],"title":"Status"}}></SchemaItem><SchemaItem collapsible={false} name={"timestamp"} required={true} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={false} name={"disputed_at"} required={true} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem><SchemaItem collapsible={false} name={"disputed_tx"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"disputer"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"total_count"} required={true} schemaName={"integer"} qualifierMessage={undefined} schema={{"type":"integer","minimum":0}}></SchemaItem><SchemaItem collapsible={false} name={"total_pages"} required={true} schemaName={"int32"} qualifierMessage={undefined} schema={{"type":"integer","format":"int32","minimum":0}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"current_page\": 0,\n  \"disputed_assertions\": [\n    {\n      \"assertion\": {\n        \"assertion_id\": \"string\",\n        \"bond\": 0,\n        \"claim\": \"string\",\n        \"expiration_time\": \"2024-08-27T14:42:24.890Z\",\n        \"identifier\": \"string\",\n        \"status\": \"Active\",\n        \"timestamp\": \"2024-08-27T14:42:24.890Z\"\n      },\n      \"disputed_at\": \"2024-08-27T14:42:24.890Z\",\n      \"disputed_tx\": \"string\",\n      \"disputer\": \"string\"\n    }\n  ],\n  \"total_count\": 0,\n  \"total_pages\": 0\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
+      
