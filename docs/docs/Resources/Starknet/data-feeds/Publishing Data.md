@@ -164,7 +164,7 @@ To use a custom RPC, you will need to set the `network` constructor argument to 
 
 #### 3.2. Publish on API
 
-If you're willing to publish on the [Pragma API](https://mirror.xyz/pragmagic.eth/6kLIyEzYanQNWn58tPfMpzIxehz7SZ3jM-sqJENy79k) aswell, there are 2 simple changes to make :
+If you're willing to publish on the [Pragma API](https://blog.pragma.build/pragma-empowers-starknet-sequencer-with-the-launch-of-the-api/) aswell, there are 2 simple changes to make :
 
 You will have to specify an `API_KEY` and an `API_URL`.
 Currently the only way to get an API key is for us to give it to you, so please let us know if you need it!

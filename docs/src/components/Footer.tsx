@@ -20,7 +20,7 @@ const content: FooterColumn[] = [
     links: [
       {
         title: "Documentation",
-        href: "https://docs.pragma.build/docs/introduction",
+        href: "https://docs.pragma.build/",
         external: true,
       },
       {
@@ -55,7 +55,7 @@ const content: FooterColumn[] = [
     links: [
       {
         title: "Blog",
-        href: "https://mirror.xyz/pragmagic.eth",
+        href: "https://blog.pragma.build/",
         external: true,
       },
       {
@@ -108,7 +108,7 @@ const Footer = () => (
           <div style={{ width: "fit-content" }}>
             <img
               className={styles.imgFooter}
-              src="https://pragma-green.vercel.app/pragma-logo.png"
+              src="/img/pragma-og-img.png"
               alt="Pragma"
             />
           </div>
@@ -172,12 +172,12 @@ const Footer = () => (
             </div>
           </nav>
         ))}
-        <div style={{ gridColumn: "span 4", maxWidth: "28rem" }}>
+        {/* <div style={{ gridColumn: "span 4", maxWidth: "28rem" }}>
           <div
             className="pb-3 text-lg text-lightGreen"
             style={{
               paddingBottom: "12px",
-              fontSize: "1.125rem",
+              fontSize: "1rem",
               lineHeight: "1.75rem",
               color: "#B5F0E5",
             }}
@@ -185,7 +185,7 @@ const Footer = () => (
             Subscribe to our mailing list
           </div>
           <InputComponent placeholderText="Email address" footer={true} />
-        </div>
+        </div> */}
       </div>
       <div className={styles.copyright}>
         © Pragma Labs - 2024. All rights reserved.

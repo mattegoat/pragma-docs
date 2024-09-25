@@ -3,6 +3,7 @@ import React, { ChangeEvent, useState } from "react";
 import styles from "./styles.module.css";
 import { ArrowRightIcon } from "@heroicons/react/outline";
 import PopupComponent from "./common/Popup";
+import Link from "@docusaurus/Link";
 
 interface InputProps {
   placeholderText: string;
@@ -58,7 +59,7 @@ const InputComponent: React.FC<InputProps> = ({
             }
       }
     >
-      <div
+      {/* <div
         style={{
           display: "flex",
           flexDirection: "row",
@@ -116,14 +117,16 @@ const InputComponent: React.FC<InputProps> = ({
         >
           I agree with the privacy policy.
         </div>
-      </label>
-      <button
-        className={styles.buttonsolid}
-        style={footer ? { display: "none" } : { display: "unset" }}
-        onClick={handleButtonClick}
-      >
-        Subscribe now
-      </button>
+      </label> */}
+      <Link href="https://blog.pragma.build/#/portal">
+        <button
+          className={styles.buttonsolid}
+          style={footer ? { display: "none" } : { display: "unset" }}
+          // onClick={handleButtonClick}
+        >
+          Subscribe now
+        </button>
+      </Link>
     </div>
   );
 };

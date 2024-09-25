@@ -12,7 +12,7 @@
     "clear": "docusaurus clear"
   },
   "engines": {
-    "node": "16.x"
+    "node": ">=16.x"
   },
   "dependencies": {
     "@algolia/autocomplete-preset-algolia": "^1.1.0",
