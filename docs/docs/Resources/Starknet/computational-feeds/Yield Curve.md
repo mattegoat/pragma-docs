@@ -42,9 +42,7 @@ let yield_points = get_yield_curve_points(number_of_decimals);
 
 Aave overnight rates are used to estimate short-term rates. BTC spot and futures prices are pulled at the exact same time to calculate the rates for different maturities. The interest rate for each maturity is calculated according to the following equation:
 
-  <div >
-  <a href="https://ibb.co/5MSMY8k"><img height='100%' width='100%'src="https://i.ibb.co/p0M0WzQ/yield-curve-formula.png" alt="yield-curve-formula"/></a>
-  </div>
+<img height='auto' width='auto'src="/img/flowchart/yieldCurve.webp" alt="yield-curve-formula"/>
 
 ​We floor the values with 0 to account for case where spot > future (backwardation).
 

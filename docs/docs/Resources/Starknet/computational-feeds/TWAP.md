@@ -52,9 +52,12 @@ let twap = compute_twap(DataType::Future((pair_id, expiration_timestamp)), Aggre
 
 We calculate the Time wighted average price using the following formula:
 
-  <div>
-  <a href="https://ibb.co/tcjqN3M"><img width="100%" heigth="100%" src="	https://i.ibb.co/Q69FtYd/TWAP.jpg" alt="realised-volatility"/></a>
-  </div>
+<img
+height="auto"
+width="auto"
+src="/img/flowchart/twap.webp"
+alt="twap"
+/>
 
 ## Technical Specification
 

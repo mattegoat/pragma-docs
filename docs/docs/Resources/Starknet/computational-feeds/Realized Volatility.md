@@ -51,11 +51,9 @@ let volatility = compute_volatility(DataType::Spot(pair_id), AggregationMode::Me
 
 ## How Realized Volatility is Calculated
 
-We calculate realized volatility under the Geometric Brownian Motion assumption using the following equation:
+We compute realized volatility under the Geometric Brownian Motion assumption using the following equation:
 
-  <div>
-  <a href="https://ibb.co/tcjqN3M"><img width="100%" heigth="100%" src="https://i.ibb.co/sQxKDtv/realised-volatility.jpg" alt="realised-volatility"/></a>
-  </div>
+<img width="auto" height="auto" src="/img/flowchart/realizedVol.webp" alt="realised-volatility" />
 
 Where σ is in units of 1/$\sqrt{T}$. We then multiply σ by $\sqrt{ΔTyear}$ to get the annualized volatility of the underlying asset.
 

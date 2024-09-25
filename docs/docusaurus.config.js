@@ -93,9 +93,9 @@ module.exports = {
     ],
   ],
   plugins: [
-    'my-loaders',
+    "my-loaders",
     [
-      'docusaurus-plugin-openapi-docs',
+      "docusaurus-plugin-openapi-docs",
       {
         id: "api", // plugin id
         docsPluginId: "classic", // configured for preset-classic
@@ -107,11 +107,11 @@ module.exports = {
               groupPathsBy: "tag",
             },
             hideSendButton: false,
-            baseUrl: "https://api.dev.pragma.build"
+            baseUrl: "https://api.dev.pragma.build",
           },
-        }
+        },
       },
-    ]
+    ],
   ],
   themes: ["docusaurus-theme-openapi-docs"], // export theme components
   stylesheets: [

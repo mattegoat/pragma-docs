@@ -18,14 +18,13 @@ A Merkle Feed is an efficient way to publish and verify large amounts of data on
 ## How It Works
 
   <div>
-  <img width="100%" height="100%" src="https://i.ibb.co/X7X9hHX/Flowchart-1.png" />
+  <img width="100%" height="100%" src="/img/flowchart/Flowchart-1.png" />
   </div>
 
 1. The merkle trees are built with data from [Deribit](https://www.deribit.com/) the leading platform for options trading.
-2. Merkle root is published on-chain *every* block.
+2. Merkle root is published on-chain _every_ block.
 3. Merkle proofs with associated data can be retrieved through REST and WebSocket endpoints or through a rust crate we provide.
 4. Data is updated on-demand on-chain upon successful verification of the merkle proof.
-
 
 ## Contract Address
 

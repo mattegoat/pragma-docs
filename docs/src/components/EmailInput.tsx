@@ -1,8 +1,6 @@
-import classNames from "classnames";
 import React, { ChangeEvent, useState } from "react";
 import styles from "./styles.module.css";
-import { ArrowRightIcon } from "@heroicons/react/outline";
-import PopupComponent from "./common/Popup";
+// import PopupComponent from "./common/Popup";
 import Link from "@docusaurus/Link";
 
 interface InputProps {
@@ -16,35 +14,35 @@ const InputComponent: React.FC<InputProps> = ({
   footer,
   className,
 }) => {
-  const [email, setEmail] = useState<string>("");
-  const [isValidEmail, setIsValidEmail] = useState<boolean>(true);
-  const [isCheckboxChecked, setIsCheckboxChecked] = useState<boolean>(false);
-  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  // const [email, setEmail] = useState<string>("");
+  // const [isValidEmail, setIsValidEmail] = useState<boolean>(true);
+  // const [isCheckboxChecked, setIsCheckboxChecked] = useState<boolean>(false);
+  // const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
+  // const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   setEmail(e.target.value);
+  // };
 
-  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsCheckboxChecked(e.target.checked);
-  };
+  // const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   setIsCheckboxChecked(e.target.checked);
+  // };
 
-  const validateEmail = () => {
-    const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    const isValid = emailPattern.test(email);
-    setIsValidEmail(isValid);
-    if (isValid) {
-      setIsSubmitted(true); // Set to true if email is valid
-    }
-  };
+  // const validateEmail = () => {
+  //   const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+  //   const isValid = emailPattern.test(email);
+  //   setIsValidEmail(isValid);
+  //   if (isValid) {
+  //     setIsSubmitted(true); // Set to true if email is valid
+  //   }
+  // };
 
-  const handleButtonClick = () => {
-    if (!isCheckboxChecked) {
-      alert("Please tick the box");
-      return;
-    }
-    validateEmail();
-  };
+  // const handleButtonClick = () => {
+  //   if (!isCheckboxChecked) {
+  //     alert("Please tick the box");
+  //     return;
+  //   }
+  //   validateEmail();
+  // };
 
   return (
     <div

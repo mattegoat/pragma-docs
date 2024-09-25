@@ -9,7 +9,7 @@ sidebar_position: 2
 The V1 of the Pragma Oracle consists of three smart contracts, that each play a role in making the oracle easy to use and robust.
 
   <div>
-  <img width="100%" height="100%" src="https://i.ibb.co/ctKV4db/Flowchart-2.png" alt="flowchart contracts" />
+  <img width="100%" height="100%" src="/img/flowchart/flowchart-2.webp" alt="flowchart contracts" />
   </div>
 
 The first is the Publisher Registry, which is the most static. This is designed to be updated extremely infrequently because its state should be permanent (each publisher and their address). This is currently an ownable contract but will become permissionless as Pragma decentralizes.
@@ -18,7 +18,7 @@ The second is the Oracle implementation and its proxy, which are also designed t
 
 ## Aggregation
 
-<div><img width="100%" height="100%" src="https://i.ibb.co/xhvHD1w/Flowchart-3-B.png" alt="flowchart publisher" border="0"/></div>
+<div><img width="100%" height="100%" src="/img/flowchart/publishers.webp" alt="flowchart publisher" border="0"/></div>
 
 Our system incorporates multiple publishers, each responsible for providing data from various sources. To determine the price for a given source, we consider the prices submitted by all these publishers. Our approach involves conducting an initial on-chain aggregation based on the median of these prices. This median value then becomes the established price for that particular source.
 
