@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, useEffect, useState, Suspense } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 
@@ -13,17 +13,14 @@ import {
 } from "@heroicons/react/outline";
 import BasicHero from "../components/BasicHero";
 import BoxContainer from "../components/BoxContainer";
-import GettingStarted from "../components/GettingStarted";
-import DeveloperLink from "../components/DeveloperLink";
-import Help from "../components/Help";
-import SocialWrapper from "../components/SocialWrapper";
 import Footer from "../components/Footer";
-import LatestNews from "../components/LatestNews";
 
 // Lazy load components
 const LazyHelp = lazy(() => import("../components/Help"));
 const LazyLatestNews = lazy(() => import("../components/LatestNews"));
 const LazySocialWrapper = lazy(() => import("../components/SocialWrapper"));
+const LazyDevLink = lazy(() => import("../components/DeveloperLink"));
+const LazyGettingStarted = lazy(() => import("../components/GettingStarted"));
 
 export const actions = [
   {
@@ -83,28 +80,22 @@ export default function Home() {
             "Get started with the Pragma smart-contracts, the leading oracle on Starknet and zk-Rollups. Use our architecture to unlock access to composable and verifiable data."
           }
         />
-        <BoxContainer>
-          <GettingStarted />
-        </BoxContainer>
-        <BoxContainer>
-          <DeveloperLink />
-        </BoxContainer>
         {isClient && (
-          <>
-            <Suspense fallback={<div>Loading...</div>}>
-              <LazyHelp />
-            </Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
             <BoxContainer>
-              <Suspense fallback={<div>Loading...</div>}>
-                <LazySocialWrapper />
-              </Suspense>
+              <LazyGettingStarted />
             </BoxContainer>
             <BoxContainer>
-              <Suspense fallback={<div>Loading...</div>}>
-                <LazyLatestNews />
-              </Suspense>
+              <LazyDevLink />
             </BoxContainer>
-          </>
+            <LazyHelp />
+            <BoxContainer>
+              <LazySocialWrapper />
+            </BoxContainer>
+            <BoxContainer>
+              <LazyLatestNews />
+            </BoxContainer>
+          </Suspense>
         )}
         <Footer />
       </Container>
