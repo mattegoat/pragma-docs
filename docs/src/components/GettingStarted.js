@@ -30,15 +30,17 @@ const productList = [
   },
   {
     title: "Optimistic Oracle",
-    description: "A secure dispute arbitration system bringing any data on-chain for DeFi, prediction markets, and more.",
+    description:
+      "A secure dispute arbitration system bringing any data on-chain for DeFi, prediction markets, and more.",
     button: "integrate now",
-    link: "/Resources/Cairo%201/optimistic-oracle/overview",
+    link: "/Resources/Starknet/optimistic-oracle/overview",
   },
   {
     title: "Merkle Feeds",
-    description: "Feeds for options, enabling verified off-chain data retrieval and on-chain validation with our Rust SDK.",
+    description:
+      "Feeds for options, enabling verified off-chain data retrieval and on-chain validation with our Rust SDK.",
     button: "integrate now",
-    link: "/Resources/Cairo%201/merkle-feeds/what-are-merkle-feeds",
+    link: "/Resources/Starknet/merkle-feeds/what-are-merkle-feeds",
   },
 ];
 

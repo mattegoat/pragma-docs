@@ -193,33 +193,23 @@ Since everything is already done, you will just have to compile the code and dep
 
 To begin with, you will have to activate the starknet plugin:
 
-  <div>
-  <a href="https://ibb.co/p4j19SQ"><img src="https://i.ibb.co/P1GrfdM/starknet-plugin.png" alt="starknet-plugin"/></a>
-  </div>
+  <img src="/img/remix/remix1.webp" alt="starknet-plugin"/>
 
 Once activate, the starknet icon should appear on the left side of the screen.
 Then, you will have to compile the code.
 
-  <div>
-  <a href="https://ibb.co/m56xRMg"><img src="https://i.ibb.co/XxSwWvM/compile.png" alt="compile"/></a>
-  </div>
+  <img src="/img/remix/remix2.webp" alt="compile"/>
 
 Once compiled, you will have to create and deploy an account, and used the button to get testnet ETH.
 
-<div>
-<a href="https://ibb.co/vhZ6nnc"><img src="https://i.ibb.co/7Q2dmmS/deploy-account.png" alt="deploy-account" /></a>
-  </div>
+<img src="/img/remix/remix3.webp" alt="deploy-account" />
 
 You can finally deploy the contract. The addresses used for the constructor are the oracle contract address and the summary stats contract address. You can find the oracle address [here](../Resources/Cairo%201/data-feeds/Consuming%20Data.md). You can find the summary stats address [here](../Resources/Cairo%201/computational-feeds/Overview.md).
 
-<div>
-<a href="https://ibb.co/rppfH6B"><img src="https://i.ibb.co/bvvRXB4/deploy.png" alt="deploy"/></a>
-</div>
+<img src="/img/remix/remix4.webp" alt="deploy"/>
 
 Once deployed, you can interact with the contract.
 
-<div>
-<a href="https://ibb.co/648RS8b"><img src="https://i.ibb.co/SKcXgc0/interact.png" alt="interact"/></a>
-</div>
+<img src="/img/remix/remix5.webp" alt="interact"/>
 
 And that's it ! You have used Pragma !

@@ -18,6 +18,7 @@
   --ifm-color-primary-lighter: #5a91ea;
   --ifm-color-primary-lightest: #80aaef;
   --ifm-link-decoration: none !important;
+  --ifm-font-family-base: "IBM Plex Sans" !important;
 
   --collapse-button-bg-color-dark: #2e333a;
 }
@@ -56,7 +57,6 @@ html[data-theme="light"] {
 }
 
 .html {
-  font-family: "IBM Plex Sans", sans-serif;
   font-size: 16px;
   font-variant: none;
   -webkit-font-smoothing: antialiased;
@@ -72,7 +72,6 @@ html[data-theme="light"] {
 
 .markdown a {
   color: #15ff81;
-  font-family: "IBM Plex Sans", sans-serif;
 }
 
 a {
@@ -90,7 +89,6 @@ a :hover {
 p {
   line-height: 1.5rem;
   font-weight: 400;
-  font-family: "IBM Plex Sans", sans-serif;
 }
 
 hr {
@@ -104,7 +102,6 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "IBM Plex Sans", sans-serif;
   font-weight: 300;
 }
 
@@ -115,7 +112,6 @@ h1 {
 h2 {
   color: #b5f0e5;
   /* Headline/H2 */
-  font-family: IBM Plex Sans;
   font-size: 48px;
   font-style: normal;
   font-weight: 300;
@@ -123,7 +119,6 @@ h2 {
   letter-spacing: -0.96px;
 }
 h3 {
-  font-family: "IBM Plex Sans";
   font-size: 36px;
   font-style: normal;
   font-weight: 400;
@@ -176,7 +171,6 @@ h4 {
   border-radius: 100px !important;
   padding: 20px 24px !important;
   color: #b5f0e5 !important;
-  font-family: IBM Plex Sans;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -248,13 +242,11 @@ html[data-theme="dark"] .navbar {
 }
 
 .navbar__title {
-  font-family: "IBM Plex Sans", sans-serif;
   color: #b5f0e5;
   font-weight: 500;
 }
 
 .navbar__link {
-  font-family: "IBM Plex Sans", sans-serif;
   color: #b5f0e5;
   font-weight: 400;
 }
@@ -283,7 +275,6 @@ html[data-theme="dark"] .navbar {
 .menu__link {
   font-size: 16px;
   font-weight: 400;
-  font-family: "IBM Plex Sans", sans-serif;
 }
 
 .docusaurus-highlight-code-line {
@@ -465,13 +456,11 @@ html[data-theme="dark"] .DocSearch-Hit :hover {
 }
 html[data-theme="dark"] .DocSearch-Hit a :hover {
   background-color: transparent;
-  font-family: "IBM Plex Sans", sans-serif;
   text-decoration: none !important;
 }
 
 html[data-theme="dark"] .DocSearch-Hit a {
   background-color: var(--ifm-color-emphasis-0);
-  font-family: "IBM Plex Sans", sans-serif;
 }
 
 .react-toggle-thumb :hover {
@@ -509,7 +498,6 @@ html[data-theme="dark"] .DocSearch-Hit a {
 
 .table-of-contents {
   opacity: 0.4;
-  font-family: "IBM Plex Sans", sans-serif;
 }
 
 .table-of-contents:hover {

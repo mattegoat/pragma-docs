@@ -1,27 +1,15 @@
-import React from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import Layout from "@theme/Layout";
-import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import Head from "@docusaurus/Head";
 
-import "./styles.module.css";
 import styled from "@emotion/styled";
 
-import Discord from "@site/static/img/discord.svg";
-import Twitter from "@site/static/img/twitter.svg";
-
-import ThemedImage from "@theme/ThemedImage";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-
-import SearchBar from "@theme-original/SearchBar";
-import ecosystem from "./assets/ecosystem.svg";
-import ecosystemSmall from "./assets/ecosystemSmall.svg";
 
 import {
   InformationCircleIcon,
   QuestionMarkCircleIcon,
   BookOpenIcon,
-  ChatIcon,
-  CodeIcon,
 } from "@heroicons/react/outline";
 import BasicHero from "../components/BasicHero";
 import BoxContainer from "../components/BoxContainer";
@@ -31,6 +19,11 @@ import Help from "../components/Help";
 import SocialWrapper from "../components/SocialWrapper";
 import Footer from "../components/Footer";
 import LatestNews from "../components/LatestNews";
+
+// Lazy load components
+const LazyHelp = lazy(() => import("../components/Help"));
+const LazyLatestNews = lazy(() => import("../components/LatestNews"));
+const LazySocialWrapper = lazy(() => import("../components/SocialWrapper"));
 
 export const actions = [
   {
@@ -64,12 +57,24 @@ const Container = styled.div`
 `;
 
 export default function Home() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <Layout
       title={`Pragma Documentation`}
       description="Technical Documentation For The Pragma Protocol"
       image={useBaseUrl("/img/background.jpg")}
     >
+      <Head>
+        <style>{`
+          font-family: IBM Plex Sans;
+          body { font-size: 18px; font-style: normal; font-weight: 400; line-height: 28px; /* 155.556% */ }
+        `}</style>
+      </Head>
       <Container>
         <BasicHero
           title={"Welcome to the"}
@@ -84,13 +89,23 @@ export default function Home() {
         <BoxContainer>
           <DeveloperLink />
         </BoxContainer>
-        <Help />
-        <BoxContainer>
-          <SocialWrapper />
-        </BoxContainer>
-        <BoxContainer>
-          <LatestNews />
-        </BoxContainer>
+        {isClient && (
+          <>
+            <Suspense fallback={<div>Loading...</div>}>
+              <LazyHelp />
+            </Suspense>
+            <BoxContainer>
+              <Suspense fallback={<div>Loading...</div>}>
+                <LazySocialWrapper />
+              </Suspense>
+            </BoxContainer>
+            <BoxContainer>
+              <Suspense fallback={<div>Loading...</div>}>
+                <LazyLatestNews />
+              </Suspense>
+            </BoxContainer>
+          </>
+        )}
         <Footer />
       </Container>
     </Layout>
