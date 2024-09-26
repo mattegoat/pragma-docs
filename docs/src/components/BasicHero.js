@@ -1,10 +1,10 @@
-import React, { lazy, useEffect, useState } from "react";
+import React, { lazy, useEffect, useState, Suspense } from "react";
 import styles from "./styles.module.css";
-import DocsBig from "@site/static/img/docs.svg";
-import DocsSmall from "@site/static/img/docsSmall.svg";
 
-// Lazy load the SearchBar component
+// Lazy load the components
 const SearchBar = lazy(() => import("@theme-original/SearchBar"));
+const DocsBig = lazy(() => import("@site/static/img/docs.svg"));
+const DocsSmall = lazy(() => import("@site/static/img/docsSmall.svg"));
 
 const BasicHero = ({ title, greenTitle, description }) => {
   const [isClient, setIsClient] = useState(false);
@@ -15,10 +15,10 @@ const BasicHero = ({ title, greenTitle, description }) => {
   return (
     <div className={styles.wrapper}>
       {isClient && (
-        <>
+        <Suspense fallback={<div>Loading...</div>}>
           <DocsBig className={styles.bigImage} loading="lazy" />
           <DocsSmall className={styles.smallImage} loading="lazy" />
-        </>
+        </Suspense>
       )}
       <div className={styles.flex}>
         <header className={styles.headerWrapper}>
@@ -28,7 +28,11 @@ const BasicHero = ({ title, greenTitle, description }) => {
             <span className={styles.verifiable}>{greenTitle}</span>
           </h1>
           <div className={styles.searchWrapper}>
-            {isClient && <SearchBar />}
+            {isClient && (
+              <Suspense fallback={<div>Loading...</div>}>
+                <SearchBar />
+              </Suspense>
+            )}
           </div>
           <div className={styles.description}>{description}</div>
         </header>

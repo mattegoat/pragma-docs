@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, useEffect, useState, Suspense } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 
@@ -81,7 +81,7 @@ export default function Home() {
           }
         />
         {isClient && (
-          <>
+          <Suspense fallback={<div>Loading...</div>}>
             <BoxContainer>
               <LazyGettingStarted />
             </BoxContainer>
@@ -95,7 +95,7 @@ export default function Home() {
             <BoxContainer>
               <LazyLatestNews />
             </BoxContainer>
-          </>
+          </Suspense>
         )}
         <Footer />
       </Container>
