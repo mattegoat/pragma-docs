@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import Layout from "@theme/Layout";
+import Head from "@docusaurus/Head";
 
 import styled from "@emotion/styled";
 
@@ -68,6 +69,12 @@ export default function Home() {
       description="Technical Documentation For The Pragma Protocol"
       image={useBaseUrl("/img/background.jpg")}
     >
+      <Head>
+        <style>{`
+          font-family: IBM Plex Sans;
+          body { font-size: 18px; font-style: normal; font-weight: 400; line-height: 28px; /* 155.556% */ }
+        `}</style>
+      </Head>
       <Container>
         <BasicHero
           title={"Welcome to the"}

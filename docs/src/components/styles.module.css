@@ -65,7 +65,6 @@
   color: #b5f0e5;
 
   /* Body/Body L */
-  font-family: IBM Plex Sans;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -77,7 +76,6 @@
   color: #b5f0e5;
 
   /* Body/Body L */
-  font-family: IBM Plex Sans;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -91,7 +89,6 @@
   text-align: center;
 
   /* Body/Body L */
-  font-family: IBM Plex Sans;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -200,7 +197,6 @@
   font-style: normal;
   font-weight: 400;
   line-height: 28px;
-  font-family: IBM Plex Sans;
 }
 
 .startWrapper {
@@ -276,7 +272,6 @@
   text-transform: uppercase;
   background: transparent;
   color: #15ff81;
-  font-family: IBM Plex Sans;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -306,7 +301,6 @@
   text-transform: uppercase;
   background: #15ff81;
   color: #042420;
-  font-family: IBM Plex Sans;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
