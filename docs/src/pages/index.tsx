@@ -1,5 +1,6 @@
 import React, { lazy, useEffect, useState, Suspense } from "react";
 import Layout from "@theme/Layout";
+import GettingStarted from "../components/GettingStarted";
 import Head from "@docusaurus/Head";
 
 import styled from "@emotion/styled";
@@ -20,7 +21,6 @@ const LazyHelp = lazy(() => import("../components/Help"));
 const LazyLatestNews = lazy(() => import("../components/LatestNews"));
 const LazySocialWrapper = lazy(() => import("../components/SocialWrapper"));
 const LazyDevLink = lazy(() => import("../components/DeveloperLink"));
-const LazyGettingStarted = lazy(() => import("../components/GettingStarted"));
 
 export const actions = [
   {
@@ -80,11 +80,11 @@ export default function Home() {
             "Get started with the Pragma smart-contracts, the leading oracle on Starknet and zk-Rollups. Use our architecture to unlock access to composable and verifiable data."
           }
         />
+        <BoxContainer>
+          <GettingStarted />
+        </BoxContainer>
         {isClient && (
           <Suspense fallback={<div>Loading...</div>}>
-            <BoxContainer>
-              <LazyGettingStarted />
-            </BoxContainer>
             <BoxContainer>
               <LazyDevLink />
             </BoxContainer>
