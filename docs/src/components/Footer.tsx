@@ -104,7 +104,7 @@ const Footer = () => (
       >
         <a href="/">
           <img
-            src="/img/pragma-og-img.png"
+            src="/img/pragma-og-img.svg"
             alt="Pragma"
             width={180}
             height={40}
