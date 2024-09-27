@@ -110,6 +110,8 @@ const Footer = () => (
               className={styles.imgFooter}
               src="/img/pragma-og-img.png"
               alt="Pragma"
+              width={"auto"}
+              height={60}
             />
           </div>
         </a>
