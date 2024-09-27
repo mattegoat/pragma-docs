@@ -458,11 +458,6 @@
   padding-right: 12px;
 }
 
-.imgFooter {
-  height: 40px;
-  width: "auto";
-}
-
 .footerDescription {
   width: 50%;
   padding-top: 1.25rem;
@@ -634,9 +629,6 @@
   }
   .socialBox {
     padding: 24px;
-  }
-  .imgFooter {
-    height: 32px;
   }
   .notFooterInput {
     width: 70%;
