@@ -179,7 +179,7 @@ enum AggregationMode {
 ```
 
 We deploying the contract, you will have to specify the oracle contract address and the summary stats contract address. The summary stats is a contract providing computational feeds (TWAP, Yield Curve, Realized Volatility, ...). In the provided example we will not use the summary stats contract.
-The oracle address can be found [here](../Resources/Cairo%201/data-feeds/Consuming%20Data.md).
+The oracle address can be found [here](../Resources/Starknet/data-feeds/Consuming%20Data.md).
 The previous contract is a simple contract, allowing a user to retrieve the price of an asset. You can play with a more complete example and deploy using Remix.
 
 <div >
@@ -204,7 +204,7 @@ Once compiled, you will have to create and deploy an account, and used the butto
 
 <img src="/img/remix/remix3.webp" alt="deploy-account" />
 
-You can finally deploy the contract. The addresses used for the constructor are the oracle contract address and the summary stats contract address. You can find the oracle address [here](../Resources/Cairo%201/data-feeds/Consuming%20Data.md). You can find the summary stats address [here](../Resources/Cairo%201/computational-feeds/Overview.md).
+You can finally deploy the contract. The addresses used for the constructor are the oracle contract address and the summary stats contract address. You can find the oracle address [here](../Resources/Starknet/data-feeds/Consuming%20Data.md). You can find the summary stats address [here](../Resources/Starknet/computational-feeds/Overview.md).
 
 <img src="/img/remix/remix4.webp" alt="deploy"/>
 
