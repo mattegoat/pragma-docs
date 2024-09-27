@@ -24,7 +24,7 @@ module.exports = {
       logo: {
         alt: "Pragma Logo",
         src: "img/logo.svg",
-        width: "auto",
+        width: 180,
         height: 40,
       },
       items: [

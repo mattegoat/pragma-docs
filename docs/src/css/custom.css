@@ -161,8 +161,7 @@ h4 {
 
 .navbar-sidebar__close {
   color: #b5f0e5 !important;
-  width: 22px !important;
-  padding-top: 3px !important;
+  width: 30px !important;
 }
 
 .DocSearch-Button-Key {
@@ -238,9 +237,16 @@ html[data-theme="dark"] .navbar {
 
 .clean-btn {
   color: #b5f0e5;
-  width: 28px;
-  padding-right: 5px;
+  width: 40px;
+  padding-right: 9px;
+  padding-left: 9px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   margin-right: 10px;
+  opacity: unset !important;
+  background: unset !important;
+  border: 1px solid #b5f0e52f !important;
+  border-radius: 100px !important;
 }
 
 .menu__link {
@@ -624,13 +630,6 @@ html[data-theme="dark"] .DocSearch-Hit a:hover {
 }
 .pagination-nav__sublabel {
   color: #b5f0e580;
-}
-
-.clean-btn {
-  opacity: unset !important;
-  background: unset !important;
-  border: 1px solid #b5f0e52f !important;
-  border-radius: 50px !important;
 }
 
 .clean-btn:hover {
