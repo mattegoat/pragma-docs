@@ -33,14 +33,12 @@ const BasicHero = ({ title, greenTitle, description }) => {
           <div className={styles.searchWrapper}>
             <SearchBar />
           </div>
-          {isClient ? (
+          {isClient && (
             <Suspense
               fallback={<div className={styles.description}>Loading...</div>}
             >
               <LazyDescription description={description} />
             </Suspense>
-          ) : (
-            <div className={styles.description}>{description}</div>
           )}
         </header>
       </div>
