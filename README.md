@@ -1,7 +1,7 @@
 # Pragma Documentation
 
 <p align="center">
-  <img src="/img/pragma-og-img.png" alt="Pragma Logo" width="200"/>
+  <img src="https://github.com/astraly-labs/pragma-docs/raw/main/docs/static/img/pragma-og-img.svg" alt="Pragma Logo" width="200"/>
 </p>
 
 > Pragma is the decentralized, transparent and composable oracle network, leveraging state-of-the-art zero-knowledge cryptography.

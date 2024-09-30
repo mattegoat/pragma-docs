@@ -1,6 +1,4 @@
 import React from "react";
-import InputComponent from "./EmailInput";
-import classNames from "classnames";
 import styles from "./styles.module.css";
 
 interface FooterLink {
@@ -105,13 +103,12 @@ const Footer = () => (
         className={styles.logoWrapFoot}
       >
         <a href="/">
-          <div style={{ width: "fit-content" }}>
-            <img
-              className={styles.imgFooter}
-              src="/img/pragma-og-img.png"
-              alt="Pragma"
-            />
-          </div>
+          <img
+            src="/img/pragma-og-img.svg"
+            alt="Pragma"
+            width={180}
+            height={40}
+          />
         </a>
         <p className={styles.footerDescription}>
           Pragma is the leading oracle on Starknet, built to empower native
