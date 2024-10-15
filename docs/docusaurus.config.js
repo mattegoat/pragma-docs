@@ -29,14 +29,26 @@ module.exports = {
       },
       items: [
         {
-          to: "/introduction",
-          label: "Protocol",
+          to: "/overview/introduction",
+          label: "Overview",
           position: "left",
           className: "persistent",
         },
         {
-          label: "Give Feedback",
-          to: "https://kprem87muy4.typeform.com/to/ahJVbIeI",
+          to: "/v1/overview",
+          label: "Pragma v1",
+          position: "left",
+          className: "persistent",
+        },
+        {
+          to: "/v2/overview",
+          label: "Pragma v2",
+          position: "left",
+          className: "persistent",
+        },
+        {
+          to: "/api/overview",
+          label: "API",
           position: "left",
           className: "persistent",
         },
