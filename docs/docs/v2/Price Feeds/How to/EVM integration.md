@@ -15,7 +15,7 @@ The Pragma oracle contract provides various data feeds including spot median pri
 ### Prerequisites
 
  - `Solidity ^0.8.0`
- - The address of the deployed Pragma oracle contract (you can find the list of deployed contracts here)
+ - The address of the deployed Pragma oracle contract (you can find the list of deployed contracts [here](/v2/Price%20Feeds/Deployments))
 
 ### Integration steps
 
@@ -92,7 +92,6 @@ contract YourContract {
  
     // Read the current price from a price feed if it is less than 60 seconds old.
     // Each price feed (e.g., Spot Median ETH/USD) is identified by a unique identifier id.
-    // The complete list of feed is available here
     bytes32 id = ; // ETH/USD
     PragmaStructs.DataFeed memory data_feed = oracle.getSpotMedianNoOlderThan(id, 60);
   }
@@ -104,6 +103,7 @@ Let's detail the operations done by the snippet above.
 Firstly we instantiate a `IPragma` interface from the solidity SDK, linked to a Pragma contract, passed in the constructor.  
 Then we call `IPragma.getUpdateFee` to determine the fee charged to update the price.  
 After calling `IPragma.updatePriceFeeds` to update the price, paying the previous fee,  we call `IPragma.getSpotMedianNoOlderThan` to read the current spot median price for the given feed id providing an acceptable staleness for the data to be fetched. 
+You can find [here](/v2/Price%20Feeds/supported-assets-chains) the list of available feeds. 
 
 
 #### Integration by copying the Pragma interface

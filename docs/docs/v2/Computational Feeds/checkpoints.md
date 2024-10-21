@@ -6,4 +6,24 @@ sidebar_position: 2
 
 ---
 
-TODO: add checkpoints doc
+Many computational feeds depend on historical data for their functionality. To improve access to this data, Pragma has introduced a feature known as checkpoints.
+
+## Understanding Checkpoints
+
+Checkpoints, in computer science, are mechanisms that capture and save the state of a computation so it can be resumed later. Specifically, in Pragma's system, checkpoints are used to store price information at particular timestamps. This stored information is then utilized by computational feeds.
+
+## Implementing Checkpoints in Pragma
+
+Within the oracle contract, there's a function named `set_checkpoints` accessible to anyone. This function focuses on a specific currency pair. Upon activation, it logs the price information of the selected pair at the moment the function is called, saving this data in a designated storage area.
+
+## User Interaction and Autonomy
+
+Pragma routinely uses this function to create checkpoints for frequently used currency pairs. Additionally, users have the freedom to trigger this function on their own, enabling them to gather specific historical price data needed for their computational analyses.
+
+## Checkpointer
+
+We provide an easy to run CLI tool to set checkpoints for the assets you need at the frequency you need.
+More information on the CLI can be found [here](https://github.com/astraly-labs/pragma-sdk/blob/master/checkpointer/README.md).
+
+On the high-level it's a simple service that given a configuration file and some CLI parameters will do all the heavy lifting for you.
+The docker image is hosted [here](https://github.com/astraly-labs/pragma-sdk/pkgs/container/pragma-sdk%2Fcheckpointer).
