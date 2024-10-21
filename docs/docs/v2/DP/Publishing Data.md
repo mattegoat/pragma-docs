@@ -114,7 +114,7 @@ async def publish_all(pairs: List[Pair]):
     publisher_client = PragmaOnChainClient(
         account_private_key=("/path/to/keystore", keystore_password),
         account_contract_address=publisher_address,
-        network=os.environ["NETWORK"],  # ENV var set to `sepolia | mainnet | pragma_devnet`
+        network=os.environ["NETWORK"],  # ENV var set to `pragma_devnet | pragma_testnet | pragma_mainnet`
     )
 
     # Use your own custom logic
