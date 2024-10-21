@@ -8,8 +8,7 @@ sidebar_position: 1
 
 ## Integrate Pragma to your contract
 
-
-### Overview
+### Overview
 
 The Pragma oracle contract provides various data feeds including spot median prices, TWAPs, realized volatility, options data, and perpetuals data. This guide will help you integrate these data feeds into your smart contracts.
 
