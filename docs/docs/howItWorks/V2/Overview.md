@@ -6,7 +6,13 @@ sidebar_position: 1
 
 ---
 
-The v2 builds upon the principles of v1 while offering enhanced capabilities. The v2 is in devnet only, contact us if you want access.
+:::success Testnet is live
+
+The Pragma v2 testnet is now live. You can find more information [here](/v2/Price%20Feeds/How%20to/evm-integration)
+
+:::
+
+The v2 builds upon the principles of v1 while offering enhanced capabilities.
 
 ## Available Anywhere, Anytime
 
