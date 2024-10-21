@@ -6,13 +6,11 @@ sidebar_position: 3
 
 ---
 
-> TODO:Change this to the v2 model
-
 Pragma makes publishing data easy because there is no off-chain infrastructure, so publishing only requires signing and timestamping data before sending it on-chain. All of this can be done with a simple, stateless node that costs a few dollars a month to run.
 
 _Estimated Time_: A few hours to a day depending on your underlying data infrastructure.
 
-_SDK Version_: This walkthrough is only valid for the SDK versions `>=2.0.0`.
+_SDK Version_: This walkthrough is only valid for the SDK versions `>=2.1.3`.
 
 Here is the step-by-step breakdown:
 
@@ -22,17 +20,8 @@ We highly recommend using keystores instead of plain private keys for security.
 
 ```bash
 starkli signer keystore new /path/to/key.json
-```
-
-```bash
 export STARKNET_KEYSTORE="/path/to/key.json"
-```
-
-```bash
 starkli account oz init /path/to/account.json
-```
-
-```bash
 starkli account deploy /path/to/account.json
 ```
 
@@ -99,7 +88,7 @@ def fetch_entries(pairs: List[Pair], *args, **kwargs) -> List[Entry]:
                 publisher="MY_PUBLISHER",
                 pair_id=pair.id,
                 price=10 * 10 ** pair.decimals(),  # shifted 10 ** decimals
-                volume=0,
+                volume=0, # optional
             )
         )
         entries.append(
@@ -110,7 +99,7 @@ def fetch_entries(pairs: List[Pair], *args, **kwargs) -> List[Entry]:
                 pair_id=pair.id,
                 price=10 * 10 ** pair.decimals(),  # shifted 10 ** decimals
                 expiry_timestamp=1693275381,  # Set to 0 for perpetual contracts
-                volume=0,
+                volume=0, # optional
             )
         )
 
@@ -125,7 +114,7 @@ async def publish_all(pairs: List[Pair]):
     publisher_client = PragmaOnChainClient(
         account_private_key=("/path/to/keystore", keystore_password),
         account_contract_address=publisher_address,
-        network=os.environ["NETWORK"],  # ENV var set to `sepolia | mainnet`
+        network=os.environ["NETWORK"],  # ENV var set to `sepolia | mainnet | pragma_devnet`
     )
 
     # Use your own custom logic
@@ -150,9 +139,7 @@ if __name__ == "__main__":
 ```
 
 :::tip
-
 To use a custom RPC, you will need to set the `network` constructor argument to your rpc url. In that case it is **mandatory** that you set the `chain_name` argument.
-
 :::
 
 ```python
@@ -160,42 +147,9 @@ To use a custom RPC, you will need to set the `network` constructor argument to 
         account_private_key=("/path/to/keystore", keystore_password),
         account_contract_address=publisher_address,
         network="https://my.custom.mainnet.rpc.url",
-        chain_name="mainnet"
+        chain_name="pragma_devnet"
     )
 ```
-
-#### 3.2. Publish on API
-
-If you're willing to publish on the [Pragma API](https://blog.pragma.build/pragma-empowers-starknet-sequencer-with-the-launch-of-the-api/) aswell, there are 2 simple changes to make :
-
-You will have to specify an `API_KEY` and an `API_URL`.
-Currently the only way to get an API key is for us to give it to you, so please let us know if you need it!
-
-There are 2 environments :
-
-- dev: `https://api.dev.pragma.build/node` (default)
-- prod: `https://api.prod.pragma.build/node`
-
-Then you just need to use the `PragmaAPIClient` instead of the `PragmaOnChainClient`.
-
-```python
-    publisher_client = PragmaAPIClient(
-            account_private_key=("path/to/keystore", keystore_password),
-            account_contract_address=PUBLISHER_ADDRESS,
-            api_url=API_URL, // dev or prod url
-            api_key=API_KEY, // the api key that you received
-        )
-
-    // ... everything else stays the same
-    await publisher_client.publish_entries(_entries)
-```
-
-:::warning
-
-To publish on the API, same as onchain you will need to be whitelisted.
-We have a secure system where you will have a master key and an active publishing key that lets you rotate the active key in case it's compromised.
-
-:::
 
 ### 4. Docker Image
 
