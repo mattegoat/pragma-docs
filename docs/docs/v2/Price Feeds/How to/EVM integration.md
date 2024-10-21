@@ -38,7 +38,7 @@ import TabItem from '@theme/TabItem';
   foundryup
 
   # Install the Solidity SDK for Forge
-  forge install @pragma/solidity-sdk
+  forge install @pragmaoracle/solidity-sdk
   ```
 
   </TabItem>
@@ -54,7 +54,7 @@ import TabItem from '@theme/TabItem';
   npm install -g truffle
 
   # Install the Solidity SDK for Hardhat or Truffle
-  npm install @pragma/solidity-sdk
+  npm install @pragmaoracle/solidity-sdk
   ```
 
   </TabItem>
@@ -65,8 +65,8 @@ Once installed, you can use this code snippet for your integration:
 ```solidity
 pragma solidity ^0.8.0;
  
-import "@pragma/solidity-sdk/IPragma.sol";
-import "@pragma/solidity-sdk/PragmaStructs.sol";
+import "@pragmaoracle/solidity-sdk/IPragma.sol";
+import "@pragmaoracle/solidity-sdk/PragmaStructs.sol";
  
 contract YourContract {
   IPragma oracle;
