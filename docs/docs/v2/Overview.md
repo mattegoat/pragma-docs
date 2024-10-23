@@ -8,7 +8,7 @@ sidebar_position: 1
 
 :::success Testnet is live
 
-The Pragma v2 testnet is now live. You can find more information [here](/v2/Price%20Feeds/introduction)
+The Pragma v2 testnet is now live. You can find more information [here](/v2/Price%20Feeds/How%20to/evm-integration)
 
 :::
 
